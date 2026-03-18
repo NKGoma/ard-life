@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #87CEEB;
+  --foreground: #e2e8f0;
 }
 
 @theme inline {
@@ -12,15 +12,88 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Smooth animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in {
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* GPU-accelerated overlay transitions */
+.overlay-layer {
+  transition: opacity 0.45s ease, backdrop-filter 0.45s ease;
+  pointer-events: none;
+  will-change: opacity;
+  transform: translateZ(0); /* Force GPU layer */
+}
+.overlay-layer.visible {
+  pointer-events: auto;
+}
+
+/* Content emerges upward from tile */
+@keyframes emergeFromTile {
+  0%   { opacity: 0; transform: translateY(60px) scale(0.85); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-emerge {
+  animation: emergeFromTile 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+
+/* Spinner panel entrance */
+@keyframes spinnerEnter {
+  0%   { opacity: 0; transform: scale(0.8) translateY(20px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+.animate-spinner-enter {
+  animation: spinnerEnter 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+
+/* Gentle landing badge pulse */
+@keyframes landPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.06); }
+}
+.animate-land-pulse {
+  animation: landPulse 1.2s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* 3D canvas container – ensure GPU compositing */
+canvas {
+  touch-action: none;
+  image-rendering: optimizeSpeed;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 3px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
