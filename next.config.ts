@@ -4,6 +4,9 @@ const nextConfig: NextConfig = {
   // Enable React strict mode for catching potential issues
   reactStrictMode: true,
 
+  // Standalone output for Docker deployment
+  output: 'standalone',
+
   // Optimize build output
   compiler: {
     // Remove console.log in production
