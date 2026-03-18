@@ -10,6 +10,8 @@ variables:
 
 build:
   stage: build
+  tags:
+    - global-runner
   image: docker:27
   services:
     - docker:27-dind
@@ -27,6 +29,8 @@ build:
 
 deploy:
   stage: deploy
+  tags:
+    - global-runner
   image: alpine:latest
   needs:
     - build
