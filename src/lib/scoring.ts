@@ -2,7 +2,7 @@
 // Scoring v4 – 3 categories: bildung, gemeinschaft, glueck
 // ============================================================
 import { PlayerScores, ScoreMap, ScoreKey, ALL_SCORE_KEYS, EndProfile, ProfileCondition } from '@/types';
-import profilesData from '@/data/profiles.json';
+import profilesData from '@data/profiles.json';
 
 interface ProfilesFile {
   baseValues: Record<string, number>;

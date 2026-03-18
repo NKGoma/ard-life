@@ -7,17 +7,32 @@ import {
 } from '@/types';
 import { generateBoard } from './boardGenerator';
 import { getBaseScores, applyScoring } from './scoring';
-import questionsData from '@/data/questions.json';
-import randomEventsData from '@/data/randomEvents.json';
+import questionsRaw from '@data/mc_questions_01.json';
+import randomEventsData from '@data/randomEvents.json';
 
 // --- JSON type casts ---
-interface QFile {
-  categories: { id: string; label: string; emoji: string; color: string }[];
-  stageMapping: Record<string, string[]>;
-  questions: GameQuestion[];
+interface RawQuestion extends Omit<GameQuestion, 'points'> {
+  points: { bildung?: number; gemeinschaft?: number; glueck?: number; lebensglueck?: number };
 }
 interface REFile { events: RandomEvent[]; }
-const qFile = questionsData as unknown as QFile;
+
+const STAGE_MAPPING: Record<string, string[]> = {
+  kindheit: ['grundwissen'],
+  jugend: ['grundwissen', 'sport', 'musik'],
+  junges_erwachsenenalter: ['sport', 'musik', 'humor', 'geschichte'],
+  erwachsenenalter: ['humor', 'geschichte', 'kultur'],
+  alter: ['geschichte', 'kultur', 'grundwissen'],
+};
+const ALL_CATEGORIES = ['grundwissen', 'sport', 'musik', 'humor', 'geschichte', 'kultur'];
+
+const questions: GameQuestion[] = (questionsRaw as unknown as RawQuestion[]).map(q => ({
+  ...q,
+  points: {
+    bildung: q.points.bildung ?? 0,
+    gemeinschaft: q.points.gemeinschaft ?? 0,
+    glueck: q.points.lebensglueck ?? q.points.glueck ?? 0,
+  },
+}));
 const reFile = randomEventsData as unknown as REFile;
 
 const SAVE_KEY = 'ard_life_save_v4';
@@ -59,11 +74,10 @@ export function getStageForPosition(board: BoardSpace[], pos: number): LifeStage
 
 // --- Get question for current stage ---
 export function getQuestionForStage(stage: LifeStage, answered: string[]): GameQuestion | null {
-  const mapping = qFile.stageMapping;
-  const allowed = mapping[stage] ?? qFile.categories.map(c => c.id);
-  let available = qFile.questions.filter(q => allowed.includes(q.category) && !answered.includes(q.id));
+  const allowed = STAGE_MAPPING[stage] ?? ALL_CATEGORIES;
+  let available = questions.filter(q => allowed.includes(q.category) && !answered.includes(q.id));
   if (available.length === 0) {
-    available = qFile.questions.filter(q => !answered.includes(q.id));
+    available = questions.filter(q => !answered.includes(q.id));
     if (available.length === 0) return null;
   }
   return available[Math.floor(Math.random() * available.length)];
