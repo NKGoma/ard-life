@@ -1,0 +1,521 @@
+{
+  "events": [
+    {
+      "id": "re-002",
+      "title": "Rundfunkbeitrag… oder Pizza?",
+      "description": "Dein Kontostand ist niedrig. Der Rundfunkbeitrag ist fällig – gleichzeitig hast du seit Tagen Lust auf Pizza.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "verantwortung",
+      "choices": [
+        { "text": "Du bezahlst den Beitrag und isst trockene Nudeln.", "points": { "bildung": 2, "gemeinschaft": 2, "glueck": -1 } },
+        { "text": "Du bestellst Pizza und verschiebst die Zahlung.", "points": { "bildung": 0, "gemeinschaft": -1, "glueck": 2 } }
+      ]
+    },
+    {
+      "id": "re-003",
+      "title": "Der Faktenfuchs ruft",
+      "description": "Du siehst einen langen Faktencheck-Artikel. Er ist seriös… aber auch SEHR lang.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "information",
+      "choices": [
+        { "text": "Du liest alles gründlich und verstehst endlich das Thema.", "points": { "bildung": 3, "gemeinschaft": 1, "glueck": -1 } },
+        { "text": "Du liest nur die Zusammenfassung und fühlst dich informiert genug.", "points": { "bildung": 1, "gemeinschaft": 0, "glueck": 1 } }
+      ]
+    },
+    {
+      "id": "re-004",
+      "title": "Familienchat eskaliert",
+      "description": "Du hast einen fragwürdigen Artikel geteilt. Deine Tante stellt unangenehm gute Fragen. Alle lesen mit.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "misinformation",
+      "choices": [
+        { "text": "Du gibst zu, dass du den Artikel nicht geprüft hast.", "points": { "bildung": 2, "gemeinschaft": 2, "glueck": -1 } },
+        { "text": "Du wechselst geschickt das Thema auf das Wetter.", "points": { "bildung": -1, "gemeinschaft": 1, "glueck": 1 } }
+      ]
+    },
+    {
+      "id": "re-005",
+      "title": "Clickbait mit Folgen",
+      "description": "„Du wirst nicht glauben, was dann passiert ist!!!“ – du klickst… und liest dann doch nicht weiter.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "mediennutzung",
+      "choices": [
+        { "text": "Du recherchierst den Inhalt woanders seriös.", "points": { "bildung": 2, "gemeinschaft": 0, "glueck": -1 } },
+        { "text": "Du erzählst anderen trotzdem davon.", "points": { "bildung": -2, "gemeinschaft": -1, "glueck": 1 } }
+      ]
+    },
+    {
+      "id": "re-006",
+      "title": "Deutschlandfunk im Halbschlaf",
+      "description": "Du hörst Nachrichten im Radio, bist aber eigentlich noch halb im Schlaf.",
+      "lifeStage": ["erwachsen"],
+      "category": "information",
+      "choices": [
+        { "text": "Du hörst bewusst zu – auch wenn es anstrengend ist.", "points": { "bildung": 2, "gemeinschaft": 1, "glueck": -1 } },
+        { "text": "Du lässt es nebenbei laufen und hoffst, etwas mitzunehmen.", "points": { "bildung": 1, "gemeinschaft": 0, "glueck": 1 } }
+      ]
+    },
+    {
+      "id": "re-007",
+      "title": "Clickbait-Reue",
+      "description": "Du bist auf ein Clickbait-Video reingefallen. Es war… enttäuschend.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "lernen",
+      "choices": [
+        { "text": "Du analysierst, warum es dich geködert hat.", "points": { "bildung": 2, "gemeinschaft": 0, "glueck": 0 } },
+        { "text": "Du schaust direkt das nächste Video – vielleicht ist das besser.", "points": { "bildung": -1, "gemeinschaft": 0, "glueck": 2 } }
+      ]
+    },
+    {
+      "id": "re-008",
+      "title": "Reportage & Rotwein",
+      "description": "Nach einer intensiven Reportage diskutierst du mit Freunden. Die Stimmung ist… meinungsstark.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "diskurs",
+      "choices": [
+        { "text": "Du hörst aktiv zu und hinterfragst auch dich selbst.", "points": { "bildung": 2, "gemeinschaft": 2, "glueck": 0 } },
+        { "text": "Du verteidigst deine Meinung mit Leidenschaft (und Lautstärke).", "points": { "bildung": 0, "gemeinschaft": -1, "glueck": 2 } }
+      ]
+    },
+    {
+      "id": "re-009",
+      "title": "Satire oder Realität?",
+      "description": "Du schaust eine politische Satiresendung und bist dir nicht sicher, wo der Witz aufhört und die Realität beginnt.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "unterhaltung",
+      "choices": [
+        { "text": "Du recherchierst die angesprochenen Themen danach.", "points": { "bildung": 2, "gemeinschaft": 0, "glueck": 1 } },
+        { "text": "Du genießt einfach den Humor und lässt es dabei.", "points": { "bildung": 0, "gemeinschaft": 1, "glueck": 2 } }
+      ]
+    },
+    {
+      "id": "re-010",
+      "title": "Barrierefreiheit testen",
+      "description": "Du aktivierst Untertitel und Gebärdensprache – obwohl du sie nicht zwingend brauchst.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "inklusion",
+      "choices": [
+        { "text": "Du probierst es aus und lernst etwas über Zugänglichkeit.", "points": { "bildung": 1, "gemeinschaft": 2, "glueck": 0 } },
+        { "text": "Du bleibst bei deinem gewohnten Setup.", "points": { "bildung": 0, "gemeinschaft": 0, "glueck": 1 } }
+      ]
+    },
+    {
+      "id": "re-011",
+      "title": "Die Paywall-Falle",
+      "description": "Ein spannender Artikel ist hinter einer Paywall. Du könntest ihn umgehen… oder bezahlen.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "ethik",
+      "choices": [
+        { "text": "Du bezahlst für den Artikel.", "points": { "bildung": 2, "gemeinschaft": 2, "glueck": -1 } },
+        { "text": "Du suchst eine kostenlose (zweifelhafte) Alternative.", "points": { "bildung": 0, "gemeinschaft": -1, "glueck": 2 } }
+      ]
+    },
+    {
+      "id": "re-012",
+      "title": "Überschrift reicht doch, oder?",
+      "description": "Du liest nur die Überschrift eines Artikels, fühlst dich aber bereit, mitzudiskutieren.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "misinformation",
+      "choices": [
+        { "text": "Du hältst dich zurück, bis du mehr weißt.", "points": { "bildung": 2, "gemeinschaft": 1, "glueck": -1 } },
+        { "text": "Du diskutierst trotzdem – wird schon passen.", "points": { "bildung": -2, "gemeinschaft": 0, "glueck": 2 } }
+      ]
+    },
+    {
+      "id": "re-013",
+      "title": "Algorithmus sagt Hallo",
+      "description": "Dein Feed zeigt dir nur noch Inhalte, die deiner Meinung entsprechen. Angenehm… aber irgendwie verdächtig.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "medienkompetenz",
+      "choices": [
+        { "text": "Du suchst gezielt andere Perspektiven.", "points": { "bildung": 3, "gemeinschaft": 1, "glueck": -1 } },
+        { "text": "Du genießt die Bestätigung deiner Meinung.", "points": { "bildung": -1, "gemeinschaft": -1, "glueck": 2 } }
+      ]
+    },
+    {
+      "id": "re-014",
+      "title": "Freund teilt Unsinn",
+      "description": "Ein guter Freund teilt offensichtlichen Quatsch online.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "sozial",
+      "choices": [
+        { "text": "Du sprichst ihn privat darauf an.", "points": { "bildung": 2, "gemeinschaft": 2, "glueck": -1 } },
+        { "text": "Du ignorierst es, um keinen Streit zu riskieren.", "points": { "bildung": 0, "gemeinschaft": 1, "glueck": 1 } }
+      ]
+    },
+       {
+      "id": "re-015",
+      "title": "Breaking News oder Bett?",
+      "description": "Es ist spät, aber eine wichtige Nachricht bricht gerade rein. Morgen musst du früh raus.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "alltag",
+      "choices": [
+        { "text": "Du bleibst wach und informierst dich gründlich.", "points": { "bildung": 2, "gemeinschaft": 1, "glueck": -2 } },
+        { "text": "Du gehst schlafen und liest morgen alles in Ruhe.", "points": { "bildung": 1, "gemeinschaft": 0, "glueck": 2 } }
+      ]
+    },
+    {
+      "id": "re-016",
+      "title": "Podcast-Marathon",
+      "description": "Du findest einen spannenden Nachrichten-Podcast – 10 Folgen à 45 Minuten.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "information",
+      "choices": [
+        { "text": "Du hörst mehrere Folgen am Stück.", "points": { "bildung": 3, "gemeinschaft": 0, "glueck": -1 } },
+        { "text": "Du hörst nur eine Folge und machst dann etwas anderes.", "points": { "bildung": 1, "gemeinschaft": 1, "glueck": 2 } }
+      ]
+    },
+    {
+      "id": "re-017",
+      "title": "Die Kommentarspalte ruft",
+      "description": "Unter einem Artikel tobt eine hitzige Diskussion. Deine Finger jucken schon.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "diskurs",
+      "choices": [
+        { "text": "Du schreibst einen differenzierten Kommentar.", "points": { "bildung": 2, "gemeinschaft": 1, "glueck": -1 } },
+        { "text": "Du liest nur still mit (Popcorn optional).", "points": { "bildung": 1, "gemeinschaft": 0, "glueck": 2 } }
+      ]
+    },
+    {
+      "id": "re-018",
+      "title": "Freier Wille vs. Algorithmus",
+      "description": "Die Plattform empfiehlt dir genau das nächste Video. Es sieht… perfekt aus.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "medienkompetenz",
+      "choices": [
+        { "text": "Du klickst und lässt dich treiben.", "points": { "bildung": 0, "gemeinschaft": 0, "glueck": 2 } },
+        { "text": "Du suchst bewusst ein anderes Thema.", "points": { "bildung": 2, "gemeinschaft": 1, "glueck": -1 } }
+      ]
+    },
+    {
+      "id": "re-019",
+      "title": "Die eine Quelle",
+      "description": "Du findest einen Artikel, der genau deine Meinung bestätigt. Andere Quellen sagen etwas anderes.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "bias",
+      "choices": [
+        { "text": "Du bleibst bei dieser einen Quelle.", "points": { "bildung": -1, "gemeinschaft": 0, "glueck": 2 } },
+        { "text": "Du vergleichst mehrere Quellen.", "points": { "bildung": 3, "gemeinschaft": 1, "glueck": -1 } }
+      ]
+    },
+    {
+      "id": "re-020",
+      "title": "Multitasking-Meister",
+      "description": "Du liest Nachrichten, während du gleichzeitig chattest, isst und ein Video schaust.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "aufmerksamkeit",
+      "choices": [
+        { "text": "Du konzentrierst dich nur auf die Nachrichten.", "points": { "bildung": 2, "gemeinschaft": 0, "glueck": -1 } },
+        { "text": "Du machst alles gleichzeitig weiter.", "points": { "bildung": 0, "gemeinschaft": 1, "glueck": 2 } }
+      ]
+    },
+    {
+      "id": "re-021",
+      "title": "Die lange Doku",
+      "description": "Eine hochwertige Doku dauert 2 Stunden. Dein Lieblingsformat läuft gleichzeitig.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "unterhaltung",
+      "choices": [
+        { "text": "Du schaust die Doku.", "points": { "bildung": 3, "gemeinschaft": 0, "glueck": -1 } },
+        { "text": "Du entscheidest dich für leichte Unterhaltung.", "points": { "bildung": 0, "gemeinschaft": 1, "glueck": 2 } }
+      ]
+    },
+    {
+      "id": "re-022",
+      "title": "Push-Nachrichten-Flut",
+      "description": "Dein Handy bombardiert dich mit News-Benachrichtigungen.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "alltag",
+      "choices": [
+        { "text": "Du liest jede einzelne Meldung.", "points": { "bildung": 2, "gemeinschaft": 1, "glueck": -2 } },
+        { "text": "Du schaltest die Benachrichtigungen aus.", "points": { "bildung": 0, "gemeinschaft": 0, "glueck": 2 } }
+      ]
+    },
+    {
+      "id": "re-023",
+      "title": "Der ironische Share",
+      "description": "Du teilst einen schlechten Artikel 'ironisch'. Nicht alle verstehen den Witz.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "misinformation",
+      "choices": [
+        { "text": "Du erklärst den Kontext dazu.", "points": { "bildung": 1, "gemeinschaft": 2, "glueck": -1 } },
+        { "text": "Du lässt es einfach stehen.", "points": { "bildung": -1, "gemeinschaft": -1, "glueck": 2 } }
+      ]
+    },
+    {
+      "id": "re-024",
+      "title": "Freizeit vs. Fakten",
+      "description": "Du hast endlich Zeit für dich: Nachrichten lesen oder einfach abschalten?",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "balance",
+      "choices": [
+        { "text": "Du informierst dich über aktuelle Themen.", "points": { "bildung": 2, "gemeinschaft": 1, "glueck": -1 } },
+        { "text": "Du gönnst dir bewusst eine Pause von allem.", "points": { "bildung": 0, "gemeinschaft": 0, "glueck": 3 } }
+      ]
+    },
+    {
+      "id": "re-025",
+      "title": "Titelbild reicht?",
+      "description": "Ein Artikel hat ein starkes Bild, das schon alles zu sagen scheint.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "mediennutzung",
+      "choices": [
+        { "text": "Du liest trotzdem den ganzen Artikel.", "points": { "bildung": 2, "gemeinschaft": 0, "glueck": -1 } },
+        { "text": "Du bildest dir deine Meinung nur anhand des Bildes.", "points": { "bildung": -2, "gemeinschaft": -1, "glueck": 2 } }
+      ]
+    },
+    {
+      "id": "re-026",
+      "title": "Freundliche Unwissenheit",
+      "description": "In einer Runde wird ein Thema diskutiert, von dem du wenig Ahnung hast.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "sozial",
+      "choices": [
+        { "text": "Du hörst zu und stellst Fragen.", "points": { "bildung": 2, "gemeinschaft": 2, "glueck": -1 } },
+        { "text": "Du redest trotzdem mit, um nicht still zu wirken.", "points": { "bildung": -1, "gemeinschaft": 0, "glueck": 2 } }
+      ]
+    },
+     {
+      "id": "re-027",
+      "title": "Der 3-Minuten-Deep-Dive",
+      "description": "Du hast genau 3 Minuten Zeit und willst 'kurz' ein komplexes Thema verstehen. Challenge accepted?",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "information",
+      "choices": [
+        { "text": "Du liest eine kurze Zusammenfassung.", "points": { "bildung": 1, "gemeinschaft": 0, "glueck": 1 } },
+        { "text": "Du speicherst es für später und liest es gründlich (irgendwann…).", "points": { "bildung": 2, "gemeinschaft": 0, "glueck": 0 } }
+      ]
+    },
+    {
+      "id": "re-028",
+      "title": "Die eine Statistik",
+      "description": "Du siehst eine beeindruckende Statistik – Quelle: 'Internet'.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "misinformation",
+      "choices": [
+        { "text": "Du suchst nach der Originalquelle.", "points": { "bildung": 3, "gemeinschaft": 0, "glueck": -1 } },
+        { "text": "Du nutzt sie direkt in einer Diskussion.", "points": { "bildung": -1, "gemeinschaft": 1, "glueck": 2 } }
+      ]
+    },
+    {
+      "id": "re-029",
+      "title": "News oder Noise?",
+      "description": "Du bist dir unsicher, ob eine Nachricht wirklich relevant ist oder nur Aufregung erzeugt.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "medienkompetenz",
+      "choices": [
+        { "text": "Du ignorierst sie bewusst.", "points": { "bildung": 0, "gemeinschaft": 0, "glueck": 2 } },
+        { "text": "Du gehst tiefer rein, um es herauszufinden.", "points": { "bildung": 2, "gemeinschaft": 1, "glueck": -1 } }
+      ]
+    },
+    {
+      "id": "re-030",
+      "title": "Der lange Thread",
+      "description": "Ein Social-Media-Thread erklärt ein komplexes Thema… in 27 Posts.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "information",
+      "choices": [
+        { "text": "Du liest alles aufmerksam durch.", "points": { "bildung": 2, "gemeinschaft": 0, "glueck": -1 } },
+        { "text": "Du liest nur die ersten zwei Posts und ziehst Schlüsse.", "points": { "bildung": -1, "gemeinschaft": 0, "glueck": 2 } }
+      ]
+    },
+    {
+      "id": "re-031",
+      "title": "Die bequeme Wahrheit",
+      "description": "Eine Information passt perfekt zu deinem Weltbild – verdächtig perfekt.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "bias",
+      "choices": [
+        { "text": "Du überprüfst sie besonders kritisch.", "points": { "bildung": 3, "gemeinschaft": 1, "glueck": -1 } },
+        { "text": "Du akzeptierst sie sofort.", "points": { "bildung": -1, "gemeinschaft": 0, "glueck": 2 } }
+      ]
+    },
+    {
+      "id": "re-032",
+      "title": "Diskussion oder Frieden?",
+      "description": "Eine Diskussion wird hitzig. Du merkst, dass sie kippen könnte.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "diskurs",
+      "choices": [
+        { "text": "Du versuchst zu vermitteln.", "points": { "bildung": 1, "gemeinschaft": 3, "glueck": -1 } },
+        { "text": "Du steigst aus und schützt deine Nerven.", "points": { "bildung": 0, "gemeinschaft": 0, "glueck": 2 } }
+      ]
+    },
+    {
+      "id": "re-033",
+      "title": "Der Fakten-Nerd-Moment",
+      "description": "Du könntest jetzt einen kleinen Fehler korrigieren… aber es wäre etwas unangenehm.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "sozial",
+      "choices": [
+        { "text": "Du korrigierst freundlich.", "points": { "bildung": 2, "gemeinschaft": 1, "glueck": -1 } },
+        { "text": "Du lässt es laufen, um die Stimmung nicht zu killen.", "points": { "bildung": 0, "gemeinschaft": 2, "glueck": 1 } }
+      ]
+    },
+    {
+      "id": "re-034",
+      "title": "Die Überschriften-Diät",
+      "description": "Du konsumierst heute nur Überschriften. Dein Gehirn sagt: effizient!",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "mediennutzung",
+      "choices": [
+        { "text": "Du bleibst dabei – besser als nichts.", "points": { "bildung": 0, "gemeinschaft": 0, "glueck": 2 } },
+        { "text": "Du entscheidest dich für weniger, aber tiefere Inhalte.", "points": { "bildung": 2, "gemeinschaft": 1, "glueck": -1 } }
+      ]
+    },
+    {
+      "id": "re-035",
+      "title": "Das gute alte Bauchgefühl",
+      "description": "Du 'fühlst', dass eine Nachricht stimmt. Beweise? Naja…",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "bias",
+      "choices": [
+        { "text": "Du vertraust deinem Bauchgefühl.", "points": { "bildung": -1, "gemeinschaft": 0, "glueck": 2 } },
+        { "text": "Du suchst aktiv nach Belegen.", "points": { "bildung": 3, "gemeinschaft": 0, "glueck": -1 } }
+      ]
+    },
+    {
+      "id": "re-036",
+      "title": "Der perfekte Zeitpunkt",
+      "description": "Du willst dich gründlich informieren – aber gerade ist wirklich nicht der perfekte Moment.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "alltag",
+      "choices": [
+        { "text": "Du nimmst dir trotzdem Zeit dafür.", "points": { "bildung": 2, "gemeinschaft": 1, "glueck": -1 } },
+        { "text": "Du verschiebst es auf später.", "points": { "bildung": 0, "gemeinschaft": 0, "glueck": 2 } }
+      ]
+    },
+    {
+      "id": "re-037",
+      "title": "Freund vs. Fakten",
+      "description": "Ein Freund liegt offensichtlich falsch – aber ist sehr überzeugt.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "sozial",
+      "choices": [
+        { "text": "Du widersprichst sachlich.", "points": { "bildung": 2, "gemeinschaft": -1, "glueck": 0 } },
+        { "text": "Du lässt es stehen, um die Freundschaft zu schonen.", "points": { "bildung": 0, "gemeinschaft": 2, "glueck": 1 } }
+      ]
+    },
+    {
+      "id": "re-038",
+      "title": "Die Info-Überforderung",
+      "description": "Du hast so viele Informationen aufgenommen, dass dein Kopf raucht.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "balance",
+      "choices": [
+        { "text": "Du machst eine Pause.", "points": { "bildung": 0, "gemeinschaft": 0, "glueck": 3 } },
+        { "text": "Du ziehst noch ein Thema durch.", "points": { "bildung": 2, "gemeinschaft": 0, "glueck": -2 } }
+      ]
+    },
+        {
+      "id": "re-039",
+      "title": "Deine Plattform, deine Welt",
+      "description": "Du entscheidest dich bewusst für eine Social-Media-Plattform. Jede hat ihre eigene Dynamik… und eigene Realitäten.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "medienkompetenz",
+      "choices": [
+        { "text": "Du nutzt eine Plattform mit wenig Moderation und 'ungefilterten' Inhalten.", "points": { "bildung": 1, "gemeinschaft": -1, "glueck": 2 } },
+        { "text": "Du nutzt eine moderierte Plattform mit kuratierten Inhalten.", "points": { "bildung": 2, "gemeinschaft": 1, "glueck": 0 } }
+      ]
+    },
+    {
+      "id": "re-040",
+      "title": "Abendprogramm",
+      "description": "Endlich Feierabend. Dein Gehirn möchte… irgendwas zwischen 'abschalten' und 'Welt verstehen'.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "unterhaltung",
+      "choices": [
+        { "text": "Du schaust eine anspruchsvolle Doku.", "points": { "bildung": 3, "gemeinschaft": 0, "glueck": -1 } },
+        { "text": "Du schaust leichte Unterhaltung.", "points": { "bildung": 0, "gemeinschaft": 1, "glueck": 2 } }
+      ]
+    },
+    {
+      "id": "re-041",
+      "title": "Dein Soundtrack",
+      "description": "Was läuft bei dir am häufigsten auf den Ohren?",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "alltag",
+      "choices": [
+        { "text": "Podcasts und informative Inhalte.", "points": { "bildung": 2, "gemeinschaft": 0, "glueck": -1 } },
+        { "text": "Musik zum Abschalten.", "points": { "bildung": 0, "gemeinschaft": 1, "glueck": 2 } }
+      ]
+    },
+    {
+      "id": "re-042",
+      "title": "Nachrichten-Stilfrage",
+      "description": "Wie möchtest du informiert werden? Kurz, knackig oder tief und ausführlich?",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "information",
+      "choices": [
+        { "text": "Kurze News-Snippets und Zusammenfassungen.", "points": { "bildung": 1, "gemeinschaft": 0, "glueck": 2 } },
+        { "text": "Lange, ausführliche Berichte.", "points": { "bildung": 3, "gemeinschaft": 1, "glueck": -1 } }
+      ]
+    },
+    {
+      "id": "re-043",
+      "title": "Algorithmus-Comfort-Zone",
+      "description": "Dein Feed kennt dich besser als du selbst. Alles ist perfekt auf dich zugeschnitten.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "bias",
+      "choices": [
+        { "text": "Du bleibst in deiner Komfortzone.", "points": { "bildung": -1, "gemeinschaft": 0, "glueck": 3 } },
+        { "text": "Du brichst bewusst aus und suchst andere Perspektiven.", "points": { "bildung": 3, "gemeinschaft": 1, "glueck": -1 } }
+      ]
+    },
+    {
+      "id": "re-044",
+      "title": "Nebenbei informiert",
+      "description": "Du konsumierst Nachrichten nebenbei – beim Scrollen, Essen, Warten… eigentlich immer.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "aufmerksamkeit",
+      "choices": [
+        { "text": "Besser als gar nicht informiert zu sein.", "points": { "bildung": 1, "gemeinschaft": 0, "glueck": 2 } },
+        { "text": "Du nimmst dir bewusst Zeit nur für Nachrichten.", "points": { "bildung": 2, "gemeinschaft": 1, "glueck": -1 } }
+      ]
+    },
+    {
+      "id": "re-045",
+      "title": "Die perfekte Playlist",
+      "description": "Du kannst wählen: Inhalte, die dich weiterbringen, oder Inhalte, die dich runterbringen (im guten Sinne).",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "balance",
+      "choices": [
+        { "text": "Du entscheidest dich für Bildung und Input.", "points": { "bildung": 3, "gemeinschaft": 0, "glueck": -1 } },
+        { "text": "Du entscheidest dich für Entspannung.", "points": { "bildung": 0, "gemeinschaft": 1, "glueck": 3 } }
+      ]
+    },
+    {
+      "id": "re-046",
+      "title": "Die eine Story",
+      "description": "Du siehst eine Story, die emotional richtig reinhaut. Fakten? Schwer zu sagen.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "misinformation",
+      "choices": [
+        { "text": "Du hinterfragst sie kritisch.", "points": { "bildung": 2, "gemeinschaft": 0, "glueck": -1 } },
+        { "text": "Du teilst sie, weil sie wichtig wirkt.", "points": { "bildung": -1, "gemeinschaft": 2, "glueck": 1 } }
+      ]
+    },
+    {
+      "id": "re-047",
+      "title": "Info oder Unterhaltung?",
+      "description": "Ein Format mischt Nachrichten mit Entertainment. Es ist… unterhaltsam informativ?",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "medienkompetenz",
+      "choices": [
+        { "text": "Du nutzt es als Einstieg in Themen.", "points": { "bildung": 1, "gemeinschaft": 1, "glueck": 2 } },
+        { "text": "Du suchst lieber klassische Nachrichtenquellen.", "points": { "bildung": 3, "gemeinschaft": 0, "glueck": -1 } }
+      ]
+    },
+    {
+      "id": "re-048",
+      "title": "Das ewige Scrollen",
+      "description": "Du wolltest nur kurz schauen… 45 Minuten später bist du immer noch im Feed.",
+      "lifeStage": ["jugend", "erwachsen"],
+      "category": "alltag",
+      "choices": [
+        { "text": "Du akzeptierst es als Entspannung.", "points": { "bildung": 0, "gemeinschaft": 0, "glueck": 3 } },
+        { "text": "Du stoppst bewusst und reflektierst dein Verhalten.", "points": { "bildung": 2, "gemeinschaft": 0, "glueck": -1 } }
+      ]
+    }
+  ]
+}

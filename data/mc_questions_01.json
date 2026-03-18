@@ -1,0 +1,422 @@
+[
+  {
+    "id": "q001",
+    "category": "grundwissen",
+    "title": "Der Gletscher-Check",
+    "url": "https://www.ardmediathek.de/video/checker-reportagen/der-gletscher-check/br/Y3JpZDovL2JyLmRlL3ZpZGVvLzAzYzY3YzdiLTI5YTMtNDRkNy1iOGZlLTcwNThlMDI4ZmY1Yw?isChildContent",
+    "question": "Checker Tobi erforscht riesige Eismassen in den Alpen. Was genau ist in der Gletscher-Forschung eine sogenannte 'Moräne'?",
+    "options": [
+      "Ein schlangenförmiger Fisch, der in kalten Bergseen lebt",
+      "Gestein und Geröll, das der Gletscher vor sich herschiebt",
+      "Das untere Ende des Gletschers, an dem das Eis schmilzt",
+      "Ein tiefer, gefährlicher Riss mitten im Gletschereis"
+    ],
+    "correctIndex": 1,
+    "points": {
+      "bildung": 3,
+      "gemeinschaft": 0,
+      "lebensglueck": 1
+    },
+    "insight": "Eine Moräne ist das Gestein und Geröll, das ein Gletscher wie ein riesiger Bagger ins Tal schiebt. Der ähnlich klingende schlangenförmige Fisch ist eine Muräne!"
+  },
+  {
+    "id": "q002",
+    "category": "grundwissen",
+    "title": "Wissen macht Ah! - Hamsterbacken",
+    "url": "https://www.ardmediathek.de/video/wissen-macht-ah/warum-haben-hamster-backentaschen-und-was-ist-hamstern/das-erste/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtNzU3Yzk5NjAtMGE4MC00YmRiLWE5YTEtMjc3YjRmZThjMDYw?isChildContent",
+    "question": "Warum haben Hamster so große Backentaschen und was bedeutet das davon abgeleitete Wort 'hamstern'?",
+    "options": [
+      "Sie speichern darin Wasser für den Winter; 'hamstern' bedeutet, sehr viel zu trinken.",
+      "Sie sammeln darin Nahrung, um sie in ihren Bau zu tragen; 'hamstern' meint das Anlegen von Vorräten.",
+      "Sie blasen sie bei Gefahr auf, um größer zu wirken; 'hamstern' bedeutet, mutig zu sein.",
+      "Sie verstecken darin ihre Jungen vor Feinden; 'hamstern' ist ein anderer Begriff für beschützen."
+    ],
+    "correctIndex": 1,
+    "points": {
+      "bildung": 2,
+      "gemeinschaft": 0,
+      "lebensglueck": 1
+    },
+    "insight": "Hamster nutzen ihre dehnbaren Backentaschen wie eingebaute Einkaufstüten, um Futter zu sammeln und sicher in ihren Bau zu transportieren. Davon leitet sich auch das menschliche 'Hamstern' ab: das massenhafte Ansammeln von Vorräten für schlechte Zeiten."
+  },
+  {
+    "id": "q003",
+    "category": "grundwissen",
+    "title": "Lebensretter Defibrillator",
+    "url": "https://www.ardmediathek.de/video/die-maus/was-ist-ein-defibrillator/wdr/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtYTgzNzYyNDktMTg0Yy00ZDgzLWI4Y2UtYWZkZTE2NGUwMjM1",
+    "question": "Wofür wird ein Defibrillator in einem medizinischen Notfall eingesetzt?",
+    "options": [
+      "Er misst automatisch den Blutdruck und die Körpertemperatur.",
+      "Er gibt dem Herzen einen Stromstoß, um es wieder in den richtigen Takt zu bringen.",
+      "Er spritzt dem Patienten selbstständig wichtige Medikamente.",
+      "Er pumpt über eine Maske frischen Sauerstoff in die Lunge."
+    ],
+    "correctIndex": 1,
+    "points": {
+      "bildung": 3,
+      "gemeinschaft": 2,
+      "lebensglueck": 1
+    },
+    "insight": "Ein Defibrillator (oft 'Defi' genannt) ist ein Gerät, das bei einem Herzstillstand oder Kammerflimmern Leben retten kann. Er gibt einen kontrollierten elektrischen Impuls ab, der das Herz wieder in seinen normalen Rhythmus bringt. Viele dieser Geräte hängen an öffentlichen Orten und erklären Ersthelfern über eine Sprachansage ganz genau, was zu tun ist."
+  },
+  {
+    "id": "q004",
+    "category": "grundwissen",
+    "title": "Wissen über Pythons",
+    "url": "https://www.ardmediathek.de/video/anna-nina-pia-und-die-haustiere/python/br/Y3JpZDovL2JyLmRlL3ZpZGVvL2I3YjEyMDVlLWEzYmMtNGRiZS1iMDc3LTdmNmY2ZGQxMGMwMw?isChildContent",
+    "question": "Warum häuten sich Pythons regelmäßig?",
+    "options": [
+      "Weil sie ihr Leben lang wachsen und die Haut nicht mitwächst.",
+      "Damit sie an heißen Sommertagen nicht schwitzen.",
+      "Um ihre Schuppenfarbe an eine neue Umgebung anzupassen.",
+      "Weil sie sich nach dem Fressen von Schmutz befreien müssen."
+    ],
+    "correctIndex": 0,
+    "points": {
+      "bildung": 2,
+      "gemeinschaft": 0,
+      "lebensglueck": 1
+    },
+    "insight": "Wie in der Sendung 'Pia und die Haustiere' erklärt wird, wachsen Pythons ihr ganzes Leben lang. Da ihre äußere Hautschicht nicht mitwächst, wird sie irgendwann zu eng und die Schlange muss sich häuten, um weiter wachsen zu können."
+  },
+  {
+    "id": "q005",
+    "category": "sport",
+    "title": "Grenzen des Skifliegens",
+    "url": "https://www.ardmediathek.de/video/sport-erklaert/so-weit-koennen-skispringer-maximal-fliegen-s01-e02/swr/Y3JpZDovL3N3ci5kZS9hZXgvbzE0MTU2MjA",
+    "question": "Welche magische Weiten-Marke gilt laut der SWR-Reportage 'Sport erklärt' als das nächste große Ziel der Skiflieger, während 500 Meter noch lange ein 'Hirngespinst' bleiben werden?",
+    "options": [
+      "280 Meter",
+      "300 Meter",
+      "350 Meter",
+      "400 Meter"
+    ],
+    "correctIndex": 1,
+    "points": {
+      "bildung": 1,
+      "gemeinschaft": 0,
+      "lebensglueck": 1
+    },
+    "insight": "Der aktuelle Weltrekord liegt bei über 250 Metern. Die 300-Meter-Marke gilt als das nächste große Ziel der Rekordjagd. Dies erfordert jedoch perfekte Bedingungen und Materialanpassungen, da die Sicherheit der Athleten niemals dem 'Höher, Schneller, Weiter' geopfert werden darf."
+  },
+  {
+    "id": "q006",
+    "category": "sport",
+    "title": "Kopfbälle und das Gehirn",
+    "url": "https://www.ardmediathek.de/video/sport-erklaert/was-beim-kopfball-mit-deinem-gehirn-passiert-s01-e08/swr/Y3JpZDovL3N3ci5kZS9hZXgvbzE0NzY0ODk",
+    "question": "Die SWR-Reihe \"Sport erklärt\" beleuchtet, was beim Kopfball mit dem Gehirn passiert. Welche weitreichende Maßnahme haben einige Länder wie die USA oder England aufgrund der potenziellen gesundheitlichen Risiken bereits ergriffen?",
+    "options": [
+      "Kopfbälle sind im Profifußball komplett verboten worden.",
+      "Spieler müssen beim Kopfballspiel spezielle Schutzhelme tragen.",
+      "Kopfbälle wurden im Kinder- und Jugendfußball verboten oder stark eingeschränkt.",
+      "Jeder Kopfball wird im regulären Spiel ab sofort als Foul gewertet."
+    ],
+    "correctIndex": 2,
+    "points": {
+      "bildung": 2,
+      "gemeinschaft": 1,
+      "lebensglueck": 1
+    },
+    "insight": "Häufige Kopfbälle können zu Mikroverletzungen im Gehirn führen und das Risiko für spätere neurodegenerative Erkrankungen wie Demenz erhöhen. Um die noch in der Entwicklung befindlichen Gehirne zu schützen, haben Fußballverbände in Ländern wie den USA oder England das Kopfballspiel im Nachwuchsbereich verboten oder im Training stark limitiert."
+  },
+  {
+    "id": "q007",
+    "category": "sport",
+    "title": "Der perfekte Elfmeter",
+    "url": "https://www.ardmediathek.de/video/sport-erklaert/der-perfekte-elfmeter-s01-e15/swr/Y3JpZDovL3N3ci5kZS9hZXgvbzIwNzM0MDE",
+    "question": "Laut der SWR-Reihe \"Sport erklärt\" wurden Elfmeter bei Fußball-Weltmeisterschaften statistisch ausgewertet. Wohin muss man zielen, um die höchste Wahrscheinlichkeit auf einen Torerfolg zu haben?",
+    "options": [
+      "In die obere rechte Ecke",
+      "In die untere linke Ecke",
+      "Genau mittig unter die Latte",
+      "Flach in die Mitte"
+    ],
+    "correctIndex": 0,
+    "points": {
+      "bildung": 2,
+      "gemeinschaft": 1,
+      "lebensglueck": 1
+    },
+    "insight": "Statistiken zeigen, dass die obere rechte Ecke der 'Topspot' mit der höchsten Erfolgsquote (ca. 88 %) ist. Die geringsten Aussichten auf Erfolg hat man hingegen, wenn man versucht, den Ball mittig unter die Latte zu schießen."
+  },
+  {
+    "id": "q008",
+    "category": "sport",
+    "title": "Olympisches Skateboarden",
+    "url": "https://www.ardmediathek.de/video/sportschau-fuer-kinder/so-geht-die-olympische-disziplin-skateboard-park/kika/Y3JpZDovL2tpa2EuZGUvcHVibGlrYXRpb24vY29udGVudC03ODc3Nw",
+    "question": "In der Sportschau für Kinder wird die olympische Disziplin \"Skateboard Park\" erklärt. Wie sieht die Wettkampffläche bei dieser Disziplin typischerweise aus?",
+    "options": [
+      "Wie ein großes, leeres Schwimmbecken mit Kurven",
+      "Wie eine Straße mit Treppen und Geländern",
+      "Wie eine steile Piste mit Slalom-Stangen",
+      "Wie eine flache Turnhalle mit weichen Matten"
+    ],
+    "correctIndex": 0,
+    "points": {
+      "bildung": 2,
+      "gemeinschaft": 1,
+      "lebensglueck": 2
+    },
+    "insight": "Beim \"Skateboard Park\" fahren die Profis in einer Art tiefem, leerem Schwimmbecken, der sogenannten \"Bowl\". Dort nutzen sie die runden Wände, um viel Schwung zu holen und hoch in die Luft zu fliegen. Die andere olympische Skateboard-Disziplin heißt \"Street\" und erinnert an eine Straße mit Treppen und Geländern."
+  },
+  {
+    "id": "q009",
+    "category": "musik",
+    "title": "Musikalische Schlangen?",
+    "url": "https://www.ardmediathek.de/video/anna-nina-pia-und-die-haustiere/python/br/Y3JpZDovL2JyLmRlL3ZpZGVvL2I3YjEyMDVlLWEzYmMtNGRiZS1iMDc3LTdmNmY2ZGQxMGMwMw?isChildContent",
+    "question": "Schlangen haben keine äußeren Ohren und spüren Musik eher als Vibration im Boden. In der Sendung 'Anna und die Haustiere' erfährt Anna, dass ein riesiger Python kein gutes Haustier ist. Welche kleinere Schlange wird ihr stattdessen als Haustier gezeigt?",
+    "options": [
+      "Kornnatter",
+      "Klapperschlange",
+      "Königskobra",
+      "Anakonda"
+    ],
+    "correctIndex": 0,
+    "points": {
+      "bildung": 2,
+      "gemeinschaft": 0,
+      "lebensglueck": 1
+    },
+    "insight": "Da Schlangen keine Ohren wie wir haben, 'hören' sie Musik und Geräusche über Erschütterungen und Vibrationen. In der Sendung lernt Anna, dass die ungiftige Kornnatter ein viel besseres Haustier ist als ein riesiger Python, da sie nur etwa 1,5 Meter lang wird."
+  },
+  {
+    "id": "q010",
+    "category": "musik",
+    "title": "Opern-Crashkurs mit Lego",
+    "url": "https://www.ardmediathek.de/video/klassische-musik-fuer-kinder/verdi-aida-mit-lego-crashkurs-oper-ab-5-jahre-br-klassik/ard/Y3JpZDovL3N3ci5kZS9hZXgvbzE4MTAzNjA?isChildContent",
+    "question": "In der kindgerechten Lego-Version der berühmten Oper „Aida“ von BR-Klassik trägt der ägyptische Heerführer Radames ein ganz besonderes, modernes Accessoire. Welches ist das?",
+    "options": [
+      "Eine lässige Sonnenbrille",
+      "Eine bunte Baseballkappe",
+      "Einen dicken Winter-Schal",
+      "Eine goldene Armbanduhr"
+    ],
+    "correctIndex": 0,
+    "points": {
+      "bildung": 2,
+      "gemeinschaft": 1,
+      "lebensglueck": 2
+    },
+    "insight": "In den Stop-Motion-Videos von BR-Klassik werden große Opern wie Verdis „Aida“ in nur wenigen Minuten mit Lego-Figuren kindgerecht nacherzählt. Um die Geschichte für Kinder ab 5 Jahren aufzulockern, trägt der tapfere Heerführer Radames dabei eine coole Sonnenbrille und das Geschehen wird vom Musik-Schaf Elvis kommentiert."
+  },
+  {
+    "id": "q011",
+    "category": "musik",
+    "title": "Peter Fox' musikalisches Comeback",
+    "url": "https://www.youtube.com/watch?v=s6ZnYAPDe8A",
+    "question": "Ganze 14 Jahre nach seinem Solo-Album 'Stadtaffe' feierte Peter Fox mit 'Zukunft Pink' sein Comeback. Von welchem südafrikanischen Sound ist der Beat des Songs laut der PULS Musikanalyse inspiriert?",
+    "options": [
+      "Kwaito",
+      "Gqom",
+      "Amapiano",
+      "Afrobeat"
+    ],
+    "correctIndex": 2,
+    "points": {
+      "bildung": 2,
+      "gemeinschaft": 1,
+      "lebensglueck": 1
+    },
+    "insight": "Der Beat von 'Zukunft Pink' ist vom südafrikanischen Amapiano-Sound inspiriert. Die Hook des Songs, der bei vielen Fans für große Hoffnung und Nostalgie sorgte, stammt von Inéz von der Band Ätna."
+  },
+  {
+    "id": "q012",
+    "category": "humor",
+    "title": "Der erste Tag als Alman-Lehrer",
+    "url": "https://www.ardmediathek.de/video/almania/folge-1-herzvoll-s01-e01/swr/Y3JpZDovL3N3ci5kZS9hZXgvbzE0MjY4NzU",
+    "question": "In der ARD-Comedyserie 'Almania' (Folge 1: Herzvoll) tritt der überkorrekte und regelbesessene Lehrer Frank Stimpel seine neue Stelle an einer Brennpunktschule an. Wie verläuft sein Start?",
+    "options": [
+      "Er wird von den Schülern sofort respektiert, da er alle Schulregeln auswendig kennt.",
+      "Es wird chaotisch: Er verliert den Respekt der Klasse, wird gedisst und sogar die Polizei rückt an.",
+      "Er meldet sich direkt krank, weil ihm die Mettbrötchen in der Schulkantine nicht schmecken.",
+      "Er verwechselt die Schule mit dem Finanzamt und fängt an, Steuererklärungen zu prüfen."
+    ],
+    "correctIndex": 1,
+    "points": {
+      "bildung": 1,
+      "gemeinschaft": 2,
+      "lebensglueck": 1
+    },
+    "insight": "In der SWR-Serie 'Almania' prallen Welten aufeinander: Der Inbegriff des 'Almans', Lehrer Frank Stimpel (gespielt von Phil Laude), versucht mit überkorrekten Regeln an einer Brennpunktschule durchzugreifen. Das sorgt für viel Fremdscham und humorvolles Chaos."
+  },
+  {
+    "id": "q013",
+    "category": "humor",
+    "title": "Affen als Haustiere",
+    "url": "https://www.ardmediathek.de/video/hr-retro-oder-hessenschau/affen-als-haustiere/hr/Y3JpZDovL2hyLW9ubGluZS8xNTg4NDE",
+    "question": "In einem historischen 'hessenschau'-Beitrag aus den 60er Jahren hält eine Frankfurter Familie zwei Gibbons als Haustiere. Welches skurrile abendliche Ritual muss streng eingehalten werden, damit die beiden Affen in ihrer Schlafkiste einschlafen?",
+    "options": [
+      "Ihnen müssen ausgiebig die Füße gekrault werden.",
+      "Sie bekommen eine Gute-Nacht-Geschichte vorgelesen.",
+      "Sie dürfen noch eine Folge der 'hessenschau' schauen.",
+      "Sie bekommen ein kleines Glas warmes Bier."
+    ],
+    "correctIndex": 0,
+    "points": {
+      "bildung": 1,
+      "gemeinschaft": 2,
+      "lebensglueck": 3
+    },
+    "insight": "In den 1960er Jahren war das Bewusstsein für artgerechte Haltung noch ein ganz anderes. Die Familie hielt die Gibbons zusammen mit Hund und Katze im Haus – und kraulte den Affen tatsächlich jeden Abend zum Einschlafen die Füße."
+  },
+  {
+    "id": "q014",
+    "category": "humor",
+    "title": "Deutschlands irre Schul-Logik",
+    "url": "https://www.ardmediathek.de/video/extra-3/deutschlands-irre-schul-logik-erklaert-mit-maike-kuehl/das-erste/Y3JpZDovL25kci5kZS9lMTdhOWU3YS0wOTZmLTQ0MWEtYTg1MC01ODEwODRlM2EzMGU",
+    "question": "In der Sendung 'extra 3' erklärt Maike Kühl 'Deutschlands irre Schul-Logik'. Welches Szenario beschreibt den satirisch oft kritisierten, aber realen Wahnsinn an deutschen Schulen am besten?",
+    "options": [
+      "Milliarden für Tablets sind da, aber der Einsatz scheitert an fehlendem WLAN, fehlenden IT-Betreuern und absurder Bürokratie.",
+      "Alle 16 Bundesländer haben sich auf ein völlig identisches, unbürokratisches Abitur geeinigt.",
+      "Es gibt so viele ausgebildete Lehrkräfte, dass sich manche im Lehrerzimmer um die Klassen streiten müssen.",
+      "Die Schulgebäude sind so luxuriös saniert, dass sich Schüler über zu viel Komfort beschweren."
+    ],
+    "correctIndex": 0,
+    "points": {
+      "bildung": 2,
+      "gemeinschaft": 1,
+      "lebensglueck": 1
+    },
+    "insight": "Satiresendungen wie 'extra 3' nehmen regelmäßig den Bildungsföderalismus, den Sanierungsstau und die paradoxe Digitalisierung (z.B. teure Endgeräte ohne funktionierende Infrastruktur) aufs Korn."
+  },
+  {
+    "id": "q015",
+    "category": "geschichte",
+    "title": "Ägyptens Tiere der Unterwelt",
+    "url": "https://www.ardmediathek.de/video/alpha-doku/aegyptens-tiere-der-unterwelt/ard-alpha/Y3JpZDovL2JyLmRlL2Jyb2FkY2FzdC9GMjAyNVdPMDI1NDU4QTA",
+    "question": "Was wurde bei Ausgrabungen in der altägyptischen Stadt Hierakonpolis entdeckt, das Forschern neue Rätsel über die Religion des Alten Ägyptens aufgab?",
+    "options": [
+      "Knochen exotischer Tiere, die als Grabbeigaben mit Herrschern bestattet wurden",
+      "Eine bisher unbekannte, vollständig erhaltene Pyramide aus schwarzem Marmor",
+      "Mumifizierte Dinosaurier, die von den Ägyptern als Götter verehrt wurden",
+      "Antike Schriftrollen, die den Bau einer großen Arche beschreiben"
+    ],
+    "correctIndex": 0,
+    "points": {
+      "bildung": 3,
+      "gemeinschaft": 0,
+      "lebensglueck": 1
+    },
+    "insight": "In Hierakonpolis wurden Knochen exotischer Tiere gefunden, die von weit her beschafft und im Ganzen mit den Herrschern begraben wurden. Dies unterstreicht die enorme Bedeutung von Tieren im Totenkult und der Religion des Alten Ägyptens."
+  },
+  {
+    "id": "q016",
+    "category": "geschichte",
+    "title": "Deutschlands schönste Welterbe",
+    "url": "https://www.ardmediathek.de/video/unterhaltung/deutschlands-schoenste-welterbe/wdr/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtOWFiMzUyZDQtNmU0My00NjU0LTkyZjYtZTYxZjliMzJlMjdi",
+    "question": "Die ARD-Dokumentation 'Deutschlands schönste Welterbe' zeigt die historische Vielfalt der Republik. Welche deutsche Stadt, die zum UNESCO-Welterbe gehört, ist berühmt für ihren mittelalterlichen Grundriss und einen Rekordbestand von rund 1.200 erhaltenen Fachwerkhäusern?",
+    "options": [
+      "Stralsund",
+      "Quedlinburg",
+      "Bamberg",
+      "Wismar"
+    ],
+    "correctIndex": 1,
+    "points": {
+      "bildung": 3,
+      "gemeinschaft": 1,
+      "lebensglueck": 2
+    },
+    "insight": "Quedlinburg im Ostharz gehört zum UNESCO-Welterbe und bietet mit seinen rund 1.200 erhaltenen Fachwerkhäusern einen einzigartigen Spaziergang durch sechs Jahrhunderte Baukunst."
+  },
+  {
+    "id": "q017",
+    "category": "geschichte",
+    "title": "Frida Kahlos feministisches Markenzeichen",
+    "url": "https://www.ardmediathek.de/video/die-hauda-und-die-kunst/frida-kahlo-feministische-augenbrauen/ndr/Y3JpZDovL25kci5kZS80ODc0XzIwMjMtMDctMDctMDAtMDA",
+    "question": "In der ARD-Reihe 'Die Hauda & die Kunst' geht es in einer Folge um Frida Kahlos 'feministische Augenbrauen'. Warum betonte die mexikanische Künstlerin ihre markante Monobraue und ihren Damenbart in ihren Selbstporträts?",
+    "options": [
+      "Als bewusstes Statement gegen traditionelle weibliche Schönheitsideale",
+      "Um ihre Zugehörigkeit zur surrealistischen Kunstströmung zu beweisen",
+      "Als traditionelles Zeichen der Trauer in der mexikanischen Kultur",
+      "Um von den sichtbaren Spuren ihrer schweren Krankheit abzulenken"
+    ],
+    "correctIndex": 0,
+    "points": {
+      "bildung": 3,
+      "gemeinschaft": 1,
+      "lebensglueck": 2
+    },
+    "insight": "Frida Kahlo weigerte sich, ihre Augenbrauen zu zupfen oder ihren Damenbart zu rasieren. Indem sie diese Merkmale in ihren Bildern sogar noch hervorhob, lehnte sie sich gegen gesellschaftliche Erwartungen an Frauen auf und setzte ein starkes feministisches Statement."
+  },
+  {
+    "id": "q018",
+    "category": "geschichte",
+    "title": "Die Französische Revolution in 100 Sekunden",
+    "url": "https://www.ardmediathek.de/video/planet-schule/die-franzoesische-revolution-in-100-sek/wdr/Y3JpZDovL3BsYW5ldC1zY2h1bGUuZGUvQVJEXzExNjIwX3ZpZGVv",
+    "question": "In der 'Planet Schule'-Zusammenfassung geht es um den historischen Umbruch in Frankreich ab 1789. Welcher berühmte Leitspruch fasst die zentralen Forderungen der damaligen Revolutionäre zusammen?",
+    "options": [
+      "Einigkeit und Recht und Freiheit",
+      "Freiheit, Gleichheit, Brüderlichkeit",
+      "Friede den Hütten, Krieg den Palästen",
+      "Wissen ist Macht"
+    ],
+    "correctIndex": 1,
+    "points": {
+      "bildung": 3,
+      "gemeinschaft": 2,
+      "lebensglueck": 1
+    },
+    "insight": "Der Leitspruch 'Liberté, Égalité, Fraternité' (Freiheit, Gleichheit, Brüderlichkeit) stand im Zentrum der Französischen Revolution und forderte das Ende der ungerechten Ständegesellschaft."
+  },
+  {
+    "id": "q019",
+    "category": "kultur",
+    "title": "Neues vom Planeten Zombie",
+    "url": "https://www.ardmediathek.de/video/capriccio/the-notwist-news-from-planet-zombie/br/Y3JpZDovL2JyLmRlL2Jyb2FkY2FzdC9GMjAyNVdPMDI0NzI3QTAvc2VjdGlvbi8wZjg1M2U5ZS1hYmM4LTQzODktODViOC00NzE4NzQ0YTRjODc",
+    "question": "In einem Beitrag des BR-Kulturmagazins 'Capriccio' wird das Werk 'News From Planet Zombie' vorgestellt. Worum handelt es sich dabei?",
+    "options": [
+      "Das neue Studioalbum der bayerischen Indie-Band The Notwist.",
+      "Ein dystopischer Science-Fiction-Roman von Wolfram Weimer.",
+      "Eine Ausstellung über zeitgenössischen Schmuck in München.",
+      "Ein neues Theaterstück über die Auswirkungen von Künstlicher Intelligenz."
+    ],
+    "correctIndex": 0,
+    "points": {
+      "bildung": 2,
+      "gemeinschaft": 1,
+      "lebensglueck": 0
+    },
+    "insight": "'News From Planet Zombie' ist ein im Frühjahr 2026 erschienenes Album der Band The Notwist. Im BR-Kulturmagazin 'Capriccio' wurde beleuchtet, wie die Band in ihrer Münchner Basis nach langer Zeit wieder gemeinsam im Studio aufnahm und dabei melancholische wie optimistische Töne zu einem intensiven Pop-Sound vereinte."
+  },
+  {
+    "id": "q020",
+    "category": "kultur",
+    "title": "Mein innerer Schwarzwald",
+    "url": "https://www.ardmediathek.de/video/swr-kultur/mein-innerer-schwarzwald-einmal-ins-rumaenische-banat-und-zurueck/swr/Y3JpZDovL3N3ci5kZS9hZXgvbzIzMDc1MzI",
+    "question": "Worum geht es im Kern der SWR-Dokumentation \"Mein innerer Schwarzwald – einmal ins rumänische Banat und zurück\"?",
+    "options": [
+      "Um die Deportation aufständischer Schwarzwälder Freibauern, der sogenannten 'Salpeterer', ins Banat im Jahr 1755.",
+      "Um rumänische Gastarbeiter, die in den 1960er Jahren in die Schwarzwälder Uhrenindustrie kamen.",
+      "Um den geheimen Schmuggel von Kuckucksuhren über die Donau nach Rumänien im 19. Jahrhundert.",
+      "Um eine Gruppe von Schwarzwälder Förstern, die im Banat ein neues Naturschutzgebiet gründeten."
+    ],
+    "correctIndex": 0,
+    "points": {
+      "bildung": 3,
+      "gemeinschaft": 2,
+      "lebensglueck": 1
+    },
+    "insight": "Im Jahr 1755 wurden die Anführer der aufständischen 'Salpeterer' aus dem Südschwarzwald auf Befehl von Kaiserin Maria Theresia samt ihren Familien in das entlegene Banat (heute Rumänien) verbannt. Die Dokumentation und das zugrundeliegende Buch von Sigrid Katharina Eismann folgen diesen historischen Spuren."
+  },
+  {
+    "id": "q021",
+    "category": "kultur",
+    "title": "Hermann Hesse in der Kritik",
+    "url": "https://www.ardmediathek.de/video/klassiker-der-weltliteratur/hermann-hesse/ard-alpha/Y3JpZDovL2JyLmRlL3ZpZGVvL2FiOTg5ZGZlLWE2OTctNGVhZS1iOTJiLTg5YWE4MzUxNjJmMg",
+    "question": "In der ARD-alpha-Reihe 'Klassiker der Weltliteratur' wird das ambivalente Verhältnis zu Hermann Hesse beleuchtet. Wie stand die professionelle Literaturkritik zu ihm, obwohl er zeitlebens ein Publikumsliebling war und 1946 den Literaturnobelpreis erhielt?",
+    "options": [
+      "Sie brachte ihm kein hohes Ansehen entgegen.",
+      "Sie feierte ihn als größten Dichter des Jahrhunderts.",
+      "Sie ignorierte ihn wegen seiner Pseudonyme völlig.",
+      "Sie lobte ihn nur für seine Theaterstücke."
+    ],
+    "correctIndex": 0,
+    "points": {
+      "bildung": 3,
+      "gemeinschaft": 1,
+      "lebensglueck": 2
+    },
+    "insight": "Obwohl Hermann Hesse mit Werken wie 'Siddhartha' ein weltweites Millionenpublikum erreichte und 1946 den Literaturnobelpreis gewann, genoss er bei der professionellen Literaturkritik oft kein hohes Ansehen."
+  }
+]
