@@ -5,8 +5,8 @@ stages:
 variables:
   IMAGE_NAME: ard-life
   CONTAINER_NAME: ard-life
-  CONTAINER_PORT: "3000"
-  HOST_PORT: "3000"
+  CONTAINER_PORT: "25000"
+  HOST_PORT: "25000"
 
 build:
   stage: build
@@ -39,8 +39,6 @@ deploy:
     - eval $(ssh-agent -s)
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
     - mkdir -p ~/.ssh
-    - echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-    - chmod 644 ~/.ssh/known_hosts
   script:
     - scp -P ${SSH_PORT:-22} image.tar.gz ${SSH_USER}@${SSH_HOST}:/tmp/ard-life-image.tar.gz
     - |
