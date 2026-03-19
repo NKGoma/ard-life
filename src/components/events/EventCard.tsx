@@ -1,6 +1,7 @@
 'use client';
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import { RandomEvent, SCORE_LABELS, ScoreKey } from '@/types';
+import { synthEvent } from '@/lib/audio';
 
 interface EventCardProps {
   event: RandomEvent;
@@ -8,6 +9,7 @@ interface EventCardProps {
 }
 
 export default memo(function EventCard({ event, onChoose }: EventCardProps) {
+  useEffect(() => { synthEvent(); }, []);
   return (
     <div className="bg-slate-800/95 backdrop-blur rounded-2xl p-6 max-w-lg w-full mx-auto border border-orange-700/50 shadow-2xl animate-[fadeIn_0.3s_ease-out]">
       {/* Header */}

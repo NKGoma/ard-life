@@ -1,5 +1,6 @@
 'use client';
 import { useRef, useCallback, useState, useEffect, memo, useMemo } from 'react';
+import { synthSpin, synthRoll } from '@/lib/audio';
 
 interface SpinWheelProps {
   onResult: (value: number) => void;
@@ -16,6 +17,7 @@ export default memo(function SpinWheel({ onResult, disabled }: SpinWheelProps) {
     if (spinning || disabled) return;
     setSpinning(true);
     setDisplayValue(null);
+    synthSpin();
 
     const result = Math.floor(Math.random() * 6) + 1;
     const totalRotation = 1440 + (result - 1) * 60 + Math.random() * 30;
@@ -32,6 +34,7 @@ export default memo(function SpinWheel({ onResult, disabled }: SpinWheelProps) {
       setCurrentAngle(angle);
 
       if (progress < 1) {
+        if (Math.floor(elapsed / 150) > Math.floor((elapsed - 16) / 150)) synthRoll();
         animRef.current = requestAnimationFrame(animate);
       } else {
         setSpinning(false);
