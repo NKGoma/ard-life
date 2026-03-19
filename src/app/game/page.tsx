@@ -98,7 +98,7 @@ function SetupScreen({ onStart }: { onStart: (avatars: AvatarConfig[]) => void }
 export default function GamePage() {
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [phase, setPhase] = useState<'setup' | 'game'>('setup');
-  const { muted, toggleMute } = useBgm('/bgm/ard_life_instrumental.mp3', 0.25);
+  const { muted, toggleMute } = useBgm('instrumental');
   const [showBoostToast, setShowBoostToast] = useState<string | null>(null);
   const [spinnerVisible, setSpinnerVisible] = useState(true);
   const [landedTileId, setLandedTileId] = useState<number | null>(null);

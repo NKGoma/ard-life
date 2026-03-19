@@ -4,7 +4,7 @@ import Particles from '@/components/Particles';
 import { useBgm } from '@/hooks/useBgm';
 
 export default function Home() {
-  const { muted, toggleMute } = useBgm('/bgm/ard_life_theme.mp3', 0.7);
+  const { muted, toggleMute } = useBgm('theme');
 
   return (
     <>
