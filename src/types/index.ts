@@ -244,6 +244,7 @@ export interface GameState {
   spinResult: number | null;
   turnCount: number;
   animatingToPosition: number | null;
+  usedQuestions: string[];
 }
 
 // --- End Profiles ---
