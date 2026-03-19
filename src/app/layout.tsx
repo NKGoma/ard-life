@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ARD Life – Das Wissensduell",
+  title: "ard.life – Das Wissensduell",
   description: "Wie prägt Mediennutzung unser Denken, Vertrauen und unsere Entscheidungen? Ein interaktives Browser-Game für Medienkompetenz.",
 };
 
