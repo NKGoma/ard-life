@@ -458,13 +458,14 @@ export default function GameWorld3D({
   board, players, activePlayerIndex, landedTileId,
 }: GameWorld3DProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
   const activePlayer = players[activePlayerIndex];
   const activeSpace = board[activePlayer?.position ?? 0];
   const activePos = activeSpace ? tileSvgPos(activeSpace) : { x: 0, y: 0 };
 
-  // Compute SVG viewBox to encompass the entire board with padding
-  const viewBox = useMemo(() => {
-    if (board.length === 0) return '-200 -100 400 200';
+  // Compute the bounding box of the entire board in SVG coordinates
+  const bounds = useMemo(() => {
+    if (board.length === 0) return { minX: -200, minY: -100, maxX: 200, maxY: 100 };
     let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
     for (const space of board) {
       const { x, y } = tileSvgPos(space);
@@ -473,54 +474,79 @@ export default function GameWorld3D({
       maxX = Math.max(maxX, x);
       maxY = Math.max(maxY, y);
     }
-    const pad = 120;
-    return `${minX - pad} ${minY - pad} ${maxX - minX + pad * 2} ${maxY - minY + pad * 2}`;
+    return { minX: minX - 80, minY: minY - 80, maxX: maxX + 80, maxY: maxY + 80 };
   }, [board]);
 
-  // Auto-scroll to active player using CSS transform (no re-render)
+  // Pan & zoom the SVG to center on the active player.
+  // Uses a single CSS transform on the SVG — no viewBox scaling,
+  // so proportions are always correct (uniform scale).
   useEffect(() => {
-    if (!containerRef.current) return;
-    const svg = containerRef.current.querySelector('svg');
-    if (!svg) return;
+    const container = containerRef.current;
+    const svg = svgRef.current;
+    if (!container || !svg) return;
 
-    // Parse viewBox
-    const parts = viewBox.split(' ').map(Number);
-    const vbW = parts[2], vbH = parts[3];
-    const containerW = containerRef.current.clientWidth;
-    const containerH = containerRef.current.clientHeight;
+    const containerW = container.clientWidth;
+    const containerH = container.clientHeight;
 
-    // Calculate scale to fit viewBox, then determine translate to center on active player
-    const scaleX = containerW / vbW;
-    const scaleY = containerH / vbH;
-    // Use a zoom level that shows a comfortable portion of the board
-    const baseScale = Math.min(scaleX, scaleY);
-    const zoom = Math.max(baseScale * 2.5, 1.2); // zoom in more to see detail
+    // How many SVG-units we want visible around the active player
+    // (roughly a 600×400 SVG-unit window so a few tiles are visible)
+    const visibleW = 500;
+    const visibleH = 400;
 
-    // Center point in SVG coords
-    const cx = activePos.x;
-    const cy = activePos.y;
+    // Uniform scale: pick the smaller axis so nothing stretches
+    const zoom = Math.min(containerW / visibleW, containerH / visibleH);
 
-    // Translate so that (cx, cy) is at center of container
-    const tx = containerW / 2 - cx * zoom;
-    const ty = containerH / 2 - cy * zoom;
+    // Translate so the active player is at the center of the screen
+    const tx = containerW / 2 - activePos.x * zoom;
+    const ty = containerH / 2 - activePos.y * zoom;
 
     svg.style.transition = 'transform 0.8s ease-out';
     svg.style.transform = `translate(${tx}px, ${ty}px) scale(${zoom})`;
     svg.style.transformOrigin = '0 0';
-  }, [activePos.x, activePos.y, viewBox]);
+  }, [activePos.x, activePos.y, bounds]);
+
+  // Also re-center on window resize
+  useEffect(() => {
+    const handle = () => {
+      const container = containerRef.current;
+      const svg = svgRef.current;
+      if (!container || !svg) return;
+
+      const containerW = container.clientWidth;
+      const containerH = container.clientHeight;
+      const visibleW = 500;
+      const visibleH = 400;
+      const zoom = Math.min(containerW / visibleW, containerH / visibleH);
+      const tx = containerW / 2 - activePos.x * zoom;
+      const ty = containerH / 2 - activePos.y * zoom;
+
+      svg.style.transition = 'none'; // no animation on resize
+      svg.style.transform = `translate(${tx}px, ${ty}px) scale(${zoom})`;
+      svg.style.transformOrigin = '0 0';
+    };
+    window.addEventListener('resize', handle);
+    return () => window.removeEventListener('resize', handle);
+  }, [activePos.x, activePos.y]);
+
+  // The SVG uses no viewBox — it occupies its natural coordinate space.
+  // All positioning is in SVG-units; the CSS transform handles zoom + pan.
+  const svgW = bounds.maxX - bounds.minX;
+  const svgH = bounds.maxY - bounds.minY;
 
   return (
     <div
       ref={containerRef}
       className="w-full h-full overflow-hidden"
-      style={{ background: '#87CEEB' }}
+      style={{ background: '#87CEEB', position: 'relative' }}
     >
       <svg
-        width="100%"
-        height="100%"
-        viewBox={viewBox}
+        ref={svgRef}
+        width={svgW}
+        height={svgH}
+        viewBox={`${bounds.minX} ${bounds.minY} ${svgW} ${svgH}`}
         xmlns="http://www.w3.org/2000/svg"
-        style={{ display: 'block', willChange: 'transform' }}
+        preserveAspectRatio="xMidYMid meet"
+        style={{ display: 'block', position: 'absolute', top: 0, left: 0, overflow: 'visible' }}
       >
         {/* Stage ground bands */}
         <StageGroundsSvg board={board} />
