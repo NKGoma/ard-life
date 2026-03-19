@@ -1,9 +1,12 @@
 'use client';
-import { useState, useEffect, useRef, memo } from 'react';
+import { useState, useEffect, useRef, memo, type ComponentType } from 'react';
 import { GameQuestion, SCORE_LABELS, ScoreKey } from '@/types';
 import { synthCorrect, synthWrong, synthTick, setSilenced } from '@/lib/audio';
 import { pauseForVideo, resumeAfterVideo } from '@/lib/bgmManager';
-import { QuestionIcon } from '@/components/icons/GameIcons';
+import {
+  QuestionIcon, BildungIcon, EventIcon, VolumeIcon, CelebrationIcon,
+  ZielIcon, ChanceIcon, RichtigIcon, FalschIcon, MediaIcon,
+} from '@/components/icons/GameIcons';
 
 interface QuestionCardProps {
   question: GameQuestion;
@@ -13,12 +16,16 @@ interface QuestionCardProps {
 interface Stream { url: string; type: string; }
 type VideoStatus = 'loading' | 'stream' | 'embed' | 'none';
 
-const CATEGORY_IMAGES: Record<string, string> = {
-  sport: '/Sport.png', grundwissen: '/Grundwissen.png',
-  geschichte: '/Geschichte.png', kultur: '/Kultur.png', musik: '/Musik.png',
+const CATEGORY_ICONS: Record<string, ComponentType<{ className?: string }>> = {
+  sport:       ZielIcon,
+  grundwissen: BildungIcon,
+  geschichte:  EventIcon,
+  kultur:      CelebrationIcon,
+  musik:       VolumeIcon,
 };
-function getCategoryImage(category: string): string {
-  return CATEGORY_IMAGES[category.toLowerCase()] ?? '/Random.png';
+function CategoryIcon({ category, className }: { category: string; className?: string }) {
+  const Icon = CATEGORY_ICONS[category.toLowerCase()] ?? ChanceIcon;
+  return <Icon className={className} />;
 }
 
 function getVideoId(url: string): string | null {
@@ -161,7 +168,9 @@ export default memo(function QuestionCard({ question, onAnswer }: QuestionCardPr
       {/* ── Video area ── */}
       {videoStatus === 'loading' && question.url && (
         <div className="w-full rounded-t-2xl bg-slate-900/60 flex items-center justify-center" style={{ aspectRatio: '16/9' }}>
-          <span className="text-slate-500 text-sm animate-pulse">📺 Lade Video…</span>
+          <span className="text-slate-500 text-sm animate-pulse flex items-center gap-1.5">
+            <MediaIcon className="w-4 h-4" /> Lade Video…
+          </span>
         </div>
       )}
 
@@ -199,11 +208,9 @@ export default memo(function QuestionCard({ question, onAnswer }: QuestionCardPr
             <QuestionIcon className="w-3.5 h-3.5" /> Frage
           </span>
           <span className="px-3 py-1 bg-slate-700 text-slate-300 text-xs rounded-full">{question.category}</span>
-          <img
-            src={getCategoryImage(question.category)}
-            alt={question.category}
-            style={{ width: 28, height: 28, objectFit: 'cover', borderRadius: 6, flexShrink: 0 }}
-          />
+          <span className="flex items-center justify-center w-6 h-6 rounded text-blue-400 shrink-0">
+            <CategoryIcon category={question.category} className="w-4 h-4" />
+          </span>
           {question.url && (
             <a href={question.url} target="_blank" rel="noopener noreferrer"
               className="ml-auto text-slate-500 hover:text-blue-400 text-xs transition-colors shrink-0">
@@ -229,8 +236,8 @@ export default memo(function QuestionCard({ question, onAnswer }: QuestionCardPr
                 className={`w-full p-3 rounded-xl border-2 text-left transition-all ${cls} disabled:cursor-default`}>
                 <span className="font-medium mr-2 text-slate-400">{String.fromCharCode(65 + i)}.</span>
                 {opt}
-                {revealed && i === question.correctIndex && ' ✅'}
-                {revealed && i === selected && !isCorrect && ' ❌'}
+                {revealed && i === question.correctIndex && <RichtigIcon className="inline w-4 h-4 ml-1 text-green-400" />}
+                {revealed && i === selected && !isCorrect && <FalschIcon className="inline w-4 h-4 ml-1 text-red-400" />}
               </button>
             );
           })}
@@ -239,10 +246,16 @@ export default memo(function QuestionCard({ question, onAnswer }: QuestionCardPr
         {/* Feedback */}
         {revealed && (
           <div ref={feedbackRef} className={`mt-4 p-3 rounded-xl border ${isCorrect ? 'border-green-600 bg-green-900/20 text-green-300' : 'border-red-600 bg-red-900/20 text-red-300'}`}>
-            <p className="font-bold mb-1">{isCorrect ? '🎉 Richtig!' : '❌ Leider falsch!'}</p>
+            <p className="font-bold mb-1 flex items-center gap-1.5">
+              {isCorrect
+                ? <><CelebrationIcon className="w-4 h-4 shrink-0" /> Richtig!</>
+                : <><FalschIcon className="w-4 h-4 shrink-0" /> Leider falsch!</>}
+            </p>
             <p className="text-sm text-slate-300 mt-1">{question.insight}</p>
             {isCorrect && pointsDisplay && (
-              <p className="text-xs text-blue-300 mt-1">🎯 {pointsDisplay}</p>
+              <p className="text-xs text-blue-300 mt-1 flex items-center gap-1">
+                <ZielIcon className="w-3.5 h-3.5 shrink-0" /> {pointsDisplay}
+              </p>
             )}
             <button
               onClick={() => onAnswer(selected!)}
