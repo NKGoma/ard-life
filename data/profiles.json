@@ -2,34 +2,22 @@
   "baseValues": { "bildung": 10, "gemeinschaft": 10, "glueck": 10 },
   "profiles": [
     {
-      "id": "wissens-champion", "name": "Der Wissens-Champion", "emoji": "🎓",
+      "id": "wissens-champion", "name": "Wissens-Champion", "emoji": "🎓",
       "description": "Du liebst es zu lernen und bist immer bestens informiert. Bildung ist deine Superkraft!",
       "conditions": { "bildung": { "min": 25 } },
-      "tips": ["Teile dein Wissen mit anderen!", "Die ARD Mediathek hat tolle Dokus für dich.", "Bleib neugierig – es gibt immer etwas Neues."]
+      "tips": ["Sportschau und Chill? Lad doch mal deine Freund*innen ein: https://www.ardmediathek.de/sport ", "Komm mal runter und schenk dir selbst ein Lächeln: https://www.ardmediathek.de/filme-komoedien"]
     },
     {
-      "id": "gemeinschafts-held", "name": "Der Gemeinschafts-Held", "emoji": "🤝",
+      "id": "gemeinschafts-held", "name": "Gemeinschafts-Held*in", "emoji": "🤝",
       "description": "Du setzt dich für andere ein und stärkst den Zusammenhalt. Die Welt braucht mehr Menschen wie dich!",
       "conditions": { "gemeinschaft": { "min": 25 } },
-      "tips": ["Engagiere dich weiter in deiner Community.", "Höre auch mal anderen Meinungen zu.", "Zusammen sind wir stärker."]
+      "tips": ["Guck doch auch mal ne informative Doku: https://www.ardmediathek.de/dokus-wissen  ", "Lach doch mal wieder: https://www.ardmediathek.de/serien_comedy  "]
     },
     {
-      "id": "glueckspilz", "name": "Der Glückspilz", "emoji": "✨",
+      "id": "glueckspilz", "name": "Glückspilz", "emoji": "✨",
       "description": "Du genießt das Leben und findest Freude in kleinen Dingen. Dein Optimismus ist ansteckend!",
       "conditions": { "glueck": { "min": 25 } },
-      "tips": ["Teile dein Glück mit anderen!", "Glück wächst, wenn man es teilt.", "Bleib offen für neue Erfahrungen."]
-    },
-    {
-      "id": "allrounder", "name": "Der Allrounder", "emoji": "⭐",
-      "description": "Du hast ein gutes Gleichgewicht zwischen Bildung, Gemeinschaft und Glück gefunden. Weiter so!",
-      "conditions": { "bildung": { "min": 15 }, "gemeinschaft": { "min": 15 }, "glueck": { "min": 15 } },
-      "tips": ["Ein tolles Gleichgewicht!", "Vertiefe die Bereiche, die dir am meisten Spaß machen.", "Du bist ein Vorbild für andere."]
-    },
-    {
-      "id": "entdecker", "name": "Der Entdecker", "emoji": "🔭",
-      "description": "Du bist auf einem guten Weg! Es gibt noch viel zu entdecken – bleib dran.",
-      "conditions": {},
-      "tips": ["Probiere neue Formate in der ARD Mediathek aus.", "Rede mit Menschen über das, was du siehst und liest.", "Jeder Schritt zählt!"]
+      "tips": ["Wie war das nochmal damals? Schau rein: https://www.ardmediathek.de/dokus-geschichte", "Lust auf eine gepflegte Abendunterhaltung mit deinen Freund*innen: https://www.ardmediathek.de/filme-drama"]
     }
   ]
 }
