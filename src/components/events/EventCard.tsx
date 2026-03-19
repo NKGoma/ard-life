@@ -1,6 +1,6 @@
 'use client';
 import { memo, useEffect } from 'react';
-import { RandomEvent, SCORE_LABELS, ScoreKey } from '@/types';
+import { RandomEvent, SCORE_LABELS, ScoreKey, CATEGORY_ICONS } from '@/types';
 import { synthEvent } from '@/lib/audio';
 
 interface EventCardProps {
@@ -15,7 +15,10 @@ export default memo(function EventCard({ event, onChoose }: EventCardProps) {
       {/* Header */}
       <div className="flex items-center gap-2 mb-3">
         <span className="px-3 py-1 bg-orange-600/30 text-orange-300 text-xs font-medium rounded-full">📰 Ereignis</span>
-        <span className="px-3 py-1 bg-slate-700 text-slate-300 text-xs rounded-full">{event.category}</span>
+        <span className="flex items-center gap-1.5 px-3 py-1 bg-slate-700 text-slate-300 text-xs rounded-full">
+          {CATEGORY_ICONS[event.category] && <img src={CATEGORY_ICONS[event.category]} alt="" className="w-4 h-4 object-contain" />}
+          {event.category}
+        </span>
       </div>
 
       <h3 className="text-lg font-bold text-white mb-2">{event.title}</h3>

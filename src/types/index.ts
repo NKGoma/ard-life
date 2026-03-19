@@ -33,6 +33,15 @@ export const SCORE_EMOJIS: Record<ScoreKey, string> = {
 
 export const ALL_SCORE_KEYS: ScoreKey[] = ['bildung', 'gemeinschaft', 'glueck'];
 
+export const CATEGORY_ICONS: Record<string, string> = {
+  grundwissen: '/book.png',
+  sport:       '/sport.png',
+  musik:       '/musik.png',
+  humor:       '/humor.png',
+  geschichte:  '/geshichte.png',
+  kultur:      '/geshichte.png',
+};
+
 // --- Life Stages ---
 export type LifeStage = 'kindheit' | 'jugend' | 'junges_erwachsenenalter' | 'erwachsenenalter' | 'alter';
 

@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect, useRef, memo } from 'react';
-import { GameQuestion, SCORE_LABELS, ScoreKey } from '@/types';
+import { GameQuestion, SCORE_LABELS, ScoreKey, CATEGORY_ICONS } from '@/types';
 import { synthCorrect, synthWrong, synthTick } from '@/lib/audio';
 
 interface DuelInfo {
@@ -80,7 +80,10 @@ export default memo(function QuestionCard({ question, onAnswer, duelInfo }: Ques
         <span className="px-3 py-1 bg-blue-600/30 text-blue-300 text-xs font-medium rounded-full">
           {duelInfo ? '⚔️ Duell' : '❓ Frage'}
         </span>
-        <span className="px-3 py-1 bg-slate-700 text-slate-300 text-xs rounded-full">{question.category}</span>
+        <span className="flex items-center gap-1.5 px-3 py-1 bg-slate-700 text-slate-300 text-xs rounded-full">
+          {CATEGORY_ICONS[question.category] && <img src={CATEGORY_ICONS[question.category]} alt="" className="w-4 h-4 object-contain" />}
+          {question.category}
+        </span>
       </div>
 
       <h3 className="text-lg font-bold text-white mb-1">{question.title}</h3>
