@@ -49,6 +49,8 @@ export default memo(function QuestionCard({ question, onAnswer }: QuestionCardPr
   const [embedUrl, setEmbedUrl] = useState<string | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const feedbackRef = useRef<HTMLDivElement>(null);
   const isCorrect = selected === question.correctIndex;
 
   // Resolve video source when question changes
@@ -121,6 +123,11 @@ export default memo(function QuestionCard({ question, onAnswer }: QuestionCardPr
     setSelected(idx);
     setRevealed(true);
     if (idx === question.correctIndex) synthCorrect(); else synthWrong();
+
+    // Auto-scroll to the feedback / "Weiter" area after a brief render tick
+    requestAnimationFrame(() => {
+      feedbackRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
   };
 
   const handleVideoPlay = () => {
@@ -140,7 +147,7 @@ export default memo(function QuestionCard({ question, onAnswer }: QuestionCardPr
     .join(', ');
 
   return (
-    <div className="bg-slate-800/95 backdrop-blur rounded-2xl max-w-xl w-full mx-auto border border-slate-700 shadow-2xl animate-[fadeIn_0.3s_ease-out] max-h-[90dvh] overflow-y-auto">
+    <div ref={cardRef} className="bg-slate-800/95 backdrop-blur rounded-2xl max-w-2xl w-full mx-auto border border-slate-700 shadow-2xl animate-[fadeIn_0.3s_ease-out] max-h-[90dvh] overflow-y-auto">
 
       {/* ── Video area ── */}
       {videoStatus === 'loading' && question.url && (
@@ -192,8 +199,8 @@ export default memo(function QuestionCard({ question, onAnswer }: QuestionCardPr
         <h3 className="text-lg font-bold text-white mb-1">{question.title}</h3>
         <p className="text-slate-200 mb-4 text-base leading-relaxed">{displayedText}{!typingDone && <span className="animate-pulse">▋</span>}</p>
 
-        {/* Options — fade in after typing completes */}
-        <div className={`space-y-2 transition-opacity duration-500 ${typingDone ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+        {/* Options — 2×2 grid, fade in after typing completes */}
+        <div className={`grid grid-cols-2 gap-2 transition-opacity duration-500 ${typingDone ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
           {question.options.map((opt, i) => {
             let cls = 'border-slate-600 bg-slate-700/50 hover:bg-slate-700 text-white';
             if (revealed) {
@@ -215,7 +222,7 @@ export default memo(function QuestionCard({ question, onAnswer }: QuestionCardPr
 
         {/* Feedback */}
         {revealed && (
-          <div className={`mt-4 p-3 rounded-xl border ${isCorrect ? 'border-green-600 bg-green-900/20 text-green-300' : 'border-red-600 bg-red-900/20 text-red-300'}`}>
+          <div ref={feedbackRef} className={`mt-4 p-3 rounded-xl border ${isCorrect ? 'border-green-600 bg-green-900/20 text-green-300' : 'border-red-600 bg-red-900/20 text-red-300'}`}>
             <p className="font-bold mb-1">{isCorrect ? '🎉 Richtig!' : '❌ Leider falsch!'}</p>
             <p className="text-sm text-slate-300 mt-1">{question.insight}</p>
             {isCorrect && pointsDisplay && (
