@@ -419,4 +419,365 @@
     },
     "insight": "Obwohl Hermann Hesse mit Werken wie 'Siddhartha' ein weltweites Millionenpublikum erreichte und 1946 den Literaturnobelpreis gewann, genoss er bei der professionellen Literaturkritik oft kein hohes Ansehen."
   }
+,
+  {
+    "id": "q022",
+    "category": "humor",
+    "title": "Die epische Hebammen-Quest",
+    "url": "https://www.ardmediathek.de/video/extra-3/schlecht-bezahlt-und-ueberlastet-wie-findet-man-noch-eine-hebamme/ndr/Y3JpZDovL25kci5kZS9hYjg2MzZhZi01NjRjLTQzMGEtOTJmYS03NmRhMjhhYjM3ODM",
+    "question": "In einem satirischen Beitrag von 'extra 3' begibt sich eine werdende Mutter auf die fast unlösbare Fantasy-Quest, im Jahr 2026 eine Hebamme zu finden. Wann hätte sie laut dem Geist 'Chronobe' idealerweise mit der Buchung beginnen müssen?",
+    "options": [
+      "Sobald der erste Ultraschall gemacht wurde.",
+      "Am besten schon vor der Zeugung des Kindes.",
+      "Erst im siebten Schwangerschaftsmonat.",
+      "Direkt nachdem die Fruchtblase geplatzt ist."
+    ],
+    "correctIndex": 1,
+    "points": {
+      "bildung": 1,
+      "gemeinschaft": 2,
+      "lebensglueck": 2
+    },
+    "insight": "Der 'extra 3'-Beitrag überspitzt den realen Hebammenmangel in Deutschland humorvoll als Rollenspiel. Wegen schlechter Bezahlung, viel Bürokratie und extremer Überlastung ist es für werdende Eltern oft ein wahrer Kampf, rechtzeitig eine Hebamme zu finden."
+  },
+  {
+    "id": "q023",
+    "category": "grundwissen",
+    "title": "Lebensraum der Orang-Utans",
+    "url": "https://www.ardmediathek.de/video/erlebnis-erde/orang-utans-so-nah-wie-nie/ndr/Y3JpZDovL25kci5kZS8zZjI0ZGE3Ni03YzVmLTQyYWQtOGIwOS1iZDhkM2ViNzhlMDM",
+    "question": "In welchem Lebensraum verbringen wilde Orang-Utans auf Borneo, wie in der ARD-Dokumentation \"Erlebnis Erde: Orang-Utans – so nah wie nie\" gezeigt, die meiste Zeit ihres Lebens?",
+    "options": [
+      "In den schwindelerregenden Baumwipfeln des Regenwaldes in bis zu 40 Metern Höhe.",
+      "In unterirdischen Höhlensystemen, um sich vor Raubtieren zu verstecken.",
+      "Auf dem Waldboden, wo sie in großen Gruppen nach Nahrung suchen.",
+      "An den Küsten und Stränden, wo sie sich hauptsächlich von Fischen ernähren."
+    ],
+    "correctIndex": 0,
+    "points": {
+      "bildung": 3,
+      "gemeinschaft": 1,
+      "lebensglueck": 1
+    },
+    "insight": "Orang-Utans sind die größten baumbewohnenden Säugetiere der Welt. Dank moderner Drohnentechnik konnten Tierfilmer ihren anspruchsvollen Alltag in den Baumwipfeln Borneos hautnah dokumentieren."
+  },
+  {
+    "id": "q024",
+    "category": "musik",
+    "title": "Pop Secret Stories: Bill und Tom Kaulitz",
+    "url": "https://www.ardmediathek.de/video/pop-secret-stories/bill-und-tom-wie-wurden-sie-so-big/br/Y3JpZDovL2JyLmRlL2Jyb2FkY2FzdC9GMjAyNVdPMDE1NjUxQTA",
+    "question": "In der ARD-Reihe \"Pop Secret Stories\" wird der Aufstieg von Bill und Tom Kaulitz beleuchtet. Welchen drastischen Schritt unternahmen die Zwillinge, um dem extremen Fan-Wahnsinn in Deutschland zu entkommen?",
+    "options": [
+      "Sie zogen nach Los Angeles, um wieder ein freieres Leben führen zu können.",
+      "Sie änderten ihre Identitäten und traten nur noch maskiert auf.",
+      "Sie zogen sich auf einen abgelegenen Bauernhof in Bayern zurück.",
+      "Sie wanderten nach Tokio aus, passend zu ihrem Bandnamen."
+    ],
+    "correctIndex": 0,
+    "points": {
+      "bildung": 1,
+      "gemeinschaft": 1,
+      "lebensglueck": 2
+    },
+    "insight": "Auf dem Höhepunkt des Tokio-Hotel-Erfolgs litten die Brüder massiv unter Stalkern und dem Verlust ihrer Privatsphäre. Der Umzug nach Los Angeles ermöglichte es ihnen, dem Druck zu entfliehen und sich persönlich sowie musikalisch neu zu erfinden."
+  },
+  {
+    "id": "q025",
+    "category": "musik",
+    "title": "Der Offenbacher Techno-Mythos",
+    "url": "https://www.ardmediathek.de/video/techno-house-deutschland/robert-johnson-offenbacher-techno-club/hr/MmYxMzNjNDctMTJmYi00MDc3LTlmYjMtYTQ3MmI2NDAyMGJk",
+    "question": "Der legendäre Club 'Robert Johnson' in Offenbach wird in der ARD-Dokureihe 'Techno House Deutschland' porträtiert. Wofür ist er in der weltweiten Szene besonders bekannt?",
+    "options": [
+      "Für seine intime Atmosphäre mit einer Kapazität von unter 300 Personen und sein minimalistisches Konzept.",
+      "Für seine gigantische Haupthalle, die jedes Wochenende Platz für über 5.000 feiernde Gäste bietet.",
+      "Dafür, dass er sich tief unter der Erde in einem ehemaligen Banktresor befindet.",
+      "Dafür, dass dort ausschließlich kommerzielle Popmusik und Schlager gespielt werden."
+    ],
+    "correctIndex": 0,
+    "points": {
+      "bildung": 1,
+      "gemeinschaft": 1,
+      "lebensglueck": 2
+    },
+    "insight": "Das 1999 von Ata Macias und Sebastian Kahrs gegründete 'Robert Johnson' gilt trotz (oder gerade wegen) seiner geringen Größe als einer der einflussreichsten Clubs für elektronische Musik weltweit."
+  },
+  {
+    "id": "q026",
+    "category": "kultur",
+    "title": "Vergängliche Schneekunst",
+    "url": "https://www.ardmediathek.de/video/ttt-titel-thesen-temperamente/halb-sport-halb-kunst-simon-beck/ard/Y3JpZDovL2Rhc2Vyc3RlLmRlL3R0dCAtIHRpdGVsIHRoZXNlbiB0ZW1wZXJhbWVudGUvOWZlZTU4N2ItMWQ4Mi00MjA1LWIxMTAtMGJiMGJmYmMzMDdk",
+    "question": "Womit erschafft der britische Künstler Simon Beck seine riesigen, vergänglichen Kunstwerke in den Alpen, die oft so groß wie mehrere Fußballfelder sind?",
+    "options": [
+      "Durch stundenlanges Stapfen mit Schneeschuhen, Kompass und Maßband.",
+      "Mit speziell umgebauten Pistenraupen, die Muster in den Schnee fräsen.",
+      "Durch das Versprühen von umweltfreundlicher Farbe per Drohne.",
+      "Mit riesigen Heißluftgebläsen, die gezielt Eisflächen schmelzen."
+    ],
+    "correctIndex": 0,
+    "points": {
+      "bildung": 2,
+      "gemeinschaft": 1,
+      "lebensglueck": 3
+    },
+    "insight": "Simon Beck wurde unter anderem in der ARD-Sendung 'ttt - titel thesen temperamente' porträtiert. Als Pionier der 'Snow Art' läuft der Brite stundenlang mit Schneeschuhen durch den Schnee, um riesige geometrische Muster und Mandalas zu erschaffen, die oft schon nach kurzer Zeit durch das Wetter oder Skifahrer wieder verschwinden."
+  },
+  {
+    "id": "q027",
+    "category": "kultur",
+    "title": "Literatur bei Druckfrisch",
+    "url": "https://www.ardmediathek.de/video/druckfrisch/t-c-boyle-no-way-home/ard/Y3JpZDovL2Rhc2Vyc3RlLmRlL2RydWNrZnJpc2NoL2FkY2VmNGNhLTcxYTUtNGVkMi04YzlmLWI3NDJlNTM2ZWM4Mw",
+    "question": "In der ARD-Literatursendung »Druckfrisch« wurde T.C. Boyles Roman »No Way Home« vorgestellt. Welches für den Autor eher ungewöhnliche Thema steht im Zentrum dieses Werks, das in der Wüste Nevadas spielt?",
+    "options": [
+      "Ein toxisches Dreiecksverhältnis und eine archaische Liebesgeschichte",
+      "Ein radikaler Klima-Protest gegen die Zerstörung von Nationalparks",
+      "Die psychologische Studie eines Forschers, der Schimpansen das Sprechen beibringt",
+      "Ein historischer Kriminalfall rund um den Bau des Hoover-Damms"
+    ],
+    "correctIndex": 0,
+    "points": {
+      "bildung": 3,
+      "gemeinschaft": 1,
+      "lebensglueck": 0
+    },
+    "insight": "Anders als in vielen seiner bekannten Umweltromane weicht T.C. Boyle in »No Way Home« von seinem klassischen Metier ab. In »Druckfrisch« wird das Werk als archaische Liebesgeschichte und Neo-Western beschrieben, in dem zwei Männer in der Provinz um dieselbe Frau kämpfen."
+  },
+  {
+    "id": "q028",
+    "category": "grundwissen",
+    "title": "Willi wills wissen: Der Maibaum",
+    "url": "https://www.ardmediathek.de/video/willi-wills-wissen/wie-wird-ein-maibaum-aufgestellt/br/Y3JpZDovL2JyLmRlL2Jyb2FkY2FzdC9GMjAxOFdPMDA0NTU2QTA?isChildContent",
+    "question": "In der Sendung 'Willi wills wissen' geht es um einen alten Brauch zum 1. Mai. Wie wird ein schwerer Maibaum traditionell aufgerichtet?",
+    "options": [
+      "Mit langen Holzstangen ('Schwalben') und reiner Muskelkraft.",
+      "Er wird von einem Hubschrauber eingeflogen und abgesetzt.",
+      "Er wird aus vielen leichten Plastikteilen zusammengebaut.",
+      "Ein Heißluftballon zieht die Baumspitze in die Höhe."
+    ],
+    "correctIndex": 0,
+    "points": {
+      "bildung": 5,
+      "gemeinschaft": 8,
+      "lebensglueck": 6
+    },
+    "insight": "In der Reportage findet Willi heraus, wie dieser alte Brauch zum Maifeiertag funktioniert. Traditionell wird der Baum nicht mit Maschinen, sondern von der Dorfgemeinschaft mit vereinter Muskelkraft und speziellen Haltestangen, den sogenannten 'Schwalben', aufgestellt. Das erfordert viel Teamwork!"
+  },
+  {
+    "id": "q029",
+    "category": "geschichte",
+    "title": "Otto Lilienthal: Der Start-up Pionier",
+    "url": "https://www.ardmediathek.de/video/dokumentation-und-reportage/otto-lilienthal-start-up-unternehmer/rbb/Y3JpZDovL3JiYl9kZmVlZGRjZi1jOTkwLTQxOTQtYTk2MS1jMzgzNTZmNTNmMzJfcHVibGljYXRpb24",
+    "question": "Welches übergeordnete Ziel verfolgte der Flugpionier Otto Lilienthal laut der ARD-Dokumentation mit seinen Erfindungen in der Luftfahrt?",
+    "options": [
+      "Die grenzenlose persönliche Bereicherung als erster Start-up-Milliardär.",
+      "Völkerverständigung, die Sicherung des weltweiten Friedens und die Welt zum Guten zu verändern.",
+      "Die militärische Überlegenheit des Deutschen Kaiserreichs durch neuartige Fluggeräte.",
+      "Die reine Selbstdarstellung und egomanische Erhöhung seiner eigenen Person."
+    ],
+    "correctIndex": 1,
+    "points": {
+      "bildung": 3,
+      "gemeinschaft": 2,
+      "lebensglueck": 1
+    },
+    "insight": "Otto Lilienthal war nicht nur ein genialer Erfinder, sondern auch ein großer Humanist. Für ihn war die Luftfahrt ein Mittel zur Völkerverständigung und Friedenssicherung, nicht zur persönlichen Bereicherung oder Selbstdarstellung."
+  },
+  {
+    "id": "q030",
+    "category": "geschichte",
+    "title": "Pionier der Sexualforschung",
+    "url": "https://www.ardmediathek.de/video/die-sexuelle-provokation-magnus-hirschfeld-und-die-geschlechter/magnus-hirschfeld-und-die-geschlechter/arte/Y3JpZDovL2FydGUudHYvcHVibGljYXRpb24vMTE5NDMzLTAwMC1B",
+    "question": "Wofür ist der deutsche Arzt Magnus Hirschfeld, dessen Wirken in der Arte-Dokumentation „Die sexuelle Provokation“ beleuchtet wird, historisch besonders bekannt?",
+    "options": [
+      "Er gründete 1919 in Berlin das weltweit erste Institut für Sexualwissenschaft.",
+      "Er war der erste offen homosexuelle Abgeordnete im Reichstag der Weimarer Republik.",
+      "Er entwickelte als Mediziner das erste wirksame Medikament gegen Syphilis.",
+      "Er verfasste das erste medizinische Standardwerk zur Psychoanalyse."
+    ],
+    "correctIndex": 0,
+    "points": {
+      "bildung": 3,
+      "gemeinschaft": 2,
+      "lebensglueck": 1
+    },
+    "insight": "Magnus Hirschfeld war ein früher Vorkämpfer für die Rechte queerer Menschen und sexueller Minderheiten. Sein 1919 in Berlin gegründetes Institut für Sexualwissenschaft ermöglichte bahnbrechende Forschung, bis es 1933 von den Nationalsozialisten geplündert und zerstört wurde."
+  },
+  {
+    "id": "q031",
+    "category": "sport",
+    "title": "Being Katarina Witt",
+    "url": "https://www.ardmediathek.de/video/being-katarina-witt/being-katarina-witt/das-erste/Y3JpZDovL3Nwb3J0c2NoYXUuZGUvOGFmZGIyNmMtOTBhMi00MWU4LWFmNDgtOWFkYWFlMzdkZjBk",
+    "question": "Die ARD-Doku „Being Katarina Witt“ beleuchtet den Weg der Eiskunstlauf-Legende zum Weltstar. Neben dem harten Training zeigt die Serie auch die Schattenseiten des DDR-Regimes. Ab welchem Alter wurde Katarina Witt laut der Dokumentation bereits von der Stasi beschattet?",
+    "options": [
+      "Ab 7 Jahren",
+      "Ab 12 Jahren",
+      "Ab 15 Jahren",
+      "Ab 18 Jahren"
+    ],
+    "correctIndex": 0,
+    "points": {
+      "bildung": 3,
+      "gemeinschaft": 2,
+      "lebensglueck": 1
+    },
+    "insight": "Unter dem operativen Vorgang „Flop“ wurde Katarina Witt bereits als siebenjähriges Mädchen von der Stasi überwacht. Dies zeigt, wie früh und lückenlos das DDR-System seine potenziellen sportlichen Aushängeschilder kontrollierte."
+  },
+  {
+    "id": "q032",
+    "category": "sport",
+    "title": "Rise & Fall: TSV 1860 München",
+    "url": "https://www.ardmediathek.de/video/rise-und-fall/folge-1-we-go-to-the-top-s01-e01/br/Y3JpZDovL3Nwb3J0c2NoYXUuZGUvZjg5MTRjM2MtNDQ2OC00MjA1LWJjZmQtMTdkZTY3OThlZTZk",
+    "question": "In der ARD-Dokuserie 'Rise & Fall' geht es um Aufstieg und Fall großer deutscher Traditionsvereine. Welches dramatische Ereignis beim TSV 1860 München steht im Mittelpunkt der ersten Folge 'We go to the top'?",
+    "options": [
+      "Der drohende Bankrott 2011 und die Rettung durch den Investor Hasan Ismaik",
+      "Der überraschende Gewinn der Deutschen Meisterschaft im Jahr 1966",
+      "Der umstrittene Auszug aus dem traditionsreichen Grünwalder Stadion",
+      "Der sensationelle Durchmarsch von der Bayernliga in die 1. Bundesliga"
+    ],
+    "correctIndex": 0,
+    "points": {
+      "bildung": 1,
+      "gemeinschaft": 2,
+      "lebensglueck": 1
+    },
+    "insight": "Die erste Staffel der Doku-Serie 'Rise & Fall' widmet sich dem TSV 1860 München. In der ersten Folge geht es um das Jahr 2011, als der Verein kurz vor der Insolvenz stand und durch den Einstieg des jordanischen Investors Hasan Ismaik gerettet wurde."
+  },
+  {
+    "id": "q033",
+    "category": "grundwissen",
+    "title": "Spannendes über Wespen",
+    "url": "https://www.ardmediathek.de/video/neuneinhalb/spannendes-ueber-wespen/wdr/Y3JpZDovL3dkci5kZS9CZWl0cmFnLTllNDNlMGE5LTg1MTUtNDRlNy1iZDI1LTdmYTU2NGEzNjY2Ng?",
+    "question": "Was solltest du laut der WDR-Sendung 'neuneinhalb' tun, wenn du zu Hause ein Wespennest entdeckst?",
+    "options": [
+      "Das Nest selbst mit Insektenspray aus dem Baumarkt vernichten.",
+      "Einen Profi rufen, da Wespen unter Naturschutz stehen und Nester nicht selbst zerstört werden dürfen.",
+      "Einen normalen Staubsauger holen und die Wespen einfach einsaugen.",
+      "Das Nest mit einem Stock abschlagen und schnell wegrennen."
+    ],
+    "correctIndex": 1,
+    "points": {
+      "bildung": 3,
+      "gemeinschaft": 2,
+      "lebensglueck": 1
+    },
+    "insight": "Wespen sind durch das Bundesnaturschutzgesetz geschützt. Man darf sie nicht töten oder ihre Nester selbst zerstören. Stattdessen sollte man Experten wie eine Wespenberaterin rufen, die das Nest professionell und sicher umsiedeln kann."
+  },
+  {
+    "id": "q034",
+    "category": "grundwissen",
+    "title": "Das Geheimnis der Glückskekse",
+    "url": "https://www.ardmediathek.de/video/die-maus/glueckskekse-hoerfassung/wdr/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtNGM3MmExNTQtNzZmOS00MjU2LWE3MjYtNzU1NmZkZTU2ZThlL2F1ZGlvZGVza3JpcHRpb24?",
+    "question": "In der 'Sendung mit der Maus' geht Christoph der Frage nach, wie der Zettel in den Glückskeks kommt, ohne im Ofen zu verbrennen. Was ist das Geheimnis?",
+    "options": [
+      "Der Zettel wird nach dem Backen in den noch heißen, weichen Teig gelegt, der dann gefaltet wird.",
+      "Das Papier ist feuerfest und wird einfach mit dem Teig im Ofen gebacken.",
+      "Der Keks wird in zwei Hälften gebacken, der Zettel dazwischengelegt und mit Zuckerguss verklebt.",
+      "Der Zettel wird mit einer langen Nadel durch ein kleines Loch in den harten Keks geschoben."
+    ],
+    "correctIndex": 0,
+    "points": {
+      "bildung": 2,
+      "gemeinschaft": 1,
+      "lebensglueck": 2
+    },
+    "insight": "Glückskekse werden zunächst als flache Teigkreise gebacken. Wenn sie aus dem Ofen kommen, sind sie noch sehr heiß, weich und biegsam. Genau in diesem Moment wird der Zettel hineingelegt und der Keks in seine typische Form gefaltet, bevor er beim Abkühlen aushärtet."
+  },
+  {
+    "id": "q035",
+    "category": "grundwissen",
+    "title": "Das Geheimnis der Tütensuppe",
+    "url": "https://www.ardmediathek.de/video/die-maus/tuetensuppe/wdr/Y3JpZDovL3dkci5kZS9CZWl0cmFnLTI1NzZjOTE0LTQ3OTQtNGRmNi05YmM3LWM0MjUwNzEzM2I0Mw?",
+    "question": "In einer Sachgeschichte der 'Sendung mit der Maus' wird gezeigt, wie Tütensuppe hergestellt wird. Was ist der wichtigste Schritt in der Fabrik, damit aus einer normalen Suppe ein Pulver für die Tüte wird?",
+    "options": [
+      "Den Zutaten wird das gesamte Wasser entzogen (sie werden getrocknet).",
+      "Die Suppe wird in der Tüte schockgefroren.",
+      "Die flüssige Suppe wird unter hohem Druck in die Tüte gepresst.",
+      "Die Zutaten werden mit sehr viel Zucker haltbar gemacht."
+    ],
+    "correctIndex": 0,
+    "points": {
+      "bildung": 3,
+      "gemeinschaft": 1,
+      "lebensglueck": 1
+    },
+    "insight": "Um Tütensuppe herzustellen, werden die Zutaten in der Fabrik erst zubereitet und anschließend getrocknet. Durch den Entzug von Wasser wird die Suppe zu Pulver, bleibt ohne Kühlung lange haltbar und passt in eine kleine Tüte. Zuhause muss man dann nur noch heißes Wasser hinzufügen!"
+  },
+  {
+    "id": "q036",
+    "category": "sport",
+    "title": "Das Geheimnis der ewigen Fußball-Jugend",
+    "url": "https://www.ardmediathek.de/video/sport-erklaert/warum-sind-ronaldo-ibrahimovic-und-co-immer-noch-so-gut-s01-e10/swr/Y3JpZDovL3N3ci5kZS9hZXgvbzE1MTg4NDU",
+    "question": "In der SWR-Reihe 'Sport erklärt' geht es um die Langlebigkeit von Stars wie Cristiano Ronaldo. Welcher erstaunliche Wert wurde bei einem Medizincheck des alternden Superstars festgestellt?",
+    "options": [
+      "Ein Körperfettanteil von nur 7 Prozent und die Fitness eines 22-Jährigen.",
+      "Ein Ruhepuls von 28 Schlägen pro Minute, ähnlich einem Apnoetaucher.",
+      "Eine um 40 Prozent höhere Knochendichte als bei durchschnittlichen Profis.",
+      "Eine Lungenkapazität, die die eines olympischen Marathonläufers übersteigt."
+    ],
+    "correctIndex": 0,
+    "points": {
+      "bildung": 2,
+      "gemeinschaft": 0,
+      "lebensglueck": 1
+    },
+    "insight": "Auch Ausnahmesportler altern. Stars wie Ronaldo oder Ibrahimovic kompensieren den natürlichen Alterungsprozess jedoch durch extreme Disziplin, spezielle Ernährung und jahrelange Erfahrung auf höchstem Niveau."
+  },
+  {
+    "id": "q037",
+    "category": "sport",
+    "title": "Tanzsport-Metropole am Main",
+    "url": "https://www.ardmediathek.de/video/hr-retro-oder-hessenschau/tanzturnier-in-frankfurt/hr/Y3JpZDovL2hyLW9ubGluZS8xNTQ2MzA?",
+    "question": "Ein historischer \"hr retro\"-Beitrag der ARD Mediathek berichtet über ein frühes Tanzturnier in einer hessischen Metropole. Welche Stadt, die heute für das weltgrößte Amateur-Tanzturnier (\"Hessen tanzt\") bekannt ist, war Austragungsort dieses Turniers?",
+    "options": [
+      "Frankfurt am Main",
+      "Wiesbaden",
+      "Kassel",
+      "Darmstadt"
+    ],
+    "correctIndex": 0,
+    "points": {
+      "bildung": 2,
+      "gemeinschaft": 1,
+      "lebensglueck": 1
+    },
+    "insight": "Frankfurt am Main blickt auf eine lange Tanzsport-Tradition zurück. Schon in den 1960er Jahren berichtete die 'hessenschau' über Turniere in der Mainmetropole, die heute alljährlich Tausende Tanzpaare aus aller Welt anlockt."
+  },
+  {
+    "id": "q038",
+    "category": "sport",
+    "title": "Der Modetanz Twist von 1961",
+    "url": "https://www.ardmediathek.de/video/br-retro/modetanz-twist-1961/br/Y3JpZDovL2JyLmRlL3ZpZGVvLzg4MzIxNzBkLTQ0NWItNDMwZS1iYjNjLTA4YmNiZjY2ODBiYQ?",
+    "question": "Auch Tanzen ist ein anspruchsvoller Sport! In einem historischen BR-Beitrag von 1961 wird ein neuer Modetanz vorgestellt, der damals für Aufsehen sorgte, weil er völlig ohne Körperkontakt getanzt wurde. Welcher bekannte Rock-'n'-Roll-Sänger trainierte im Münchner Hotel Bayerischer Hof seine Hüftschwünge, um den 'Twist' zu lernen?",
+    "options": [
+      "Peter Kraus",
+      "Rex Gildo",
+      "Ted Herold",
+      "Udo Jürgens"
+    ],
+    "correctIndex": 0,
+    "points": {
+      "bildung": 2,
+      "gemeinschaft": 1,
+      "lebensglueck": 2
+    },
+    "insight": "Der Twist war Anfang der 1960er Jahre eine sportliche Sensation auf den Tanzflächen, da die Paare ihn ohne Körperkontakt tanzten. In den historischen BR-Aufnahmen lässt sich der junge Peter Kraus zusammen mit der schwedischen Sängerin Lil Babs die schwungvollen neuen Schritte von einem belgischen Amateurtänzer zeigen."
+  },
+  {
+    "id": "q039",
+    "category": "sport",
+    "title": "Fairness bei den Paralympics",
+    "url": "https://www.ardmediathek.de/video/sport-erklaert/so-funktionieren-die-paralympics-s01-e11/swr/Y3JpZDovL3N3ci5kZS9hZXgvbzE1MTg4MzM",
+    "question": "In der SWR-Serie 'Sport erklärt' geht es um die Funktionsweise der Paralympics. Welchen Zweck erfüllt die sogenannte 'Klassifizierung' (Einteilung in Startklassen) der Athletinnen und Athleten?",
+    "options": [
+      "Sie sorgt für Chancengleichheit, damit die sportliche Leistung und nicht der Grad der Behinderung entscheidet.",
+      "Sie teilt die Sportlerinnen und Sportler nach ihrem Alter und ihrer bisherigen Wettkampferfahrung ein.",
+      "Sie regelt, welche Länder und Kontinente in bestimmten Sportarten überhaupt antreten dürfen.",
+      "Sie legt fest, wie hoch das Preisgeld für die jeweiligen Gewinnerinnen und Gewinner ausfällt."
+    ],
+    "correctIndex": 0,
+    "points": {
+      "bildung": 3,
+      "gemeinschaft": 2,
+      "lebensglueck": 1
+    },
+    "insight": "Die Klassifizierung in Startklassen ist das Herzstück der Paralympics. Sie macht Leistungen im Sinne der Chancengleichheit vergleichbar, sodass allein individuelle Fähigkeiten wie Kraft, Ausdauer, Taktik und mentale Stärke über den sportlichen Erfolg entscheiden."
+  }
 ]
