@@ -464,65 +464,125 @@ export default function GameWorld3D({
   board, players, activePlayerIndex, landedTileId,
 }: GameWorld3DProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
   const activePlayer = players[activePlayerIndex];
-  const activeSpace = board[activePlayer?.position ?? 0];
-  const activePos = activeSpace ? tileSvgPos(activeSpace) : { x: 0, y: 0 };
 
-  // Apply transform: translate the SVG so activePlayer is at screen center, then scale uniformly
-  const applyTransform = useCallback((animate: boolean) => {
+  // Compute the center of just the playable tile grid (the black tiles).
+  // This is the single anchor point — always locked to viewport center.
+  const tileCenter = useMemo(() => {
+    if (board.length === 0) return { x: 0, y: 0 };
+    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    for (const space of board) {
+      const { x, y } = tileSvgPos(space);
+      minX = Math.min(minX, x);
+      minY = Math.min(minY, y);
+      maxX = Math.max(maxX, x);
+      maxY = Math.max(maxY, y);
+    }
+    return { x: (minX + maxX) / 2, y: (minY + maxY) / 2 };
+  }, [board]);
+
+  // Compute the full bounding box of the board in SVG coordinates
+  const sceneBounds = useMemo(() => {
+    if (board.length === 0) return { minX: -300, minY: -100, maxX: 300, maxY: 100 };
+    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    for (const space of board) {
+      const { x, y } = tileSvgPos(space);
+      minX = Math.min(minX, x);
+      minY = Math.min(minY, y);
+      maxX = Math.max(maxX, x);
+      maxY = Math.max(maxY, y);
+    }
+    // Include generous margins for scenery, signs, and decorations
+    return {
+      minX: minX - 350,
+      minY: minY - 80,
+      maxX: maxX + 350,
+      maxY: maxY + 80,
+    };
+  }, [board]);
+
+  const sceneW = sceneBounds.maxX - sceneBounds.minX;
+  const sceneH = sceneBounds.maxY - sceneBounds.minY;
+
+  // How much of the scene to show (in SVG units).
+  // Controls zoom level — smaller = more zoomed in.
+  const VIEW_WINDOW_W = 520;
+  const VIEW_WINDOW_H = 420;
+
+  // Lock the tile grid center to the screen center.
+  // The SVG is at left:0, top:0, so SVG coordinate (x,y) maps to
+  // pixel (x, y) within the element BEFORE the CSS transform.
+  // After transform: pixel = translate + coord * scale.
+  // We want tileCenter to map to (cw/2, ch/2):
+  //   cw/2 = tx + tileCenter.x * zoom  →  tx = cw/2 - tileCenter.x * zoom
+  //   ch/2 = ty + tileCenter.y * zoom  →  ty = ch/2 - tileCenter.y * zoom
+  const applyTransform = useCallback(() => {
     const container = containerRef.current;
-    const svg = container?.querySelector('svg');
+    const svg = svgRef.current;
     if (!container || !svg) return;
 
     const cw = container.clientWidth;
     const ch = container.clientHeight;
 
-    // How many SVG-units should be visible in each axis.
-    // We pick the smaller ratio so proportions stay uniform (no stretch).
-    const visibleW = 600;
-    const visibleH = 500;
-    const zoom = Math.min(cw / visibleW, ch / visibleH);
+    // Uniform zoom: pick the smaller ratio so nothing stretches
+    const zoom = Math.min(cw / VIEW_WINDOW_W, ch / VIEW_WINDOW_H);
 
-    // Translate so activePos is at the center of the container
-    const tx = cw / 2 - activePos.x * zoom;
-    const ty = ch / 2 - activePos.y * zoom;
+    // Translate so the tile grid center maps to the screen center
+    const tx = cw / 2 - tileCenter.x * zoom;
+    const ty = ch / 2 - tileCenter.y * zoom;
 
-    svg.style.transition = animate ? 'transform 0.8s ease-out' : 'none';
+    svg.style.transition = 'none';
     svg.style.transform = `translate(${tx}px, ${ty}px) scale(${zoom})`;
     svg.style.transformOrigin = '0 0';
-  }, [activePos.x, activePos.y]);
+  }, [tileCenter.x, tileCenter.y]);
 
-  // Re-center when active player changes
-  useEffect(() => { applyTransform(true); }, [applyTransform]);
+  // Lock position on mount
+  useEffect(() => { applyTransform(); }, [applyTransform]);
 
-  // Re-center on resize (no animation)
+  // Re-lock on resize
   useEffect(() => {
-    const handle = () => applyTransform(false);
-    window.addEventListener('resize', handle);
-    return () => window.removeEventListener('resize', handle);
+    const onResize = () => applyTransform();
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
   }, [applyTransform]);
 
   return (
     <div
       ref={containerRef}
-      className="w-full h-full overflow-hidden"
-      style={{ background: '#87CEEB', position: 'relative' }}
+      className="w-full h-full"
+      style={{ background: '#87CEEB', position: 'relative', overflow: 'hidden' }}
     >
-      {/* SVG has no width/height/viewBox — it's just a coordinate container.
-          All sizing is handled by the CSS transform above.
-          overflow:visible ensures nothing is clipped. */}
+      {/*
+        The SVG is placed at left:0, top:0 with no viewBox.
+        SVG coordinates map 1:1 to element pixels before the CSS transform.
+        Since content uses negative coordinates (board centered at x≈0),
+        we need overflow:visible so everything renders.
+        The CSS transform (translate + scale) handles positioning the
+        tile grid center at the viewport center.
+      */}
       <svg
+        ref={svgRef}
         xmlns="http://www.w3.org/2000/svg"
+        width={sceneW}
+        height={sceneH}
         style={{
           position: 'absolute',
-          top: 0,
           left: 0,
-          width: 0,
-          height: 0,
+          top: 0,
           overflow: 'visible',
           display: 'block',
         }}
       >
+        {/* Sky/ground fill — offset back to cover the full scene area */}
+        <rect
+          x={sceneBounds.minX}
+          y={sceneBounds.minY}
+          width={sceneW}
+          height={sceneH}
+          fill="#87CEEB"
+        />
+
         {/* Stage ground bands */}
         <StageGroundsSvg board={board} />
 
@@ -551,7 +611,6 @@ export default function GameWorld3D({
           const pos = tileSvgPos(space);
           const isActive = player.id === activePlayer?.id;
 
-          // Offset multiple players on same tile
           const samePos = players.filter(p => p.position === player.position);
           const myIdx = samePos.findIndex(p => p.id === player.id);
           const offset = myIdx * 14 - (samePos.length - 1) * 7;
