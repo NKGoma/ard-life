@@ -1,7 +1,7 @@
 // ============================================================
 // Scoring v4 – 3 categories: bildung, gemeinschaft, glueck
 // ============================================================
-import { PlayerScores, ScoreMap, ScoreKey, ALL_SCORE_KEYS, EndProfile, ProfileCondition } from '@/types';
+import { PlayerScores, ScoreMap, ScoreKey, ALL_SCORE_KEYS, EndProfile } from '@/types';
 import profilesData from '@data/profiles.json';
 
 interface ProfilesFile {
@@ -30,29 +30,18 @@ export function applyScoring(scores: PlayerScores, changes: ScoreMap): PlayerSco
   return next;
 }
 
-function checkCondition(value: number, cond: ProfileCondition): boolean {
-  if (cond.min !== undefined && value < cond.min) return false;
-  if (cond.max !== undefined && value > cond.max) return false;
-  return true;
-}
-
 export function calculateProfile(scores: PlayerScores): EndProfile {
   const profiles = (profilesData as ProfilesFile).profiles;
-  let bestMatch: EndProfile = profiles[profiles.length - 1];
-  let bestScore = -1;
 
-  for (const p of profiles) {
-    const entries = Object.entries(p.conditions);
-    if (entries.length === 0) continue; // skip catch-all unless no better match
-    let matched = 0;
-    for (const [k, cond] of entries) {
-      const value = scores[k as ScoreKey] ?? 0;
-      if (checkCondition(value, cond as ProfileCondition)) matched++;
-    }
-    const ratio = matched / entries.length;
-    if (ratio > bestScore) { bestScore = ratio; bestMatch = p; }
+  // Find the score key with the highest value
+  let topKey: ScoreKey = ALL_SCORE_KEYS[0];
+  for (const key of ALL_SCORE_KEYS) {
+    if (scores[key] > scores[topKey]) topKey = key;
   }
-  return bestMatch;
+
+  // Find the profile whose condition matches that top key
+  const match = profiles.find((p) => topKey in p.conditions);
+  return match ?? profiles[profiles.length - 1];
 }
 
 export function getScoreTotal(scores: PlayerScores): number {

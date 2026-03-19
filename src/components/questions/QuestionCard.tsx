@@ -61,15 +61,12 @@ export default memo(function QuestionCard({ question, onAnswer }: QuestionCardPr
       <h3 className="text-lg font-bold text-white mb-1">{question.title}</h3>
       <p className="text-slate-200 mb-4 text-base leading-relaxed">{displayedText}{!typingDone && <span className="animate-pulse">▋</span>}</p>
 
-      {/* Insight & link — shown before answering */}
-      {(question.insight || question.url) && (
-        <div className="mb-4 p-3 rounded-xl border border-slate-600 bg-slate-700/30 text-slate-300">
-          {question.insight && <p className="text-sm">{question.insight}</p>}
-          {question.url && (
-            <a href={question.url} target="_blank" rel="noopener noreferrer" className="inline-block mt-2 text-blue-400 text-sm hover:underline">
-              📺 Mehr in der ARD Mediathek →
-            </a>
-          )}
+      {/* Video link — shown before answering */}
+      {question.url && (
+        <div className="mb-4 p-3 rounded-xl border border-slate-600 bg-slate-700/30">
+          <a href={question.url} target="_blank" rel="noopener noreferrer" className="text-blue-400 text-sm hover:underline">
+            📺 Mehr in der ARD Mediathek →
+          </a>
         </div>
       )}
 
@@ -98,6 +95,7 @@ export default memo(function QuestionCard({ question, onAnswer }: QuestionCardPr
       {revealed && (
         <div className={`mt-4 p-3 rounded-xl border ${isCorrect ? 'border-green-600 bg-green-900/20 text-green-300' : 'border-red-600 bg-red-900/20 text-red-300'}`}>
           <p className="font-bold mb-1">{isCorrect ? '🎉 Richtig!' : '❌ Leider falsch!'}</p>
+          <p className="text-sm text-slate-300 mt-1">{question.insight}</p>
           {isCorrect && pointsDisplay && (
             <p className="text-xs text-blue-300 mt-1">🎯 {pointsDisplay}</p>
           )}
