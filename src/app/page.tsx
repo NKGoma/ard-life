@@ -118,9 +118,10 @@ export default function Home() {
             gap: 12, marginTop: 28,
             animation: 'fadeUp 0.8s 0.6s ease both',
           }}>
+            {/* Primary CTA: Weiterspielen (if save exists) or Neues Spiel */}
             <button
               className="btn-start"
-              onClick={() => setShowCarousel(true)}
+              onClick={hasSave ? () => router.push('/game') : () => setShowCarousel(true)}
               style={{
                 padding: '12px 32px',
                 background: '#005A9F',
@@ -136,13 +137,14 @@ export default function Home() {
                 fontFamily: 'inherit',
               }}
             >
-              Neues Spiel ›
+              {hasSave ? 'Weiterspielen ›' : 'Neues Spiel ›'}
             </button>
 
+            {/* Secondary: Neues Spiel (only when a save exists) */}
             {hasSave && (
               <button
                 className="btn-start"
-                onClick={() => router.push('/game')}
+                onClick={() => setShowCarousel(true)}
                 style={{
                   padding: '10px 28px',
                   background: 'transparent',
@@ -157,7 +159,7 @@ export default function Home() {
                   fontFamily: 'inherit',
                 }}
               >
-                Weiterspielen ›
+                Neues Spiel ›
               </button>
             )}
 
