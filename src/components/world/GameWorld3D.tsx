@@ -316,9 +316,12 @@ const StageSignsSvg = memo(function StageSignsSvg({ board }: { board: BoardSpace
 });
 
 // ============================================================
-// SVG Character
+// SVG Character (with combined hop + travel animation)
 // ============================================================
-const SvgCharacter = memo(function SvgCharacter({ player, x, y, isActive }: {
+const HOP_DURATION = 380; // ms — fits inside the 450ms step interval
+const HOP_HEIGHT = 14;    // px — subtle arc height
+
+function SvgCharacter({ player, x, y, isActive }: {
   player: Player; x: number; y: number; isActive: boolean;
 }) {
   const color = PLAYER_COLORS[player.id % PLAYER_COLORS.length];
@@ -328,57 +331,101 @@ const SvgCharacter = memo(function SvgCharacter({ player, x, y, isActive }: {
   const shoesColor = SHOES.find(s => s.id === avatar.shoesId)?.color ?? '#FFFFFF';
   const sc = isActive ? 1 : 0.85;
 
+  const gRef = useRef<SVGGElement>(null);
+  const prevCoords = useRef({ x, y });
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    const el = gRef.current;
+    if (!el) return;
+
+    // Skip animation on initial mount
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      prevCoords.current = { x, y };
+      return;
+    }
+
+    const oldX = prevCoords.current.x;
+    const oldY = prevCoords.current.y;
+    const dx = oldX - x; // delta from NEW position (since <g> is already at new x,y)
+    const dy = oldY - y;
+
+    prevCoords.current = { x, y };
+
+    // No movement → no animation
+    if (dx === 0 && dy === 0) return;
+
+    // Animate: start offset at (dx, dy) relative to current position,
+    // arc upward at midpoint, land at (0,0) = the new position.
+    el.animate(
+      [
+        { transform: `translate(${dx}px, ${dy}px)` },
+        { transform: `translate(${dx * 0.5}px, ${dy * 0.5 - HOP_HEIGHT}px)` },
+        { transform: `translate(0px, 0px)` },
+      ],
+      {
+        duration: HOP_DURATION,
+        easing: 'cubic-bezier(0.33, 0, 0.25, 1)',
+        fill: 'none',
+      }
+    );
+  }, [x, y]);
+
   return (
     <g transform={`translate(${x},${y})`}>
-      {/* Active player ring */}
+      {/* Active player ring (stays at tile center) */}
       {isActive && (
         <ellipse cx={0} cy={2} rx={10} ry={4} fill="none" stroke={color} strokeWidth={2} opacity={0.7} />
       )}
 
-      <g transform={`scale(${sc})`}>
-        {/* Shoes */}
-        <rect x={-7} y={-3} width={5} height={3} rx={1} fill={shoesColor} />
-        <rect x={2} y={-3} width={5} height={3} rx={1} fill={shoesColor} />
+      {/* Body group — animated via Web Animations API */}
+      <g ref={gRef}>
+        <g transform={`scale(${sc})`}>
+          {/* Shoes */}
+          <rect x={-7} y={-3} width={5} height={3} rx={1} fill={shoesColor} />
+          <rect x={2} y={-3} width={5} height={3} rx={1} fill={shoesColor} />
 
-        {/* Legs */}
-        <rect x={-5} y={-14} width={4} height={12} rx={1.5} fill={bottomColor} />
-        <rect x={1} y={-14} width={4} height={12} rx={1.5} fill={bottomColor} />
+          {/* Legs */}
+          <rect x={-5} y={-14} width={4} height={12} rx={1.5} fill={bottomColor} />
+          <rect x={1} y={-14} width={4} height={12} rx={1.5} fill={bottomColor} />
 
-        {/* Torso */}
-        <rect x={-8} y={-26} width={16} height={14} rx={3} fill={topColor} />
+          {/* Torso */}
+          <rect x={-8} y={-26} width={16} height={14} rx={3} fill={topColor} />
 
-        {/* Arms */}
-        <rect x={-12} y={-25} width={4} height={12} rx={2} fill={avatar.skinColor} />
-        <rect x={8} y={-25} width={4} height={12} rx={2} fill={avatar.skinColor} />
+          {/* Arms */}
+          <rect x={-12} y={-25} width={4} height={12} rx={2} fill={avatar.skinColor} />
+          <rect x={8} y={-25} width={4} height={12} rx={2} fill={avatar.skinColor} />
 
-        {/* Head */}
-        <circle cx={0} cy={-32} r={7} fill={avatar.skinColor} />
+          {/* Head */}
+          <circle cx={0} cy={-32} r={7} fill={avatar.skinColor} />
 
-        {/* Hair */}
-        <ellipse cx={0} cy={-36} rx={6} ry={4} fill={avatar.hairColor} />
+          {/* Hair */}
+          <ellipse cx={0} cy={-36} rx={6} ry={4} fill={avatar.hairColor} />
 
-        {/* Eyes */}
-        <circle cx={-2.5} cy={-32} r={1.2} fill="#1a1a2e" />
-        <circle cx={2.5} cy={-32} r={1.2} fill="#1a1a2e" />
+          {/* Eyes */}
+          <circle cx={-2.5} cy={-32} r={1.2} fill="#1a1a2e" />
+          <circle cx={2.5} cy={-32} r={1.2} fill="#1a1a2e" />
+        </g>
+
+        {/* Name label */}
+        <text
+          x={0} y={-44}
+          textAnchor="middle"
+          dominantBaseline="central"
+          fontSize={8}
+          fill={isActive ? '#FFFFFF' : '#AABBCC'}
+          fontWeight={isActive ? 'bold' : 'normal'}
+          stroke="#000"
+          strokeWidth={0.3}
+          style={{ pointerEvents: 'none', userSelect: 'none' }}
+        >
+          {player.name}
+        </text>
       </g>
-
-      {/* Name label */}
-      <text
-        x={0} y={-44}
-        textAnchor="middle"
-        dominantBaseline="central"
-        fontSize={8}
-        fill={isActive ? '#FFFFFF' : '#AABBCC'}
-        fontWeight={isActive ? 'bold' : 'normal'}
-        stroke="#000"
-        strokeWidth={0.3}
-        style={{ pointerEvents: 'none', userSelect: 'none' }}
-      >
-        {player.name}
-      </text>
     </g>
   );
-});
+}
 
 // ============================================================
 // World Environment (procedural scenery along the road)
