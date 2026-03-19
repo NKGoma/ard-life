@@ -103,6 +103,22 @@ export default function GamePage() {
   const [showBoostToast, setShowBoostToast] = useState<string | null>(null);
   const [spinnerVisible, setSpinnerVisible] = useState(true);
   const [landedTileId, setLandedTileId] = useState<number | null>(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  // Track fullscreen state changes (e.g. user presses Escape)
+  useEffect(() => {
+    const handler = () => setIsFullscreen(!!document.fullscreenElement);
+    document.addEventListener('fullscreenchange', handler);
+    return () => document.removeEventListener('fullscreenchange', handler);
+  }, []);
+
+  const toggleFullscreen = useCallback(() => {
+    if (document.fullscreenElement) {
+      document.exitFullscreen().catch(() => {});
+    } else {
+      document.documentElement.requestFullscreen().catch(() => {});
+    }
+  }, []);
   const turnProcessedRef = useRef(false);
 
   // Try load saved game
@@ -439,6 +455,13 @@ export default function GamePage() {
         </div>
         <div className="flex items-center gap-3">
           <span className="text-xs text-white/40 drop-shadow">v{pkg.version}</span>
+          <button
+            onClick={toggleFullscreen}
+            title={isFullscreen ? 'Vollbild beenden' : 'Vollbild'}
+            className="pointer-events-auto text-base w-8 h-8 flex items-center justify-center rounded-lg bg-black/20 hover:bg-black/40 text-white/60 hover:text-white transition-all drop-shadow"
+          >
+            {isFullscreen ? '⊠' : '⛶'}
+          </button>
           <button
             onClick={toggleMute}
             title={muted ? 'Musik einschalten' : 'Musik ausschalten'}
