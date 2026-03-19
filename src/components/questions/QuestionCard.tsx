@@ -42,7 +42,6 @@ export default memo(function QuestionCard({ question, onAnswer }: QuestionCardPr
     setSelected(idx);
     setRevealed(true);
     if (idx === question.correctIndex) synthCorrect(); else synthWrong();
-    setTimeout(() => onAnswer(idx), 2200);
   };
 
   // Format points display
@@ -61,6 +60,18 @@ export default memo(function QuestionCard({ question, onAnswer }: QuestionCardPr
 
       <h3 className="text-lg font-bold text-white mb-1">{question.title}</h3>
       <p className="text-slate-200 mb-4 text-base leading-relaxed">{displayedText}{!typingDone && <span className="animate-pulse">▋</span>}</p>
+
+      {/* Insight & link — shown before answering */}
+      {(question.insight || question.url) && (
+        <div className="mb-4 p-3 rounded-xl border border-slate-600 bg-slate-700/30 text-slate-300">
+          {question.insight && <p className="text-sm">{question.insight}</p>}
+          {question.url && (
+            <a href={question.url} target="_blank" rel="noopener noreferrer" className="inline-block mt-2 text-blue-400 text-sm hover:underline">
+              📺 Mehr in der ARD Mediathek →
+            </a>
+          )}
+        </div>
+      )}
 
       {/* Options — fade in after typing completes */}
       <div className={`space-y-2 transition-opacity duration-500 ${typingDone ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
@@ -87,15 +98,15 @@ export default memo(function QuestionCard({ question, onAnswer }: QuestionCardPr
       {revealed && (
         <div className={`mt-4 p-3 rounded-xl border ${isCorrect ? 'border-green-600 bg-green-900/20 text-green-300' : 'border-red-600 bg-red-900/20 text-red-300'}`}>
           <p className="font-bold mb-1">{isCorrect ? '🎉 Richtig!' : '❌ Leider falsch!'}</p>
-          <p className="text-sm text-slate-300">{question.insight}</p>
           {isCorrect && pointsDisplay && (
-            <p className="text-xs text-blue-300 mt-2">🎯 {pointsDisplay}</p>
+            <p className="text-xs text-blue-300 mt-1">🎯 {pointsDisplay}</p>
           )}
-          {question.url && (
-            <a href={question.url} target="_blank" rel="noopener noreferrer" className="inline-block mt-2 text-blue-400 text-sm hover:underline">
-              📺 Mehr in der ARD Mediathek →
-            </a>
-          )}
+          <button
+            onClick={() => onAnswer(selected!)}
+            className="mt-3 w-full py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium transition-colors"
+          >
+            Weiter →
+          </button>
         </div>
       )}
     </div>
