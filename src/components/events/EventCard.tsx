@@ -2,6 +2,7 @@
 import { memo, useEffect, useState } from 'react';
 import { RandomEvent, SCORE_LABELS, ScoreKey } from '@/types';
 import { synthEvent } from '@/lib/audio';
+import { EventIcon } from '@/components/icons/GameIcons';
 
 interface EventCardProps {
   event: RandomEvent;
@@ -21,7 +22,9 @@ export default memo(function EventCard({ event, onChoose }: EventCardProps) {
     <div className="bg-slate-800/95 backdrop-blur rounded-2xl p-6 max-w-lg w-full mx-auto border border-orange-700/50 shadow-2xl animate-[fadeIn_0.3s_ease-out]">
       {/* Header */}
       <div className="flex items-center gap-2 mb-3">
-        <span className="px-3 py-1 bg-orange-600/30 text-orange-300 text-xs font-medium rounded-full">📰 Ereignis</span>
+        <span className="px-3 py-1 bg-orange-600/30 text-orange-300 text-xs font-medium rounded-full flex items-center gap-1 w-fit">
+          <EventIcon className="w-3.5 h-3.5" /> Ereignis
+        </span>
         <span className="px-3 py-1 bg-slate-700 text-slate-300 text-xs rounded-full">{event.category}</span>
       </div>
 

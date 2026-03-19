@@ -3,6 +3,7 @@ import { useState, useEffect, useRef, memo } from 'react';
 import { GameQuestion, SCORE_LABELS, ScoreKey } from '@/types';
 import { synthCorrect, synthWrong, synthTick, setSilenced } from '@/lib/audio';
 import { pauseForVideo, resumeAfterVideo } from '@/lib/bgmManager';
+import { QuestionIcon } from '@/components/icons/GameIcons';
 
 interface QuestionCardProps {
   question: GameQuestion;
@@ -11,6 +12,14 @@ interface QuestionCardProps {
 
 interface Stream { url: string; type: string; }
 type VideoStatus = 'loading' | 'stream' | 'embed' | 'none';
+
+const CATEGORY_IMAGES: Record<string, string> = {
+  sport: '/Sport.png', grundwissen: '/Grundwissen.png',
+  geschichte: '/Geschichte.png', kultur: '/Kultur.png', musik: '/Musik.png',
+};
+function getCategoryImage(category: string): string {
+  return CATEGORY_IMAGES[category.toLowerCase()] ?? '/Random.png';
+}
 
 function getVideoId(url: string): string | null {
   try {
@@ -179,8 +188,15 @@ export default memo(function QuestionCard({ question, onAnswer }: QuestionCardPr
       <div className="p-6">
         {/* Header */}
         <div className="flex items-center gap-2 mb-3">
-          <span className="px-3 py-1 bg-blue-600/30 text-blue-300 text-xs font-medium rounded-full">❓ Frage</span>
+          <span className="px-3 py-1 bg-blue-600/30 text-blue-300 text-xs font-medium rounded-full flex items-center gap-1 w-fit">
+            <QuestionIcon className="w-3.5 h-3.5" /> Frage
+          </span>
           <span className="px-3 py-1 bg-slate-700 text-slate-300 text-xs rounded-full">{question.category}</span>
+          <img
+            src={getCategoryImage(question.category)}
+            alt={question.category}
+            className="h-8 w-8 rounded-lg object-cover"
+          />
           {question.url && (
             <a href={question.url} target="_blank" rel="noopener noreferrer"
               className="ml-auto text-slate-500 hover:text-blue-400 text-xs transition-colors shrink-0">

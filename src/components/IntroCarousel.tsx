@@ -1,7 +1,11 @@
 'use client';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, type ComponentType } from 'react';
 import { useRouter } from 'next/navigation';
 import { clearSave } from '@/lib/gameState';
+import {
+  ChanceIcon, QuestionIcon, EventIcon, MilestoneIcon,
+  BildungIcon, GemeinschaftIcon, GlueckIcon,
+} from '@/components/icons/GameIcons';
 
 interface Props {
   onClose: () => void;
@@ -20,9 +24,9 @@ const slides = [
   {
     type: 'feature' as const,
     step: 'Schritt 1',
-    icon: '🎲',
+    icon: ChanceIcon as ComponentType<{ className?: string }>,
     title: 'Drehe das Rad',
-    body: 'Das Rad bestimmt, wie weit du ziehst — 1 bis 6 Felder. Du durchläufst fünf Lebensphasen auf dem Spielfeld: von der Kindheit 🧒 bis zum Lebensabend 🌿. Jede Phase bringt neue Herausforderungen.',
+    body: 'Das Rad bestimmt, wie weit du ziehst — 1 bis 6 Felder. Du durchläufst fünf Lebensphasen auf dem Spielfeld: von der Kindheit bis zum Lebensabend. Jede Phase bringt neue Herausforderungen.',
     tags: [
       { label: '5 Lebensphasen', color: '#4A9EFF' },
       { label: '1–6 Felder pro Zug', color: 'rgba(255,255,255,0.3)' },
@@ -33,33 +37,33 @@ const slides = [
   {
     type: 'feature' as const,
     step: 'Schritt 2',
-    icon: '❓',
+    icon: QuestionIcon as ComponentType<{ className?: string }>,
     title: 'Beantworte Wissensfragen',
     body: 'Fragefelder testen dein Medienwissen — direkt, spezifisch, manchmal unbequem. Richtige Antworten bringen Punkte in deinen Lebenswerten. Falsche kosten. Schnell tippen lohnt sich nicht.',
     tags: [
-      { label: '📚 Bildung', color: '#4D96FF' },
-      { label: '🤝 Gemeinschaft', color: '#6BCB77' },
-      { label: '✨ Glück', color: '#FFD93D' },
+      { label: 'Bildung', color: '#4D96FF' },
+      { label: 'Gemeinschaft', color: '#6BCB77' },
+      { label: 'Glück', color: '#FFD93D' },
     ],
     accent: '#3D9E5F',
   },
   {
     type: 'feature' as const,
     step: 'Schritt 3',
-    icon: '📰',
+    icon: EventIcon as ComponentType<{ className?: string }>,
     title: 'Reagiere auf Ereignisse',
     body: 'Ereignisfelder werfen dir unerwartete Situationen vor die Füße — Fake News, Algorithmen, Filterblasen, Meinungsblasen. Du entscheidest, wie du reagierst. Jede Wahl hat Konsequenzen für deine Werte und deine nächsten Felder.',
     tags: [
-      { label: '⚠️ Rückschläge', color: '#E05252' },
-      { label: '🚀 Boosts', color: '#00BCD4' },
-      { label: '🎲 Zufall', color: '#FF5722' },
+      { label: 'Rückschläge', color: '#E05252' },
+      { label: 'Boosts', color: '#00BCD4' },
+      { label: 'Zufall', color: '#FF5722' },
     ],
     accent: '#D4A017',
   },
   {
     type: 'feature' as const,
     step: 'Schritt 4',
-    icon: '⚔️',
+    icon: '⚔️' as string,
     title: 'Duell — Punkte stehlen',
     body: 'Landest du auf einem Feld, das ein anderer Spieler besetzt, beginnt ein Duell. Beide beantworten dieselbe Frage — wer gewinnt, stiehlt Punkte. Wer verliert, geht leer aus. High Risk, High Reward.',
     tags: [
@@ -72,19 +76,19 @@ const slides = [
   {
     type: 'feature' as const,
     step: 'Schritt 5',
-    icon: '⭐',
+    icon: MilestoneIcon as ComponentType<{ className?: string }>,
     title: 'Meilensteine & Tokens',
     body: 'Besondere Felder schalten Tokens und Badges frei. Bildungsstern, Gemeinschafts-Badge, Glückstoken — sie bringen einmalige Boni und können im richtigen Moment das Blatt wenden. Erreiche Meilensteine für Sonderrechte.',
     tags: [
-      { label: '🌟 Bildungsstern', color: '#4D96FF' },
-      { label: '🏅 Gemeinschafts-Badge', color: '#6BCB77' },
-      { label: '🍀 Glückstoken', color: '#FFD93D' },
+      { label: 'Bildungsstern', color: '#4D96FF' },
+      { label: 'Gemeinschafts-Badge', color: '#6BCB77' },
+      { label: 'Glückstoken', color: '#FFD93D' },
     ],
     accent: '#7B4FA6',
   },
   {
     type: 'final' as const,
-    icon: '📊',
+    icon: '📊' as string,
     title: 'Dein Medienprofil',
     body: 'Nach fünf Lebensphasen werden alle deine Entscheidungen ausgewertet. Du erhältst ein persönliches Medienprofil, das zeigt — wie informiert, wie vernetzt, wie resilient du als Medienkonsument wirklich bist.',
     cta: 'Spiel starten',
@@ -209,8 +213,11 @@ export default function IntroCarousel({ onClose }: Props) {
                   </p>
 
                   {/* Icon */}
-                  <div style={{ fontSize: 56, lineHeight: 1, marginBottom: 20 }}>
-                    {s.icon}
+                  <div style={{ lineHeight: 1, marginBottom: 20 }}>
+                    {typeof s.icon === 'string'
+                      ? <span style={{ fontSize: 56 }}>{s.icon}</span>
+                      : (() => { const SlideIcon = s.icon as ComponentType<{ className?: string }>; return <SlideIcon className="w-14 h-14 text-white" />; })()
+                    }
                   </div>
 
                   {/* Title */}
@@ -250,7 +257,12 @@ export default function IntroCarousel({ onClose }: Props) {
 
               {s.type === 'final' && (
                 <div style={{ maxWidth: 520, width: '100%', textAlign: 'center' }}>
-                  <div style={{ fontSize: 64, lineHeight: 1, marginBottom: 24 }}>{s.icon}</div>
+                  <div style={{ lineHeight: 1, marginBottom: 24 }}>
+                    {typeof s.icon === 'string'
+                      ? <span style={{ fontSize: 64 }}>{s.icon}</span>
+                      : (() => { const SlideIcon = s.icon as ComponentType<{ className?: string }>; return <SlideIcon className="w-16 h-16 mx-auto text-white" />; })()
+                    }
+                  </div>
 
                   <h2 style={{
                     fontSize: 'clamp(24px, 5.5vw, 38px)', fontWeight: 900,
@@ -270,17 +282,18 @@ export default function IntroCarousel({ onClose }: Props) {
                     flexWrap: 'wrap', marginBottom: 40,
                   }}>
                     {[
-                      { emoji: '📚', label: 'Bildung', color: '#4D96FF' },
-                      { emoji: '🤝', label: 'Gemeinschaft', color: '#6BCB77' },
-                      { emoji: '✨', label: 'Glück', color: '#FFD93D' },
+                      { Icon: BildungIcon, label: 'Bildung', color: '#4D96FF' },
+                      { Icon: GemeinschaftIcon, label: 'Gemeinschaft', color: '#6BCB77' },
+                      { Icon: GlueckIcon, label: 'Glück', color: '#FFD93D' },
                     ].map(v => (
                       <div key={v.label} style={{
                         padding: '10px 18px', borderRadius: 12,
                         border: `1px solid ${v.color}44`,
                         background: `${v.color}11`,
                         textAlign: 'center',
+                        color: v.color,
                       }}>
-                        <div style={{ fontSize: 22, marginBottom: 4 }}>{v.emoji}</div>
+                        <v.Icon className="w-6 h-6 mx-auto mb-1" />
                         <div style={{ fontSize: 12, fontWeight: 600, color: v.color }}>{v.label}</div>
                       </div>
                     ))}

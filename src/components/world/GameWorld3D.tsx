@@ -149,7 +149,7 @@ const BoardTileSvg = memo(function BoardTileSvg({ space, isActive, isLanded }: {
         fontSize={18}
         style={{ pointerEvents: 'none', userSelect: 'none' }}
       >
-        {visual.icon}
+        {visual.emoji}
       </text>
 
       {/* Tile number */}

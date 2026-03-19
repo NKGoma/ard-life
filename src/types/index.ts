@@ -2,6 +2,14 @@
 // ARD Life – Types v4 – 3-category scoring (bildung/gemeinschaft/glueck)
 // Real 2D board game with avatars standing on tiles
 // ============================================================
+import type { ComponentType } from 'react';
+import {
+  BildungIcon, GemeinschaftIcon, GlueckIcon,
+  KindheitIcon, JugendIcon, JungesErwachsenenalterIcon, ErwachsenenalterIcon, AlterIcon,
+  StartIcon, QuestionIcon, EventIcon, MilestoneIcon, BoostIcon, SetbackIcon, ChanceIcon, FinishIcon,
+} from '@/components/icons/GameIcons';
+
+type IconComponent = ComponentType<{ className?: string }>;
 
 // --- Scores: exactly 3 categories ---
 export type ScoreKey = 'bildung' | 'gemeinschaft' | 'glueck';
@@ -25,10 +33,10 @@ export const SCORE_COLORS: Record<ScoreKey, string> = {
   glueck: '#FFD93D',
 };
 
-export const SCORE_EMOJIS: Record<ScoreKey, string> = {
-  bildung: '📚',
-  gemeinschaft: '🤝',
-  glueck: '✨',
+export const SCORE_ICONS: Record<ScoreKey, IconComponent> = {
+  bildung: BildungIcon,
+  gemeinschaft: GemeinschaftIcon,
+  glueck: GlueckIcon,
 };
 
 export const ALL_SCORE_KEYS: ScoreKey[] = ['bildung', 'gemeinschaft', 'glueck'];
@@ -41,32 +49,32 @@ export const LIFE_STAGE_ORDER: LifeStage[] = [
 ];
 
 export interface StageMeta {
-  name: string; ages: string; color: string; emoji: string; description: string;
+  name: string; ages: string; color: string; emoji: string; icon: IconComponent; description: string;
 }
 
 export const LIFE_STAGE_META: Record<LifeStage, StageMeta> = {
-  kindheit: { name: 'Kindheit', ages: '', color: '#FFD93D', emoji: '🧒', description: 'Erste Begegnungen mit Medien' },
-  jugend: { name: 'Jugend', ages: '', color: '#6BCB77', emoji: '🎒', description: 'Social Media, Trends und Peer-Pressure' },
-  junges_erwachsenenalter: { name: 'Erwachsener', ages: '', color: '#4D96FF', emoji: '🎓', description: 'Wahlen, Identität, eigene Meinungen' },
-  erwachsenenalter: { name: 'Lebensmitte', ages: '', color: '#FF6B6B', emoji: '💼', description: 'Beruf, Familie und Verantwortung' },
-  alter: { name: 'Lebensabend', ages: '', color: '#9B59B6', emoji: '🌿', description: 'Rückblick, Routine und Weitergabe' },
+  kindheit: { name: 'Kindheit', ages: '', color: '#FFD93D', emoji: '🧒', icon: KindheitIcon, description: 'Erste Begegnungen mit Medien' },
+  jugend: { name: 'Jugend', ages: '', color: '#6BCB77', emoji: '🎒', icon: JugendIcon, description: 'Social Media, Trends und Peer-Pressure' },
+  junges_erwachsenenalter: { name: 'Erwachsener', ages: '', color: '#4D96FF', emoji: '🎓', icon: JungesErwachsenenalterIcon, description: 'Wahlen, Identität, eigene Meinungen' },
+  erwachsenenalter: { name: 'Lebensmitte', ages: '', color: '#FF6B6B', emoji: '💼', icon: ErwachsenenalterIcon, description: 'Beruf, Familie und Verantwortung' },
+  alter: { name: 'Lebensabend', ages: '', color: '#9B59B6', emoji: '🌿', icon: AlterIcon, description: 'Rückblick, Routine und Weitergabe' },
 };
 
 // --- Space Types ---
 export type SpaceType = 'start' | 'question' | 'event' | 'milestone' | 'boost' | 'setback' | 'chance' | 'neutral' | 'finish';
 
-export interface SpaceVisual { icon: string; color: string; label: string; }
+export interface SpaceVisual { icon: IconComponent | null; emoji: string; color: string; label: string; }
 
 export const SPACE_VISUALS: Record<SpaceType, SpaceVisual> = {
-  start:     { icon: '🏁', color: '#4CAF50', label: 'Start' },
-  question:  { icon: '❓', color: '#2196F3', label: 'Frage' },
-  event:     { icon: '📰', color: '#FF9800', label: 'Ereignis' },
-  milestone: { icon: '⭐', color: '#FFD700', label: 'Meilenstein' },
-  boost:     { icon: '🚀', color: '#00BCD4', label: 'Boost' },
-  setback:   { icon: '⚠️', color: '#F44336', label: 'Rückschlag' },
-  chance:    { icon: '🎲', color: '#FF5722', label: 'Zufall' },
-  neutral:   { icon: '·',  color: '#90A4AE', label: '' },
-  finish:    { icon: '🏆', color: '#FFD700', label: 'Ziel' },
+  start:     { icon: StartIcon,    emoji: '🏁', color: '#4CAF50', label: 'Start' },
+  question:  { icon: QuestionIcon, emoji: '❓', color: '#2196F3', label: 'Frage' },
+  event:     { icon: EventIcon,    emoji: '📰', color: '#FF9800', label: 'Ereignis' },
+  milestone: { icon: MilestoneIcon,emoji: '⭐', color: '#FFD700', label: 'Meilenstein' },
+  boost:     { icon: BoostIcon,    emoji: '🚀', color: '#00BCD4', label: 'Boost' },
+  setback:   { icon: SetbackIcon,  emoji: '⚠️', color: '#F44336', label: 'Rückschlag' },
+  chance:    { icon: ChanceIcon,   emoji: '🎲', color: '#FF5722', label: 'Zufall' },
+  neutral:   { icon: null,         emoji: '·',  color: '#90A4AE', label: '' },
+  finish:    { icon: FinishIcon,   emoji: '🏆', color: '#FFD700', label: 'Ziel' },
 };
 
 // --- Board Space (2D grid with col/row) ---
@@ -255,8 +263,8 @@ export interface EndProfile {
 }
 
 // --- Safe helpers ---
-const FALLBACK_STAGE: StageMeta = { name: 'Unbekannt', ages: '?', color: '#64748B', emoji: '🧑', description: '' };
-const FALLBACK_VISUAL: SpaceVisual = { icon: '·', color: '#90A4AE', label: '' };
+const FALLBACK_STAGE: StageMeta = { name: 'Unbekannt', ages: '?', color: '#64748B', emoji: '🧑', icon: KindheitIcon, description: '' };
+const FALLBACK_VISUAL: SpaceVisual = { icon: null, emoji: '·', color: '#90A4AE', label: '' };
 
 export function getStageMeta(stage: string | undefined | null): StageMeta {
   if (stage && stage in LIFE_STAGE_META) return LIFE_STAGE_META[stage as LifeStage];

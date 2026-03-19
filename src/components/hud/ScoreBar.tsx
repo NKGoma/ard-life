@@ -1,6 +1,6 @@
 'use client';
 import { memo } from 'react';
-import { Player, SCORE_LABELS, SCORE_COLORS, SCORE_EMOJIS, ScoreKey, ALL_SCORE_KEYS, getStageMeta, PLAYER_COLORS } from '@/types';
+import { Player, SCORE_LABELS, SCORE_COLORS, SCORE_ICONS, ScoreKey, ALL_SCORE_KEYS, getStageMeta, PLAYER_COLORS } from '@/types';
 
 interface ScoreBarProps {
   players: Player[];
@@ -47,8 +47,9 @@ export default memo(function ScoreBar({ players, currentPlayerIndex }: ScoreBarP
       {/* Active player info */}
       <div className="px-1">
         <p className="text-white font-bold text-base truncate leading-tight">{player.name}</p>
-        <p className="text-xs leading-tight mt-0.5" style={{ color: stageMeta.color }}>
-          {stageMeta.emoji} {stageMeta.name}
+        <p className="text-xs leading-tight mt-0.5 flex items-center gap-1" style={{ color: stageMeta.color }}>
+          <stageMeta.icon className="w-3 h-3 flex-shrink-0" />
+          {stageMeta.name}
         </p>
         <p className="text-xs text-slate-400 leading-tight">Feld {player.position + 1}</p>
       </div>
@@ -64,7 +65,7 @@ export default memo(function ScoreBar({ players, currentPlayerIndex }: ScoreBarP
           return (
             <div key={key}>
               <div className="flex items-center justify-between mb-1">
-                <span className="text-sm">{SCORE_EMOJIS[key]}</span>
+                {(() => { const Icon = SCORE_ICONS[key]; return <Icon className="w-4 h-4 flex-shrink-0" />; })()}
                 <span className="text-xs text-slate-300 font-medium truncate mx-1 flex-1">{SCORE_LABELS[key]}</span>
                 <span className="text-xs text-white font-mono font-bold">{val}</span>
               </div>
