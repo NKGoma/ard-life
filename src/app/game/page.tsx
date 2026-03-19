@@ -1,6 +1,5 @@
 'use client';
 import { useState, useCallback, useEffect, useRef } from 'react';
-import dynamic from 'next/dynamic';
 import { AvatarConfig, GameState, GamePhase } from '@/types';
 import {
   initGame, movePlayer, processSpaceArrival,
@@ -17,8 +16,7 @@ import AvatarEditor from '@/components/avatar/AvatarEditor';
 import { useBgm } from '@/hooks/useBgm';
 import pkg from '../../../package.json';
 
-// Dynamic import for Three.js (SSR disabled)
-const GameWorld3D = dynamic(() => import('@/components/world/GameWorld3D'), { ssr: false });
+import GameWorld3D from '@/components/world/GameWorld3D';
 
 // --- Setup Phase (collect player avatars) ---
 function SetupScreen({ onStart }: { onStart: (avatars: AvatarConfig[]) => void }) {
