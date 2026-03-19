@@ -1,8 +1,11 @@
 'use client';
-import Link from 'next/link';
+import { useState } from 'react';
 import Particles from '@/components/Particles';
+import IntroCarousel from '@/components/IntroCarousel';
 
 export default function Home() {
+  const [showCarousel, setShowCarousel] = useState(false);
+
   return (
     <>
       <style>{`
@@ -96,25 +99,49 @@ export default function Home() {
             marginBottom: 0,
           }}>2–4 Spieler · Stehle Punkte · Werde Champion</p>
 
-          {/* Button */}
-          <Link href="/game" className="btn-start" style={{
-            display: 'inline-block',
-            marginTop: 28,
-            padding: '12px 32px',
-            background: '#005A9F',
-            color: '#fff',
-            borderRadius: 6,
-            fontSize: 16,
-            fontWeight: 700,
-            cursor: 'pointer',
-            letterSpacing: '0.3px',
-            textDecoration: 'none',
+          {/* Buttons */}
+          <div style={{
+            display: 'flex', flexDirection: 'column', alignItems: 'center',
+            gap: 12, marginTop: 28,
             animation: 'fadeUp 0.8s 0.6s ease both',
-            transition: 'transform 200ms ease-out, box-shadow 200ms ease-out',
-            boxShadow: '0 4px 12px rgba(0,90,159,0.4)',
-          }}>Neues Spiel ›</Link>
+          }}>
+            <button
+              className="btn-start"
+              onClick={() => setShowCarousel(true)}
+              style={{
+                padding: '12px 32px',
+                background: '#005A9F',
+                color: '#fff',
+                border: 'none',
+                borderRadius: 6,
+                fontSize: 16,
+                fontWeight: 700,
+                cursor: 'pointer',
+                letterSpacing: '0.3px',
+                transition: 'transform 200ms ease-out, box-shadow 200ms ease-out',
+                boxShadow: '0 4px 12px rgba(0,90,159,0.4)',
+                fontFamily: 'inherit',
+              }}
+            >
+              Neues Spiel ›
+            </button>
+
+            <button
+              onClick={() => setShowCarousel(true)}
+              style={{
+                background: 'none', border: 'none',
+                color: 'rgba(255,255,255,0.3)',
+                fontSize: 12, cursor: 'pointer',
+                letterSpacing: '0.5px', fontFamily: 'inherit',
+              }}
+            >
+              Wie spielt man?
+            </button>
+          </div>
         </div>
       </div>
+
+      {showCarousel && <IntroCarousel onClose={() => setShowCarousel(false)} />}
     </>
   );
 }
