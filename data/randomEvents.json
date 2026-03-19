@@ -17,7 +17,8 @@
             "bildung": 2,
             "gemeinschaft": 2,
             "glueck": -1
-          }
+          },
+          "grantsBeitragBonus": true
         },
         {
           "text": "Du bestellst Pizza und verschiebst die Zahlung.",
@@ -1358,6 +1359,62 @@
             "bildung": 2,
             "gemeinschaft": 0,
             "glueck": -1
+          }
+        }
+      ]
+    },
+    {
+      "id": "re-tatort",
+      "title": "Tatort-Abend",
+      "description": "Es ist Sonntag, 20:15 Uhr. Deine Mitbewohner setzen sich gemeinsam vor den Fernseher. Tatort läuft. Machst du mit?",
+      "lifeStage": [
+        "junges_erwachsenenalter",
+        "erwachsenenalter"
+      ],
+      "category": "unterhaltung",
+      "choices": [
+        {
+          "text": "Ja, du schaust mit. Der Kult-Krimi ist eben doch ein Ritual.",
+          "points": {
+            "bildung": 0,
+            "gemeinschaft": 3,
+            "glueck": 1
+          }
+        },
+        {
+          "text": "Nein, du schaust lieber etwas anderes. Heute nicht.",
+          "points": {
+            "bildung": 0,
+            "gemeinschaft": -1,
+            "glueck": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "re-leserbrief",
+      "title": "Du bist am Limit",
+      "description": "Die Nachrichten, der Beitrag, der Nachbar, der nie den Biomüll richtig sortiert. Es reicht. Du öffnest ein leeres Dokument und fängst zu tippen an. Es werden vier Seiten.",
+      "lifeStage": [
+        "erwachsenenalter",
+        "alter"
+      ],
+      "category": "diskurs",
+      "choices": [
+        {
+          "text": "Leserbrief abschicken. Du hast Recht und alle sollen es wissen.",
+          "points": {
+            "bildung": 4,
+            "gemeinschaft": -1,
+            "glueck": 0
+          }
+        },
+        {
+          "text": "Dokument schließen. Stille Würde siegt.",
+          "points": {
+            "bildung": 0,
+            "gemeinschaft": 1,
+            "glueck": 2
           }
         }
       ]

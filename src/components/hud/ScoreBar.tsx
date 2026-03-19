@@ -76,6 +76,28 @@ export default memo(function ScoreBar({ players, currentPlayerIndex }: ScoreBarP
           );
         })}
       </div>
+
+      {/* Tokens row */}
+      {player.tokens.filter(t => !t.used).length > 0 && (
+        <div className="flex items-center gap-1.5 mt-2 pt-2 border-t border-slate-700">
+          <span className="text-xs text-slate-400">Tokens:</span>
+          {player.tokens.filter(t => !t.used).map((t, i) => (
+            <span key={i} title={t.label} className="text-base leading-none">{t.emoji}</span>
+          ))}
+        </div>
+      )}
+
+      {/* Beitrag bonus indicator */}
+      {player.beitragBonus && (
+        <div className="flex items-center gap-1 mt-1">
+          <span className="text-xs text-amber-400/80">
+            {player.beitragBonus === 'tatort_fan' && '📺 Tatort-Fan aktiv'}
+            {player.beitragBonus === 'tagesschau_leser' && '📰 Tagesschau-Leser aktiv'}
+            {player.beitragBonus === 'deutschlandfunk_hoerer' && '🎙️ Deutschlandfunk-Hörer aktiv'}
+            {player.beitragBonus === 'kulturprogramm_fan' && '🎵 Kulturprogramm-Fan aktiv'}
+          </span>
+        </div>
+      )}
     </div>
   );
 });

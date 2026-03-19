@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import { AvatarConfig, GameState, GamePhase } from '@/types';
 import {
   initGame, movePlayer, processSpaceArrival,
-  answerQuestion, chooseEventOption, acknowledgeMilestone,
+  answerQuestion, answerDuel, chooseEventOption, acknowledgeMilestone,
   endTurn, checkAllFinished, saveGame, loadGame, clearSave,
 } from '@/lib/gameState';
 import ScoreBar from '@/components/hud/ScoreBar';
@@ -233,11 +233,30 @@ export default function GamePage() {
     }, 600);
   }, [gameState]);
 
+  // --- Show pendingToast from game state ---
+  useEffect(() => {
+    if (!gameState?.pendingToast) return;
+    setShowBoostToast(gameState.pendingToast);
+    const t = setTimeout(() => setShowBoostToast(null), 3500);
+    setGameState(prev => prev ? { ...prev, pendingToast: null } : prev);
+    return () => clearTimeout(t);
+  }, [gameState?.pendingToast]);
+
   // --- Handle question answer ---
   const handleAnswer = useCallback((answerIndex: number) => {
     setGameState((prev) => {
       if (!prev) return prev;
       return answerQuestion(prev, answerIndex);
+    });
+    setLandedTileId(null);
+    turnProcessedRef.current = false;
+  }, []);
+
+  // --- Handle duel answer ---
+  const handleDuelAnswer = useCallback((answerIndex: number) => {
+    setGameState((prev) => {
+      if (!prev) return prev;
+      return answerDuel(prev, answerIndex);
     });
     setLandedTileId(null);
     turnProcessedRef.current = false;
@@ -313,10 +332,11 @@ export default function GamePage() {
   const activePlayer = gameState.players[gameState.currentPlayerIndex];
   const canSpin = gameState.phase === 'playing' && gameState.spinResult === null && spinnerVisible;
   const isMoving = gameState.phase === 'moving';
-  const showQuestion = !!(gameState.phase === 'question' && gameState.currentQuestion);
+  const showDuel = !!(gameState.phase === 'duel' && gameState.currentQuestion && gameState.activeDuel);
+  const showQuestion = !!(gameState.phase === 'question' && gameState.currentQuestion && !showDuel);
   const showEvent = !!(gameState.phase === 'event' && gameState.currentEvent);
   const showMilestone = !!(gameState.phase === 'milestone' && gameState.currentMilestone);
-  const showContentOverlay = showQuestion || showEvent || showMilestone;
+  const showContentOverlay = showQuestion || showEvent || showMilestone || showDuel;
   const showSpinnerOverlay = canSpin && !isMoving && !showContentOverlay;
   const showLandingBadge = landedTileId !== null && !isMoving && !showContentOverlay && gameState.phase === 'playing';
   const showTurnTransition = gameState.phase === 'playing' && gameState.spinResult !== null && !showLandingBadge;
@@ -393,6 +413,21 @@ export default function GamePage() {
         {showQuestion && gameState.currentQuestion && (
           <div className="animate-emerge">
             <QuestionCard question={gameState.currentQuestion} onAnswer={handleAnswer} />
+          </div>
+        )}
+
+        {showDuel && gameState.currentQuestion && gameState.activeDuel && (
+          <div className="animate-emerge">
+            <QuestionCard
+              key={gameState.activeDuel.attackerAnswerIndex === null ? 'duel-attacker' : 'duel-defender'}
+              question={gameState.currentQuestion}
+              onAnswer={handleDuelAnswer}
+              duelInfo={{
+                attackerName: gameState.players.find(p => p.id === gameState.activeDuel!.attackerId)?.name ?? '',
+                defenderName: gameState.players.find(p => p.id === gameState.activeDuel!.defenderId)?.name ?? '',
+                isAttackerTurn: gameState.activeDuel.attackerAnswerIndex === null,
+              }}
+            />
           </div>
         )}
 

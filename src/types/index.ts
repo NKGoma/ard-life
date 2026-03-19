@@ -102,6 +102,7 @@ export interface RandomEventChoice {
   text: string;
   points: ScoreMap;
   moveSpaces?: number;
+  grantsBeitragBonus?: boolean;
 }
 export interface RandomEvent {
   id: string;
@@ -221,17 +222,24 @@ export interface Player {
   position: number; currentStage: LifeStage;
   answeredQuestions: string[]; experiencedEvents: string[];
   tokens: Token[]; milestones: string[]; history: HistoryEntry[];
+  beitragBonus: string | null;
 }
 
 // --- Token ---
 export type TokenType = 'bildung_stern' | 'gemeinschaft_badge' | 'glueck_token';
-export interface Token { type: TokenType; label: string; emoji: string; earnedAt: number; }
+export interface Token { type: TokenType; label: string; emoji: string; earnedAt: number; used: boolean; }
 
 // --- Game State ---
 export type GamePhase =
   'landing' | 'setup' | 'playing' | 'spinning' | 'moving' |
-  'space_arrival' | 'question' | 'event' | 'milestone' |
+  'space_arrival' | 'question' | 'event' | 'milestone' | 'duel' |
   'result' | 'finished';
+
+export interface ActiveDuel {
+  attackerId: number;
+  defenderId: number;
+  attackerAnswerIndex: number | null;
+}
 
 export interface GameState {
   players: Player[];
@@ -244,6 +252,8 @@ export interface GameState {
   spinResult: number | null;
   turnCount: number;
   animatingToPosition: number | null;
+  activeDuel: ActiveDuel | null;
+  pendingToast: string | null;
 }
 
 // --- End Profiles ---

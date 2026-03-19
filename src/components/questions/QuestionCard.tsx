@@ -3,12 +3,19 @@ import { useState, useEffect, useRef, memo } from 'react';
 import { GameQuestion, SCORE_LABELS, ScoreKey } from '@/types';
 import { synthCorrect, synthWrong, synthTick } from '@/lib/audio';
 
+interface DuelInfo {
+  attackerName: string;
+  defenderName: string;
+  isAttackerTurn: boolean;
+}
+
 interface QuestionCardProps {
   question: GameQuestion;
   onAnswer: (answerIndex: number) => void;
+  duelInfo?: DuelInfo;
 }
 
-export default memo(function QuestionCard({ question, onAnswer }: QuestionCardProps) {
+export default memo(function QuestionCard({ question, onAnswer, duelInfo }: QuestionCardProps) {
   const [selected, setSelected] = useState<number | null>(null);
   const [revealed, setRevealed] = useState(false);
   const [displayedText, setDisplayedText] = useState('');
@@ -53,9 +60,26 @@ export default memo(function QuestionCard({ question, onAnswer }: QuestionCardPr
 
   return (
     <div className="bg-slate-800/95 backdrop-blur rounded-2xl p-6 max-w-lg w-full mx-auto border border-slate-700 shadow-2xl animate-[fadeIn_0.3s_ease-out]">
+      {/* Duel banner */}
+      {duelInfo && (
+        <div className="flex items-center gap-2 mb-3 p-2 bg-amber-900/30 border border-amber-600/40 rounded-lg">
+          <span className="text-xl">⚔️</span>
+          <div>
+            <p className="text-amber-300 font-bold text-sm">Wissensduell!</p>
+            <p className="text-xs text-amber-200">
+              {duelInfo.isAttackerTurn
+                ? `${duelInfo.attackerName} greift an`
+                : `${duelInfo.defenderName} verteidigt`}
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <div className="flex items-center gap-2 mb-3">
-        <span className="px-3 py-1 bg-blue-600/30 text-blue-300 text-xs font-medium rounded-full">❓ Frage</span>
+        <span className="px-3 py-1 bg-blue-600/30 text-blue-300 text-xs font-medium rounded-full">
+          {duelInfo ? '⚔️ Duell' : '❓ Frage'}
+        </span>
         <span className="px-3 py-1 bg-slate-700 text-slate-300 text-xs rounded-full">{question.category}</span>
       </div>
 
