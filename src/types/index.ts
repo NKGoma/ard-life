@@ -45,11 +45,11 @@ export interface StageMeta {
 }
 
 export const LIFE_STAGE_META: Record<LifeStage, StageMeta> = {
-  kindheit: { name: 'Kindheit', ages: '3–10', color: '#FFD93D', emoji: '🧒', description: 'Erste Begegnungen mit Medien' },
-  jugend: { name: 'Jugend', ages: '11–17', color: '#6BCB77', emoji: '🎒', description: 'Social Media, Trends und Peer-Pressure' },
-  junges_erwachsenenalter: { name: 'Junges Erwachsenenalter', ages: '18–29', color: '#4D96FF', emoji: '🎓', description: 'Wahlen, Identität, eigene Meinungen' },
-  erwachsenenalter: { name: 'Erwachsenenalter', ages: '30–55', color: '#FF6B6B', emoji: '💼', description: 'Beruf, Familie und Verantwortung' },
-  alter: { name: 'Lebensabend', ages: '55+', color: '#9B59B6', emoji: '🌿', description: 'Rückblick, Routine und Weitergabe' },
+  kindheit: { name: 'Kindheit', ages: '', color: '#FFD93D', emoji: '🧒', description: 'Erste Begegnungen mit Medien' },
+  jugend: { name: 'Jugend', ages: '', color: '#6BCB77', emoji: '🎒', description: 'Social Media, Trends und Peer-Pressure' },
+  junges_erwachsenenalter: { name: 'Erwachsener', ages: '', color: '#4D96FF', emoji: '🎓', description: 'Wahlen, Identität, eigene Meinungen' },
+  erwachsenenalter: { name: 'Lebensmitte', ages: '', color: '#FF6B6B', emoji: '💼', description: 'Beruf, Familie und Verantwortung' },
+  alter: { name: 'Lebensabend', ages: '', color: '#9B59B6', emoji: '🌿', description: 'Rückblick, Routine und Weitergabe' },
 };
 
 // --- Space Types ---
