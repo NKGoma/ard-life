@@ -18,6 +18,7 @@ import { useBgm } from '@/hooks/useBgm';
 import pkg from '../../../package.json';
 
 import GameWorld3D from '@/components/world/GameWorld3D';
+import { ChanceIcon, BoostIcon } from '@/components/icons/GameIcons';
 
 // --- Setup Phase (collect player avatars) ---
 function SetupScreen({ onStart }: { onStart: (avatars: AvatarConfig[]) => void }) {
@@ -29,7 +30,9 @@ function SetupScreen({ onStart }: { onStart: (avatars: AvatarConfig[]) => void }
     return (
       <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4">
         <div className="text-center">
-          <div className="text-6xl mb-4">🎲</div>
+          <div className="mb-4 flex justify-center">
+            <ChanceIcon className="w-16 h-16 text-white" />
+          </div>
           <h1 className="text-3xl font-bold text-white mb-2">ARD Life – Medienedition</h1>
           <p className="text-slate-400 mb-8">Wie viele Spieler?</p>
           <div className="flex gap-3 justify-center">
@@ -88,7 +91,9 @@ function SetupScreen({ onStart }: { onStart: (avatars: AvatarConfig[]) => void }
           onClick={() => onStart(avatars)}
           className="px-10 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-xl text-lg hover:from-green-400 hover:to-emerald-500 transition-all shadow-xl transform hover:scale-105 active:scale-95"
         >
-          🚀 Spiel starten!
+          <span className="flex items-center gap-2 justify-center">
+            <BoostIcon className="w-5 h-5" /> Spiel starten!
+          </span>
         </button>
       </div>
     </div>
@@ -371,8 +376,8 @@ export default function GamePage() {
       >
         {showSpinnerOverlay && (
           <div className="bg-slate-900/85 backdrop-blur-md p-6 rounded-2xl border border-slate-700/80 shadow-2xl animate-spinner-enter">
-            <p className="text-center text-white text-lg font-bold mb-3">
-              🎲 {activePlayer.name} ist dran!
+            <p className="text-center text-white text-lg font-bold mb-3 flex items-center justify-center gap-2">
+              <ChanceIcon className="w-5 h-5" /> {activePlayer.name} ist dran!
             </p>
             <SpinWheel onResult={handleSpin} disabled={!canSpin} />
           </div>

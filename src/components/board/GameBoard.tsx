@@ -100,12 +100,19 @@ export default function GameBoard({ board, players, activePlayerIndex }: GameBoa
               borderLeft: `3px solid ${getStageMeta(band.stage).color}40`,
             }}
           >
-            <span
-              className="absolute left-2 top-1 text-[10px] font-bold uppercase tracking-wider"
-              style={{ color: getStageMeta(band.stage).color }}
-            >
-              {getStageMeta(band.stage).emoji} {getStageMeta(band.stage).name}
-            </span>
+            {(() => {
+              const meta = getStageMeta(band.stage);
+              const StageIcon = meta.icon;
+              return (
+                <span
+                  className="absolute left-2 top-1 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1"
+                  style={{ color: meta.color }}
+                >
+                  <StageIcon className="w-3 h-3 flex-shrink-0" />
+                  {meta.name}
+                </span>
+              );
+            })()}
           </div>
         ))}
 
@@ -151,15 +158,18 @@ export default function GameBoard({ board, players, activePlayerIndex }: GameBoa
               />
 
               {/* Tile icon */}
-              <span className="text-lg leading-none">{visual.icon}</span>
+              {visual.icon
+                ? (() => { const TileIcon = visual.icon!; return <TileIcon className="w-5 h-5" />; })()
+                : <span className="text-slate-500 text-lg leading-none">·</span>}
 
               {/* Tile number */}
               <span className="text-[9px] text-slate-500 mt-0.5">{space.id + 1}</span>
 
               {/* Milestone label */}
               {space.milestoneTitle && (
-                <span className="absolute -bottom-5 text-[8px] text-yellow-400 font-bold whitespace-nowrap">
-                  ⭐ {space.milestoneTitle}
+                <span className="absolute -bottom-5 text-[8px] text-yellow-400 font-bold whitespace-nowrap flex items-center gap-0.5">
+                  <svg viewBox="0 0 24 24" className="w-2.5 h-2.5 inline-block flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2.2}><path d="M12 3l3 6 6 .8-4.5 4.2 1 6-5.5-3-5.5 3 1-6L3 9.8 9 9z"/></svg>
+                  {space.milestoneTitle}
                 </span>
               )}
 
