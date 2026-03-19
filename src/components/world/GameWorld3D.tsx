@@ -506,9 +506,9 @@ export default function GameWorld3D({
   const sceneH = sceneBounds.maxY - sceneBounds.minY;
 
   // How much of the scene to show (in SVG units).
-  // Controls zoom level — smaller = more zoomed in.
-  const VIEW_WINDOW_W = 520;
-  const VIEW_WINDOW_H = 420;
+  // Controls zoom level — larger values = more zoomed out.
+  const VIEW_WINDOW_W = 750;
+  const VIEW_WINDOW_H = 620;
 
   // Lock the tile grid center to the screen center.
   // The SVG is at left:0, top:0, so SVG coordinate (x,y) maps to
