@@ -1,6 +1,7 @@
 'use client';
-import { useState, memo } from 'react';
+import { useState, useEffect, useRef, memo } from 'react';
 import { GameQuestion, SCORE_LABELS, ScoreKey } from '@/types';
+import { synthCorrect, synthWrong, synthTick } from '@/lib/audio';
 
 interface QuestionCardProps {
   question: GameQuestion;
@@ -10,12 +11,37 @@ interface QuestionCardProps {
 export default memo(function QuestionCard({ question, onAnswer }: QuestionCardProps) {
   const [selected, setSelected] = useState<number | null>(null);
   const [revealed, setRevealed] = useState(false);
+  const [displayedText, setDisplayedText] = useState('');
+  const [typingDone, setTypingDone] = useState(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const isCorrect = selected === question.correctIndex;
+
+  // Typewriter effect for question text
+  useEffect(() => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    setDisplayedText('');
+    setTypingDone(false);
+    let i = 0;
+    const text = question.question;
+    intervalRef.current = setInterval(() => {
+      if (i >= text.length) {
+        clearInterval(intervalRef.current!);
+        intervalRef.current = null;
+        setTypingDone(true);
+        return;
+      }
+      i++;
+      setDisplayedText(text.slice(0, i));
+      if (i % 3 === 0) synthTick();
+    }, 22);
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+  }, [question.question]);
 
   const handleSelect = (idx: number) => {
     if (revealed) return;
     setSelected(idx);
     setRevealed(true);
+    if (idx === question.correctIndex) synthCorrect(); else synthWrong();
     setTimeout(() => onAnswer(idx), 2200);
   };
 
@@ -34,7 +60,7 @@ export default memo(function QuestionCard({ question, onAnswer }: QuestionCardPr
       </div>
 
       <h3 className="text-lg font-bold text-white mb-1">{question.title}</h3>
-      <p className="text-slate-200 mb-4 text-base leading-relaxed">{question.question}</p>
+      <p className="text-slate-200 mb-4 text-base leading-relaxed">{displayedText}{!typingDone && <span className="animate-pulse">▋</span>}</p>
 
       {/* Points preview */}
       {pointsDisplay && (
@@ -43,8 +69,8 @@ export default memo(function QuestionCard({ question, onAnswer }: QuestionCardPr
         </p>
       )}
 
-      {/* Options */}
-      <div className="space-y-2">
+      {/* Options — fade in after typing completes */}
+      <div className={`space-y-2 transition-opacity duration-500 ${typingDone ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         {question.options.map((opt, i) => {
           let cls = 'border-slate-600 bg-slate-700/50 hover:bg-slate-700 text-white';
           if (revealed) {
