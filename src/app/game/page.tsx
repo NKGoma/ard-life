@@ -335,9 +335,9 @@ export default function GamePage() {
         />
       </div>
 
-      {/* ═══════ LAYER 1: HUD — always visible, non-blocking ═══════ */}
-      <div className="absolute top-0 left-0 right-0 z-30 p-2 pointer-events-none">
-        <div className="pointer-events-auto max-w-2xl mx-auto">
+      {/* ═══════ LAYER 1: HUD — vertical left panel, non-blocking ═══════ */}
+      <div className="absolute top-0 left-0 bottom-0 z-30 p-2 pointer-events-none flex items-center">
+        <div className="pointer-events-auto">
           <ScoreBar players={gameState.players} currentPlayerIndex={gameState.currentPlayerIndex} />
         </div>
       </div>
