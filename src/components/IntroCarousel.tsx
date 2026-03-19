@@ -134,9 +134,9 @@ export default function IntroCarousel({ onClose }: Props) {
           ))}
         </div>
 
-        {/* Close / Skip */}
+        {/* Close / Skip — jump straight to player-count selection */}
         <button
-          onClick={onClose}
+          onClick={() => router.push('/game')}
           style={{
             background: 'none', border: 'none', color: 'rgba(255,255,255,0.35)',
             fontSize: 13, cursor: 'pointer', padding: '4px 8px',
