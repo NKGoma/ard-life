@@ -1,6 +1,7 @@
 'use client';
 import { Player, SCORE_LABELS, SCORE_COLORS, SCORE_ICONS, ScoreKey, ALL_SCORE_KEYS } from '@/types';
 import { calculateProfile, getScoreTotal } from '@/lib/scoring';
+import { GoldMedalIcon, SilberMedalIcon, BronzeMedalIcon, FinishIcon } from '@/components/icons/GameIcons';
 
 interface ResultScreenProps {
   players: Player[];
@@ -25,7 +26,12 @@ export default function ResultScreen({ players, onRestart }: ResultScreenProps) 
           return (
             <div key={player.id} className="mb-6 bg-slate-800/80 backdrop-blur rounded-2xl p-5 border border-slate-700">
               <div className="flex items-center gap-3 mb-4">
-                <div className="text-3xl">{rank === 0 ? '🥇' : rank === 1 ? '🥈' : rank === 2 ? '🥉' : '🏅'}</div>
+                <div className="w-10 h-10 flex-shrink-0">
+                  {rank === 0 ? <GoldMedalIcon className="w-10 h-10 text-yellow-400" /> :
+                   rank === 1 ? <SilberMedalIcon className="w-10 h-10 text-slate-300" /> :
+                   rank === 2 ? <BronzeMedalIcon className="w-10 h-10 text-amber-600" /> :
+                   <FinishIcon className="w-10 h-10 text-slate-500" />}
+                </div>
                 <div className="flex-1">
                   <h2 className="text-xl font-bold text-white">{player.name}</h2>
                   <p className="text-sm text-slate-400">Gesamtpunktzahl: {total}</p>
