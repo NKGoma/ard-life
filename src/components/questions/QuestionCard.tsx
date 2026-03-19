@@ -202,7 +202,7 @@ export default memo(function QuestionCard({ question, onAnswer }: QuestionCardPr
           <img
             src={getCategoryImage(question.category)}
             alt={question.category}
-            className="h-8 w-8 rounded-lg object-cover"
+            style={{ width: 28, height: 28, objectFit: 'cover', borderRadius: 6, flexShrink: 0 }}
           />
           {question.url && (
             <a href={question.url} target="_blank" rel="noopener noreferrer"
