@@ -1,5 +1,5 @@
 'use client';
-import { memo, useEffect } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { RandomEvent, SCORE_LABELS, ScoreKey } from '@/types';
 import { synthEvent } from '@/lib/audio';
 
@@ -9,7 +9,14 @@ interface EventCardProps {
 }
 
 export default memo(function EventCard({ event, onChoose }: EventCardProps) {
+  const [chosen, setChosen] = useState<number | null>(null);
   useEffect(() => { synthEvent(); }, []);
+
+  const handleChoose = (i: number) => {
+    if (chosen !== null) return;
+    setChosen(i);
+  };
+
   return (
     <div className="bg-slate-800/95 backdrop-blur rounded-2xl p-6 max-w-lg w-full mx-auto border border-orange-700/50 shadow-2xl animate-[fadeIn_0.3s_ease-out]">
       {/* Header */}
@@ -24,6 +31,9 @@ export default memo(function EventCard({ event, onChoose }: EventCardProps) {
       {/* Choices */}
       <div className="space-y-3">
         {event.choices.map((choice, i) => {
+          const isChosen = chosen === i;
+          const isOther = chosen !== null && chosen !== i;
+
           const effects = Object.entries(choice.points)
             .filter(([, v]) => (v as number) !== 0)
             .map(([k, v]) => {
@@ -36,16 +46,34 @@ export default memo(function EventCard({ event, onChoose }: EventCardProps) {
             : '';
 
           return (
-            <button key={i} onClick={() => onChoose(i)}
-              className="w-full p-4 rounded-xl border-2 border-slate-600 bg-slate-700/50 hover:bg-slate-700 hover:border-orange-500/60 text-left transition-all group">
-              <p className="text-white font-medium group-hover:text-orange-200 transition-colors">{choice.text}</p>
-              <p className="text-xs text-slate-400 mt-1 group-hover:text-slate-300">
-                Effekt: {effects || 'Keine Änderung'}{moveInfo}
-              </p>
+            <button key={i} onClick={() => handleChoose(i)} disabled={chosen !== null}
+              className={`w-full p-4 rounded-xl border-2 text-left transition-all ${
+                isChosen
+                  ? 'border-orange-500 bg-orange-900/30 text-orange-200'
+                  : isOther
+                    ? 'border-slate-700 bg-slate-800/50 text-slate-500'
+                    : 'border-slate-600 bg-slate-700/50 hover:bg-slate-700 hover:border-orange-500/60 group'
+              } disabled:cursor-default`}>
+              <p className={`font-medium transition-colors ${!chosen ? 'text-white group-hover:text-orange-200' : ''}`}>{choice.text}</p>
+              {isChosen && (
+                <p className="text-xs text-orange-300 mt-1">
+                  Effekt: {effects || 'Keine Änderung'}{moveInfo}
+                </p>
+              )}
             </button>
           );
         })}
       </div>
+
+      {/* Continue button after choosing */}
+      {chosen !== null && (
+        <button
+          onClick={() => onChoose(chosen)}
+          className="mt-4 w-full py-2 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-medium transition-colors"
+        >
+          Weiter →
+        </button>
+      )}
     </div>
   );
 });
