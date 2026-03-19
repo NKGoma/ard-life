@@ -1,5 +1,6 @@
 'use client';
 import { useState, useCallback, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import { AvatarConfig, GameState, GamePhase } from '@/types';
 import {
   initGame, movePlayer, processSpaceArrival,
@@ -295,11 +296,13 @@ export default function GamePage() {
   }, [gameState?.phase, gameState?.spinResult, gameState]);
 
   // --- Handle restart ---
+  const router = useRouter();
   const handleRestart = useCallback(() => {
     clearSave();
     setGameState(null);
     setPhase('setup');
-  }, []);
+    router.push('/');
+  }, [router]);
 
   // --- Render ---
   if (phase === 'setup' || !gameState) {
