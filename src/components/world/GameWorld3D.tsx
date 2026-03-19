@@ -1,9 +1,12 @@
 'use client';
-import React, { useMemo, useEffect, useRef, useCallback, memo } from 'react';
+import React, { useMemo, useEffect, useRef, useCallback, memo, Suspense } from 'react';
+import dynamic from 'next/dynamic';
 import {
   BoardSpace, Player, PLAYER_COLORS, getSpaceVisual, getStageMeta,
   LifeStage, TOPS, BOTTOMS, SHOES,
 } from '@/types';
+
+const Background3D = dynamic(() => import('./Background3D'), { ssr: false });
 
 // ============================================================
 // Constants
@@ -445,16 +448,19 @@ const WorldEnvironmentSvg = memo(function WorldEnvironmentSvg({ board }: { board
       const seed = Math.abs(Math.sin(row * 123.456)) % 1;
       const seed2 = Math.abs(Math.cos(row * 789.012)) % 1;
 
+      // Skip trees in upper portion where 3D sky/clouds are visible
+      const showTrees = progress > 0.25;
+
       // Left side — placed past the sign column
       const lx = -(leftEdge + seed * 60);
 
       if (progress < 0.2) {
         if (seed > 0.5) {
           elements.push(<SvgHouse key={idx++} x={lx} y={row} wallColor="#FFF9C4" roofColor="#E57373" scale={0.9} />);
-        } else {
+        } else if (showTrees) {
           elements.push(<SvgRoundTree key={idx++} x={lx} y={row} scale={0.8 + seed * 0.5} />);
         }
-        if (seed2 > 0.6) elements.push(<SvgTree key={idx++} x={lx - 35} y={row + 25} scale={0.7} />);
+        if (seed2 > 0.6 && showTrees) elements.push(<SvgTree key={idx++} x={lx - 35} y={row + 25} scale={0.7} />);
       } else if (progress < 0.4) {
         if (seed > 0.4) {
           elements.push(<SvgHouse key={idx++} x={lx} y={row} wallColor="#E3F2FD" roofColor="#1565C0" scale={1.1} />);
@@ -464,24 +470,24 @@ const WorldEnvironmentSvg = memo(function WorldEnvironmentSvg({ board }: { board
         if (seed > 0.3) {
           elements.push(<SvgHouse key={idx++} x={lx} y={row} wallColor="#ECEFF1" roofColor="#455A64" scale={1.3} />);
         }
-        if (seed2 > 0.4) elements.push(<SvgRoundTree key={idx++} x={lx + 30} y={row + 15} scale={1.1} />);
+        if (seed2 > 0.4 && showTrees) elements.push(<SvgRoundTree key={idx++} x={lx + 30} y={row + 15} scale={1.1} />);
       } else if (progress < 0.8) {
         if (seed > 0.3) {
           elements.push(<SvgHouse key={idx++} x={lx} y={row} wallColor="#FFF3E0" roofColor="#BF360C" scale={1.2} />);
         }
-        if (seed2 > 0.5) elements.push(<SvgTree key={idx++} x={lx + 25} y={row - 20} scale={1.2} />);
+        if (seed2 > 0.5 && showTrees) elements.push(<SvgTree key={idx++} x={lx + 25} y={row - 20} scale={1.2} />);
         if (seed > 0.7) elements.push(<SvgFence key={idx++} x={-(leftEdge - 10)} y={row} width={35} />);
       } else {
-        elements.push(<SvgRoundTree key={idx++} x={lx} y={row} scale={1.3} />);
-        if (seed2 > 0.4) elements.push(<SvgTree key={idx++} x={lx - 25} y={row + 15} scale={1} />);
+        if (showTrees) elements.push(<SvgRoundTree key={idx++} x={lx} y={row} scale={1.3} />);
+        if (seed2 > 0.4 && showTrees) elements.push(<SvgTree key={idx++} x={lx - 25} y={row + 15} scale={1} />);
       }
 
       // Right side
       const rx = rightEdge + seed2 * 60;
-      if (seed > 0.3) {
+      if (seed > 0.3 && showTrees) {
         elements.push(<SvgTree key={idx++} x={rx} y={row} scale={0.7 + seed2 * 0.8} />);
       }
-      if (seed2 > 0.6) {
+      if (seed2 > 0.6 && showTrees) {
         elements.push(<SvgRoundTree key={idx++} x={rx + 35} y={row + 30} scale={0.9} />);
       }
       if (seed > 0.8) {
@@ -600,6 +606,10 @@ export default function GameWorld3D({
       className="w-full h-full"
       style={{ background: '#87CEEB', position: 'relative', overflow: 'hidden' }}
     >
+      {/* 3D background layer */}
+      <Suspense fallback={null}>
+        <Background3D />
+      </Suspense>
       {/*
         The SVG is placed at left:0, top:0 with no viewBox.
         SVG coordinates map 1:1 to element pixels before the CSS transform.
@@ -619,16 +629,10 @@ export default function GameWorld3D({
           top: 0,
           overflow: 'visible',
           display: 'block',
+          zIndex: 1,
         }}
       >
-        {/* Sky/ground fill — offset back to cover the full scene area */}
-        <rect
-          x={sceneBounds.minX}
-          y={sceneBounds.minY}
-          width={sceneW}
-          height={sceneH}
-          fill="#87CEEB"
-        />
+        {/* Transparent background — 3D scene shows through */}
 
         {/* Stage ground bands */}
         <StageGroundsSvg board={board} />
