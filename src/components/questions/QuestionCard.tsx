@@ -62,13 +62,6 @@ export default memo(function QuestionCard({ question, onAnswer }: QuestionCardPr
       <h3 className="text-lg font-bold text-white mb-1">{question.title}</h3>
       <p className="text-slate-200 mb-4 text-base leading-relaxed">{displayedText}{!typingDone && <span className="animate-pulse">▋</span>}</p>
 
-      {/* Points preview */}
-      {pointsDisplay && (
-        <p className="text-xs text-blue-300 mb-3">
-          🎯 Bei richtiger Antwort: {pointsDisplay}
-        </p>
-      )}
-
       {/* Options — fade in after typing completes */}
       <div className={`space-y-2 transition-opacity duration-500 ${typingDone ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         {question.options.map((opt, i) => {
@@ -95,6 +88,9 @@ export default memo(function QuestionCard({ question, onAnswer }: QuestionCardPr
         <div className={`mt-4 p-3 rounded-xl border ${isCorrect ? 'border-green-600 bg-green-900/20 text-green-300' : 'border-red-600 bg-red-900/20 text-red-300'}`}>
           <p className="font-bold mb-1">{isCorrect ? '🎉 Richtig!' : '❌ Leider falsch!'}</p>
           <p className="text-sm text-slate-300">{question.insight}</p>
+          {isCorrect && pointsDisplay && (
+            <p className="text-xs text-blue-300 mt-2">🎯 {pointsDisplay}</p>
+          )}
           {question.url && (
             <a href={question.url} target="_blank" rel="noopener noreferrer" className="inline-block mt-2 text-blue-400 text-sm hover:underline">
               📺 Mehr in der ARD Mediathek →
