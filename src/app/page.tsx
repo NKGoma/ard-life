@@ -71,7 +71,9 @@ export default function Home() {
             animation: 'fadeUp 0.8s 0.2s ease both',
             marginTop: 8,
             marginBottom: 0,
-          }}>ARD Life</h1>
+          }}>
+            ard<span style={{ color: '#4A9EFF' }}>.</span>life
+          </h1>
 
           {/* Tagline */}
           <p style={{
