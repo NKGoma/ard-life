@@ -1,5 +1,5 @@
 'use client';
-import React, { useMemo, useEffect, useRef, memo } from 'react';
+import React, { useMemo, useEffect, useRef, useCallback, memo } from 'react';
 import {
   BoardSpace, Player, PLAYER_COLORS, getSpaceVisual, getStageMeta,
   LifeStage, TOPS, BOTTOMS, SHOES,
@@ -17,7 +17,8 @@ const PATH_WIDTH = BOARD_COLS * TILE_SPACING + 80;
 // SVG position from board col/row
 // ============================================================
 function tileSvgPos(space: BoardSpace): { x: number; y: number } {
-  const x = space.col * TILE_SPACING;
+  // Center the board columns around x=0
+  const x = (space.col - (BOARD_COLS - 1) / 2) * TILE_SPACING;
   const y = space.row * TILE_SPACING;
   return { x, y };
 }
@@ -242,9 +243,9 @@ const StageGroundsSvg = memo(function StageGroundsSvg({ board }: { board: BoardS
         return (
           <rect
             key={i}
-            x={-(PATH_WIDTH / 2 + 60)}
+            x={-(PATH_WIDTH / 2 + 200)}
             y={centerY - bandHeight / 2}
-            width={PATH_WIDTH + 120}
+            width={PATH_WIDTH + 400}
             height={bandHeight}
             fill={STAGE_GROUND[band.stage]}
             opacity={0.3}
@@ -272,19 +273,22 @@ const StageSignsSvg = memo(function StageSignsSvg({ board }: { board: BoardSpace
     return result;
   }, [board]);
 
+  // Place signs well outside the board + scenery zone
+  const signX = -(PATH_WIDTH / 2 + 80);
+
   return (
     <>
       {signs.map((sign, i) => {
         const meta = getStageMeta(sign.stage);
-        const signX = -(PATH_WIDTH / 2 + 20);
         return (
           <g key={i} transform={`translate(${signX},${sign.y})`}>
             {/* Post */}
-            <rect x={-1} y={-30} width={2} height={30} fill="#5D4037" rx={0.5} />
-            {/* Sign board */}
-            <rect x={-40} y={-42} width={80} height={18} rx={3} fill={meta.color} />
+            <rect x={-1} y={-28} width={2} height={28} fill="#5D4037" rx={0.5} />
+            {/* Sign board with shadow for readability */}
+            <rect x={-44} y={-42} width={88} height={22} rx={4} fill="#00000033" />
+            <rect x={-44} y={-43} width={88} height={22} rx={4} fill={meta.color} />
             <text
-              x={0} y={-33}
+              x={0} y={-34}
               textAnchor="middle"
               dominantBaseline="central"
               fontSize={9}
@@ -295,11 +299,11 @@ const StageSignsSvg = memo(function StageSignsSvg({ board }: { board: BoardSpace
               {meta.emoji} {meta.name}
             </text>
             <text
-              x={0} y={-26}
+              x={0} y={-25}
               textAnchor="middle"
               dominantBaseline="central"
               fontSize={6}
-              fill="#FFFFFFCC"
+              fill="#FFFFFFDD"
               style={{ pointerEvents: 'none', userSelect: 'none' }}
             >
               {meta.ages}
@@ -384,16 +388,18 @@ const WorldEnvironmentSvg = memo(function WorldEnvironmentSvg({ board }: { board
 
   const items = useMemo(() => {
     const elements: React.ReactElement[] = [];
-    const side = PATH_WIDTH / 2 + 10;
+    // Scenery starts well outside the board path and sign zone
+    const leftEdge = PATH_WIDTH / 2 + 120; // past the signs
+    const rightEdge = PATH_WIDTH / 2 + 40;
     let idx = 0;
 
-    for (let row = -60; row <= maxY + 100; row += 70) {
+    for (let row = -60; row <= maxY + 100; row += 80) {
       const progress = Math.max(0, Math.min(1, row / maxY));
       const seed = Math.abs(Math.sin(row * 123.456)) % 1;
       const seed2 = Math.abs(Math.cos(row * 789.012)) % 1;
 
-      // Left side
-      const lx = -(side + 10 + seed * 80);
+      // Left side — placed past the sign column
+      const lx = -(leftEdge + seed * 60);
 
       if (progress < 0.2) {
         if (seed > 0.5) {
@@ -401,38 +407,38 @@ const WorldEnvironmentSvg = memo(function WorldEnvironmentSvg({ board }: { board
         } else {
           elements.push(<SvgRoundTree key={idx++} x={lx} y={row} scale={0.8 + seed * 0.5} />);
         }
-        if (seed2 > 0.6) elements.push(<SvgTree key={idx++} x={lx - 40} y={row + 20} scale={0.7} />);
+        if (seed2 > 0.6) elements.push(<SvgTree key={idx++} x={lx - 35} y={row + 25} scale={0.7} />);
       } else if (progress < 0.4) {
         if (seed > 0.4) {
           elements.push(<SvgHouse key={idx++} x={lx} y={row} wallColor="#E3F2FD" roofColor="#1565C0" scale={1.1} />);
         }
-        if (seed2 > 0.5) elements.push(<SvgFence key={idx++} x={-(side + 5)} y={row + 20} width={30} />);
+        if (seed2 > 0.5) elements.push(<SvgFence key={idx++} x={-(leftEdge - 10)} y={row + 25} width={30} />);
       } else if (progress < 0.6) {
         if (seed > 0.3) {
           elements.push(<SvgHouse key={idx++} x={lx} y={row} wallColor="#ECEFF1" roofColor="#455A64" scale={1.3} />);
         }
-        if (seed2 > 0.4) elements.push(<SvgRoundTree key={idx++} x={lx + 40} y={row + 10} scale={1.1} />);
+        if (seed2 > 0.4) elements.push(<SvgRoundTree key={idx++} x={lx + 30} y={row + 15} scale={1.1} />);
       } else if (progress < 0.8) {
         if (seed > 0.3) {
           elements.push(<SvgHouse key={idx++} x={lx} y={row} wallColor="#FFF3E0" roofColor="#BF360C" scale={1.2} />);
         }
-        if (seed2 > 0.5) elements.push(<SvgTree key={idx++} x={lx + 30} y={row - 20} scale={1.2} />);
-        if (seed > 0.7) elements.push(<SvgFence key={idx++} x={-(side + 5)} y={row} width={35} />);
+        if (seed2 > 0.5) elements.push(<SvgTree key={idx++} x={lx + 25} y={row - 20} scale={1.2} />);
+        if (seed > 0.7) elements.push(<SvgFence key={idx++} x={-(leftEdge - 10)} y={row} width={35} />);
       } else {
         elements.push(<SvgRoundTree key={idx++} x={lx} y={row} scale={1.3} />);
-        if (seed2 > 0.4) elements.push(<SvgTree key={idx++} x={lx - 30} y={row + 15} scale={1} />);
+        if (seed2 > 0.4) elements.push(<SvgTree key={idx++} x={lx - 25} y={row + 15} scale={1} />);
       }
 
-      // Right side (less dense)
-      const rx = side + 10 + seed2 * 80;
+      // Right side
+      const rx = rightEdge + seed2 * 60;
       if (seed > 0.3) {
         elements.push(<SvgTree key={idx++} x={rx} y={row} scale={0.7 + seed2 * 0.8} />);
       }
       if (seed2 > 0.6) {
-        elements.push(<SvgRoundTree key={idx++} x={rx + 40} y={row + 30} scale={0.9} />);
+        elements.push(<SvgRoundTree key={idx++} x={rx + 35} y={row + 30} scale={0.9} />);
       }
       if (seed > 0.8) {
-        elements.push(<SvgHouse key={idx++} x={rx + 20} y={row} wallColor="#E8EAF6" roofColor="#283593" scale={1 + seed * 0.3} />);
+        elements.push(<SvgHouse key={idx++} x={rx + 15} y={row} wallColor="#E8EAF6" roofColor="#283593" scale={1 + seed * 0.3} />);
       }
     }
 
@@ -458,80 +464,43 @@ export default function GameWorld3D({
   board, players, activePlayerIndex, landedTileId,
 }: GameWorld3DProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const svgRef = useRef<SVGSVGElement>(null);
   const activePlayer = players[activePlayerIndex];
   const activeSpace = board[activePlayer?.position ?? 0];
   const activePos = activeSpace ? tileSvgPos(activeSpace) : { x: 0, y: 0 };
 
-  // Compute the bounding box of the entire board in SVG coordinates
-  const bounds = useMemo(() => {
-    if (board.length === 0) return { minX: -200, minY: -100, maxX: 200, maxY: 100 };
-    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
-    for (const space of board) {
-      const { x, y } = tileSvgPos(space);
-      minX = Math.min(minX, x);
-      minY = Math.min(minY, y);
-      maxX = Math.max(maxX, x);
-      maxY = Math.max(maxY, y);
-    }
-    return { minX: minX - 80, minY: minY - 80, maxX: maxX + 80, maxY: maxY + 80 };
-  }, [board]);
-
-  // Pan & zoom the SVG to center on the active player.
-  // Uses a single CSS transform on the SVG — no viewBox scaling,
-  // so proportions are always correct (uniform scale).
-  useEffect(() => {
+  // Apply transform: translate the SVG so activePlayer is at screen center, then scale uniformly
+  const applyTransform = useCallback((animate: boolean) => {
     const container = containerRef.current;
-    const svg = svgRef.current;
+    const svg = container?.querySelector('svg');
     if (!container || !svg) return;
 
-    const containerW = container.clientWidth;
-    const containerH = container.clientHeight;
+    const cw = container.clientWidth;
+    const ch = container.clientHeight;
 
-    // How many SVG-units we want visible around the active player
-    // (roughly a 600×400 SVG-unit window so a few tiles are visible)
-    const visibleW = 500;
-    const visibleH = 400;
+    // How many SVG-units should be visible in each axis.
+    // We pick the smaller ratio so proportions stay uniform (no stretch).
+    const visibleW = 600;
+    const visibleH = 500;
+    const zoom = Math.min(cw / visibleW, ch / visibleH);
 
-    // Uniform scale: pick the smaller axis so nothing stretches
-    const zoom = Math.min(containerW / visibleW, containerH / visibleH);
+    // Translate so activePos is at the center of the container
+    const tx = cw / 2 - activePos.x * zoom;
+    const ty = ch / 2 - activePos.y * zoom;
 
-    // Translate so the active player is at the center of the screen
-    const tx = containerW / 2 - activePos.x * zoom;
-    const ty = containerH / 2 - activePos.y * zoom;
-
-    svg.style.transition = 'transform 0.8s ease-out';
+    svg.style.transition = animate ? 'transform 0.8s ease-out' : 'none';
     svg.style.transform = `translate(${tx}px, ${ty}px) scale(${zoom})`;
     svg.style.transformOrigin = '0 0';
-  }, [activePos.x, activePos.y, bounds]);
-
-  // Also re-center on window resize
-  useEffect(() => {
-    const handle = () => {
-      const container = containerRef.current;
-      const svg = svgRef.current;
-      if (!container || !svg) return;
-
-      const containerW = container.clientWidth;
-      const containerH = container.clientHeight;
-      const visibleW = 500;
-      const visibleH = 400;
-      const zoom = Math.min(containerW / visibleW, containerH / visibleH);
-      const tx = containerW / 2 - activePos.x * zoom;
-      const ty = containerH / 2 - activePos.y * zoom;
-
-      svg.style.transition = 'none'; // no animation on resize
-      svg.style.transform = `translate(${tx}px, ${ty}px) scale(${zoom})`;
-      svg.style.transformOrigin = '0 0';
-    };
-    window.addEventListener('resize', handle);
-    return () => window.removeEventListener('resize', handle);
   }, [activePos.x, activePos.y]);
 
-  // The SVG uses no viewBox — it occupies its natural coordinate space.
-  // All positioning is in SVG-units; the CSS transform handles zoom + pan.
-  const svgW = bounds.maxX - bounds.minX;
-  const svgH = bounds.maxY - bounds.minY;
+  // Re-center when active player changes
+  useEffect(() => { applyTransform(true); }, [applyTransform]);
+
+  // Re-center on resize (no animation)
+  useEffect(() => {
+    const handle = () => applyTransform(false);
+    window.addEventListener('resize', handle);
+    return () => window.removeEventListener('resize', handle);
+  }, [applyTransform]);
 
   return (
     <div
@@ -539,14 +508,20 @@ export default function GameWorld3D({
       className="w-full h-full overflow-hidden"
       style={{ background: '#87CEEB', position: 'relative' }}
     >
+      {/* SVG has no width/height/viewBox — it's just a coordinate container.
+          All sizing is handled by the CSS transform above.
+          overflow:visible ensures nothing is clipped. */}
       <svg
-        ref={svgRef}
-        width={svgW}
-        height={svgH}
-        viewBox={`${bounds.minX} ${bounds.minY} ${svgW} ${svgH}`}
         xmlns="http://www.w3.org/2000/svg"
-        preserveAspectRatio="xMidYMid meet"
-        style={{ display: 'block', position: 'absolute', top: 0, left: 0, overflow: 'visible' }}
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: 0,
+          height: 0,
+          overflow: 'visible',
+          display: 'block',
+        }}
       >
         {/* Stage ground bands */}
         <StageGroundsSvg board={board} />
