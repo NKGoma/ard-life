@@ -13,11 +13,7 @@ const nextConfig: NextConfig = {
     removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error', 'warn'] } : false,
   },
 
-  // Experimental performance features
-  experimental: {
-    // Optimize package imports for tree-shaking
-    optimizePackageImports: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
+
 };
 
 export default nextConfig;
