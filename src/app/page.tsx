@@ -1,8 +1,11 @@
 'use client';
 import Link from 'next/link';
 import Particles from '@/components/Particles';
+import { useBgm } from '@/hooks/useBgm';
 
 export default function Home() {
+  const { muted, toggleMute } = useBgm('/bgm/ard_life_theme.mp3', 0.7);
+
   return (
     <>
       <style>{`
@@ -95,6 +98,32 @@ export default function Home() {
             marginTop: 10,
             marginBottom: 0,
           }}>2–4 Spieler · Stehle Punkte · Werde Champion</p>
+
+          {/* Mute button */}
+          <button
+            onClick={toggleMute}
+            title={muted ? 'Musik einschalten' : 'Musik ausschalten'}
+            style={{
+              position: 'fixed',
+              top: 14,
+              right: 16,
+              zIndex: 100,
+              background: 'rgba(255,255,255,0.07)',
+              border: '1px solid rgba(255,255,255,0.15)',
+              borderRadius: 8,
+              color: 'rgba(255,255,255,0.6)',
+              fontSize: 18,
+              width: 36,
+              height: 36,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'background 150ms',
+            }}
+          >
+            {muted ? '🔇' : '🔊'}
+          </button>
 
           {/* Button */}
           <Link href="/game" className="btn-start" style={{

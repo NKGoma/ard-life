@@ -14,6 +14,7 @@ import EventCard from '@/components/events/EventCard';
 import MilestoneCard from '@/components/milestone/MilestoneCard';
 import ResultScreen from '@/components/result/ResultScreen';
 import AvatarEditor from '@/components/avatar/AvatarEditor';
+import { useBgm } from '@/hooks/useBgm';
 import pkg from '../../../package.json';
 
 // Dynamic import for Three.js (SSR disabled)
@@ -99,6 +100,7 @@ function SetupScreen({ onStart }: { onStart: (avatars: AvatarConfig[]) => void }
 export default function GamePage() {
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [phase, setPhase] = useState<'setup' | 'game'>('setup');
+  const { muted, toggleMute } = useBgm('/bgm/ard_life_instrumental.mp3', 0.25);
   const [showBoostToast, setShowBoostToast] = useState<string | null>(null);
   const [spinnerVisible, setSpinnerVisible] = useState(true);
   const [landedTileId, setLandedTileId] = useState<number | null>(null);
@@ -436,6 +438,13 @@ export default function GamePage() {
         </div>
         <div className="flex items-center gap-3">
           <span className="text-xs text-white/40 drop-shadow">v{pkg.version}</span>
+          <button
+            onClick={toggleMute}
+            title={muted ? 'Musik einschalten' : 'Musik ausschalten'}
+            className="pointer-events-auto text-base w-8 h-8 flex items-center justify-center rounded-lg bg-black/20 hover:bg-black/40 text-white/60 hover:text-white transition-all drop-shadow"
+          >
+            {muted ? '🔇' : '🔊'}
+          </button>
           <button
             onClick={handleRestart}
             className="pointer-events-auto text-xs text-white/60 hover:text-red-400 transition-colors px-3 py-1 rounded-lg hover:bg-black/30 drop-shadow"
