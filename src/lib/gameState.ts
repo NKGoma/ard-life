@@ -63,6 +63,7 @@ export function initGame(avatars: AvatarConfig[]): GameState {
     currentPlayerIndex: 0, board, phase: 'playing',
     currentQuestion: null, currentEvent: null, currentMilestone: null,
     spinResult: null, turnCount: 0, animatingToPosition: null,
+    usedQuestions: [],
   };
 }
 
@@ -113,7 +114,7 @@ export function processSpaceArrival(state: GameState): GameState {
   switch (space.type) {
     case 'question':
     case 'chance': {
-      const q = getQuestionForStage(player.currentStage, player.answeredQuestions);
+      const q = getQuestionForStage(player.currentStage, state.usedQuestions);
       if (q) return { ...state, currentQuestion: q, phase: 'question' };
       return { ...state, phase: 'playing' };
     }
@@ -196,6 +197,7 @@ export function answerQuestion(state: GameState, answerIndex: number): GameState
     players: state.players.map((p, i) => i === state.currentPlayerIndex ? updatedPlayer : p),
     currentQuestion: null,
     phase: 'playing',
+    usedQuestions: [...state.usedQuestions, q.id],
   };
 }
 
@@ -300,6 +302,7 @@ export function loadGame(): GameState | null {
     if (!raw) return null;
     const state = JSON.parse(raw) as GameState;
     if (!state.players || !state.board || !Array.isArray(state.players)) return null;
+    if (!state.usedQuestions) state.usedQuestions = [];
     for (const p of state.players) {
       if (!(p.currentStage in LIFE_STAGE_META)) {
         p.currentStage = getStageForPosition(state.board, p.position);
