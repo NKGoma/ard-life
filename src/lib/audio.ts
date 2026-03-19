@@ -3,9 +3,11 @@
 
 let _audioCtx: AudioContext | null = null;
 let _muted = false;
+let _silenced = false; // true while a video is playing — blocks all SFX
 
 export function setMuted(val: boolean) { _muted = val; }
 export function isMuted() { return _muted; }
+export function setSilenced(val: boolean) { _silenced = val; }
 
 function getAudioCtx(): AudioContext | null {
   if (!_audioCtx) {
@@ -17,7 +19,7 @@ function getAudioCtx(): AudioContext | null {
 }
 
 function playTone(freq: number, type: OscillatorType, duration: number, gain = 0.3, startDelay = 0) {
-  if (_muted) return;
+  if (_muted || _silenced) return;
   const ctx = getAudioCtx();
   if (!ctx) return;
   try {

@@ -1,23 +1,42 @@
 'use client';
 import { useState, useEffect, useRef, memo } from 'react';
 import { GameQuestion, SCORE_LABELS, ScoreKey } from '@/types';
-import { synthCorrect, synthWrong, synthTick } from '@/lib/audio';
+import { synthCorrect, synthWrong, synthTick, setSilenced } from '@/lib/audio';
+import { pauseForVideo, resumeAfterVideo } from '@/lib/bgmManager';
 
 interface QuestionCardProps {
   question: GameQuestion;
   onAnswer: (answerIndex: number) => void;
 }
 
-function getEmbedUrl(url: string): string | null {
+interface Stream { url: string; type: string; }
+type VideoStatus = 'loading' | 'stream' | 'embed' | 'none';
+
+function getVideoId(url: string): string | null {
   try {
-    const u = new URL(url);
-    const segments = u.pathname.split('/').filter(Boolean);
-    const id = segments.at(-1);
-    if (!id) return null;
-    return `https://www.ardmediathek.de/embed/video/${id}`;
-  } catch {
-    return null;
+    const id = new URL(url).pathname.split('/').findLast(Boolean);
+    return id ?? null;
+  } catch { return null; }
+}
+
+function pickStream(streams: Stream[]): string | null {
+  const mp4s = streams.filter(s => s.type === 'video/mp4' || s.url.includes('.mp4'));
+  const hls  = streams.find(s => s.type.includes('mpegURL') || s.url.includes('.m3u8'));
+
+  // HLS works natively in Safari and via the browser in Chrome/Firefox via MSE
+  // Prefer it when available since it delivers adaptive quality
+  if (hls) return hls.url;
+
+  // Fallback: highest-res MP4 — urls look like ..._1080.mp4, ..._720.mp4 etc.
+  if (mp4s.length > 0) {
+    const sorted = [...mp4s].sort((a, b) => {
+      const res = (u: string) => { const m = /(\d+)\.mp4/.exec(u); return m ? Number(m[1]) : 0; };
+      return res(b.url) - res(a.url);
+    });
+    return sorted[0].url;
   }
+
+  return null;
 }
 
 export default memo(function QuestionCard({ question, onAnswer }: QuestionCardProps) {
@@ -25,9 +44,54 @@ export default memo(function QuestionCard({ question, onAnswer }: QuestionCardPr
   const [revealed, setRevealed] = useState(false);
   const [displayedText, setDisplayedText] = useState('');
   const [typingDone, setTypingDone] = useState(false);
+  const [videoStatus, setVideoStatus] = useState<VideoStatus>('loading');
+  const [streamUrl, setStreamUrl] = useState<string | null>(null);
+  const [embedUrl, setEmbedUrl] = useState<string | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const isCorrect = selected === question.correctIndex;
-  const embedUrl = question.url ? getEmbedUrl(question.url) : null;
+
+  // Resolve video source when question changes
+  useEffect(() => {
+    setVideoStatus('loading');
+    setStreamUrl(null);
+    setEmbedUrl(null);
+
+    if (!question.url) { setVideoStatus('none'); return; }
+
+    const id = getVideoId(question.url);
+    if (!id) { setVideoStatus('none'); return; }
+
+    const fallbackEmbed = `https://www.ardmediathek.de/embed/video/${id}`;
+
+    let cancelled = false;
+    fetch(`/api/video-src?id=${encodeURIComponent(id)}`)
+      .then(r => r.json())
+      .then((data: { streams?: Stream[]; error?: string }) => {
+        if (cancelled) return;
+        const url = data.streams ? pickStream(data.streams) : null;
+        if (url) {
+          setStreamUrl(url);
+          setVideoStatus('stream');
+        } else {
+          setEmbedUrl(fallbackEmbed);
+          setVideoStatus('embed');
+        }
+      })
+      .catch(() => {
+        if (!cancelled) { setEmbedUrl(fallbackEmbed); setVideoStatus('embed'); }
+      });
+
+    return () => { cancelled = true; };
+  }, [question.url]);
+
+  // Restore audio when card unmounts (e.g. video was playing when user answered)
+  useEffect(() => {
+    return () => {
+      resumeAfterVideo();
+      setSilenced(false);
+    };
+  }, []);
 
   // Typewriter effect for question text
   useEffect(() => {
@@ -52,9 +116,21 @@ export default memo(function QuestionCard({ question, onAnswer }: QuestionCardPr
 
   const handleSelect = (idx: number) => {
     if (revealed) return;
+    // Pause video and restore audio when answering
+    videoRef.current?.pause();
     setSelected(idx);
     setRevealed(true);
     if (idx === question.correctIndex) synthCorrect(); else synthWrong();
+  };
+
+  const handleVideoPlay = () => {
+    pauseForVideo();
+    setSilenced(true);
+  };
+
+  const handleVideoStop = () => {
+    resumeAfterVideo();
+    setSilenced(false);
   };
 
   // Format points display
@@ -66,8 +142,29 @@ export default memo(function QuestionCard({ question, onAnswer }: QuestionCardPr
   return (
     <div className="bg-slate-800/95 backdrop-blur rounded-2xl max-w-xl w-full mx-auto border border-slate-700 shadow-2xl animate-[fadeIn_0.3s_ease-out] max-h-[90dvh] overflow-y-auto">
 
-      {/* Video embed */}
-      {embedUrl && (
+      {/* ── Video area ── */}
+      {videoStatus === 'loading' && question.url && (
+        <div className="w-full rounded-t-2xl bg-slate-900/60 flex items-center justify-center" style={{ aspectRatio: '16/9' }}>
+          <span className="text-slate-500 text-sm animate-pulse">📺 Lade Video…</span>
+        </div>
+      )}
+
+      {videoStatus === 'stream' && streamUrl && (
+        <video
+          ref={videoRef}
+          src={streamUrl}
+          controls
+          className="w-full rounded-t-2xl bg-black"
+          style={{ aspectRatio: '16/9', display: 'block' }}
+          onPlay={handleVideoPlay}
+          onPause={handleVideoStop}
+          onEnded={handleVideoStop}
+        >
+          <track kind="captions" />
+        </video>
+      )}
+
+      {videoStatus === 'embed' && embedUrl && (
         <div className="relative w-full rounded-t-2xl overflow-hidden" style={{ paddingBottom: '56.25%' }}>
           <iframe
             src={embedUrl}

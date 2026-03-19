@@ -7,6 +7,8 @@ const INSTRUMENTAL_VOL = 0.2;
 let _theme: HTMLAudioElement | null = null;
 let _instrumental: HTMLAudioElement | null = null;
 let _savedThemePos = 0; // playback position handed off from theme → instrumental
+let _videoWasPlayingTheme = false;
+let _videoWasPlayingInstrumental = false;
 
 function isMuted(): boolean {
   if (typeof window === 'undefined') return false;
@@ -106,4 +108,22 @@ export function applyMute(muted: boolean) {
   const i = getInstrumental();
   if (t) t.volume = muted ? 0 : THEME_VOL;
   if (i) i.volume = muted ? 0 : INSTRUMENTAL_VOL;
+}
+
+/** Temporarily pause BGM while a video plays. Does NOT change the stored mute preference. */
+export function pauseForVideo() {
+  const t = getTheme();
+  const i = getInstrumental();
+  _videoWasPlayingTheme = !!t && !t.paused;
+  _videoWasPlayingInstrumental = !!i && !i.paused;
+  t?.pause();
+  i?.pause();
+}
+
+/** Resume whichever BGM tracks were playing before pauseForVideo() was called. */
+export function resumeAfterVideo() {
+  if (_videoWasPlayingTheme) { const t = getTheme(); if (t) tryPlay(t); }
+  if (_videoWasPlayingInstrumental) { const i = getInstrumental(); if (i) tryPlay(i); }
+  _videoWasPlayingTheme = false;
+  _videoWasPlayingInstrumental = false;
 }
