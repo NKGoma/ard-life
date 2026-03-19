@@ -1,5 +1,5 @@
 'use client';
-import { Player, SCORE_LABELS, SCORE_COLORS, SCORE_EMOJIS, ScoreKey, ALL_SCORE_KEYS } from '@/types';
+import { Player, SCORE_LABELS, SCORE_COLORS, SCORE_ICONS, ScoreKey, ALL_SCORE_KEYS } from '@/types';
 import { calculateProfile, getScoreTotal } from '@/lib/scoring';
 
 interface ResultScreenProps {
@@ -51,7 +51,7 @@ export default function ResultScreen({ players, onRestart }: ResultScreenProps) 
                   const pct = Math.min(val * 2, 100);
                   return (
                     <div key={key} className="flex items-center gap-2">
-                      <span className="text-sm w-6">{SCORE_EMOJIS[key]}</span>
+                      {(() => { const Icon = SCORE_ICONS[key]; return <Icon className="w-5 h-5 flex-shrink-0" />; })()}
                       <span className="text-xs text-slate-400 w-24">{SCORE_LABELS[key]}</span>
                       <div className="flex-1 h-2.5 bg-slate-700 rounded-full overflow-hidden">
                         <div className="h-full rounded-full" style={{ width: `${pct}%`, backgroundColor: SCORE_COLORS[key] }} />

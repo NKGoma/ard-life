@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef, memo } from 'react';
 import { GameQuestion, SCORE_LABELS, ScoreKey } from '@/types';
 import { synthCorrect, synthWrong, synthTick } from '@/lib/audio';
+import { QuestionIcon } from '@/components/icons/GameIcons';
 
 interface QuestionCardProps {
   question: GameQuestion;
@@ -82,7 +83,9 @@ export default memo(function QuestionCard({ question, onAnswer }: QuestionCardPr
       <div className="p-6">
         {/* Header */}
         <div className="flex items-center gap-2 mb-3">
-          <span className="px-3 py-1 bg-blue-600/30 text-blue-300 text-xs font-medium rounded-full">❓ Frage</span>
+          <span className="px-3 py-1 bg-blue-600/30 text-blue-300 text-xs font-medium rounded-full flex items-center gap-1 w-fit">
+            <QuestionIcon className="w-3.5 h-3.5" /> Frage
+          </span>
           <span className="px-3 py-1 bg-slate-700 text-slate-300 text-xs rounded-full">{question.category}</span>
           {question.url && (
             <a href={question.url} target="_blank" rel="noopener noreferrer"

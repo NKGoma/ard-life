@@ -1,6 +1,7 @@
 'use client';
 import { memo } from 'react';
 import { BoardSpace } from '@/types';
+import { MilestoneIcon } from '@/components/icons/GameIcons';
 
 interface MilestoneCardProps {
   space: BoardSpace;
@@ -12,7 +13,9 @@ export default memo(function MilestoneCard({ space, onAcknowledge }: MilestoneCa
     <div className="bg-slate-800/95 backdrop-blur rounded-2xl p-6 max-w-md w-full mx-auto
       border border-yellow-600/50 shadow-2xl animate-[fadeIn_0.3s_ease-out] text-center">
       {/* Star burst */}
-      <div className="text-5xl mb-3 animate-bounce">⭐</div>
+      <div className="mb-3 animate-bounce flex justify-center">
+        <MilestoneIcon className="w-12 h-12 text-yellow-300" />
+      </div>
 
       <h3 className="text-2xl font-bold text-yellow-300 mb-2">
         {space.milestoneTitle ?? 'Meilenstein!'}
