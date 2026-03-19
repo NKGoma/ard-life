@@ -14,6 +14,7 @@ import EventCard from '@/components/events/EventCard';
 import MilestoneCard from '@/components/milestone/MilestoneCard';
 import ResultScreen from '@/components/result/ResultScreen';
 import AvatarEditor from '@/components/avatar/AvatarEditor';
+import pkg from '../../../package.json';
 
 // Dynamic import for Three.js (SSR disabled)
 const GameWorld3D = dynamic(() => import('@/components/world/GameWorld3D'), { ssr: false });
@@ -433,12 +434,15 @@ export default function GamePage() {
         <div className="text-xs text-white/60 drop-shadow">
           Runde {Math.floor(gameState.turnCount / gameState.players.length) + 1} · Zug {gameState.turnCount + 1}
         </div>
-        <button
-          onClick={handleRestart}
-          className="pointer-events-auto text-xs text-white/60 hover:text-red-400 transition-colors px-3 py-1 rounded-lg hover:bg-black/30 drop-shadow"
-        >
-          🔄 Neu starten
-        </button>
+        <div className="flex items-center gap-3">
+          <span className="text-xs text-white/40 drop-shadow">v{pkg.version}</span>
+          <button
+            onClick={handleRestart}
+            className="pointer-events-auto text-xs text-white/60 hover:text-red-400 transition-colors px-3 py-1 rounded-lg hover:bg-black/30 drop-shadow"
+          >
+            🔄 Neu starten
+          </button>
+        </div>
       </div>
     </div>
   );
