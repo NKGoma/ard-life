@@ -1,6 +1,7 @@
 'use client';
 import { useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
+import { clearSave } from '@/lib/gameState';
 
 interface Props {
   onClose: () => void;
@@ -136,7 +137,7 @@ export default function IntroCarousel({ onClose }: Props) {
 
         {/* Close / Skip — jump straight to player-count selection */}
         <button
-          onClick={() => router.push('/game')}
+          onClick={() => { clearSave(); router.push('/game'); }}
           style={{
             background: 'none', border: 'none', color: 'rgba(255,255,255,0.35)',
             fontSize: 13, cursor: 'pointer', padding: '4px 8px',
@@ -286,7 +287,7 @@ export default function IntroCarousel({ onClose }: Props) {
                   </div>
 
                   <button
-                    onClick={() => router.push('/game')}
+                    onClick={() => { clearSave(); router.push('/game'); }}
                     style={{
                       padding: '14px 40px',
                       background: '#005A9F',

@@ -1,13 +1,23 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Particles from '@/components/Particles';
 import IntroCarousel from '@/components/IntroCarousel';
 import { useBgm } from '@/hooks/useBgm';
+import { loadGame } from '@/lib/gameState';
 
 
 export default function Home() {
   const { muted, toggleMute } = useBgm('theme');
   const [showCarousel, setShowCarousel] = useState(false);
+  const [hasSave, setHasSave] = useState(false);
+  const router = useRouter();
+
+  // Check if a saved game exists on mount
+  useEffect(() => {
+    const saved = loadGame();
+    setHasSave(saved !== null && saved.phase !== 'finished');
+  }, []);
 
   return (
     <>
@@ -128,6 +138,28 @@ export default function Home() {
             >
               Neues Spiel ›
             </button>
+
+            {hasSave && (
+              <button
+                className="btn-start"
+                onClick={() => router.push('/game')}
+                style={{
+                  padding: '10px 28px',
+                  background: 'transparent',
+                  color: 'rgba(255,255,255,0.7)',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  borderRadius: 6,
+                  fontSize: 14,
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  letterSpacing: '0.3px',
+                  transition: 'transform 200ms ease-out, box-shadow 200ms ease-out, border-color 200ms ease',
+                  fontFamily: 'inherit',
+                }}
+              >
+                Weiterspielen ›
+              </button>
+            )}
 
             <button
               onClick={() => setShowCarousel(true)}
