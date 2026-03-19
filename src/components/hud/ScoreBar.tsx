@@ -13,16 +13,16 @@ export default memo(function ScoreBar({ players, currentPlayerIndex }: ScoreBarP
   const stageMeta = getStageMeta(player.currentStage);
 
   return (
-    <div className="bg-slate-800/90 backdrop-blur rounded-2xl p-2.5 border border-slate-700 w-[140px] flex flex-col gap-2">
+    <div className="bg-slate-800/90 backdrop-blur rounded-2xl p-4 border border-slate-700 w-[180px] flex flex-col gap-3">
       {/* Player tabs — stacked vertically */}
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1.5">
         {players.map((p, i) => {
           const isActive = i === currentPlayerIndex;
           const color = PLAYER_COLORS[p.id % PLAYER_COLORS.length];
           return (
             <div
               key={p.id}
-              className={`flex items-center gap-1.5 px-2 py-1 rounded-lg transition-all text-xs
+              className={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg transition-all text-sm
                 ${isActive ? 'text-white font-bold' : 'text-slate-500'}`}
               style={{
                 backgroundColor: isActive ? `${color}25` : 'transparent',
@@ -30,7 +30,7 @@ export default memo(function ScoreBar({ players, currentPlayerIndex }: ScoreBarP
               }}
             >
               <div
-                className="w-4 h-4 rounded-full border border-white/80 flex items-center justify-center text-[7px] font-bold text-white shrink-0"
+                className="w-5 h-5 rounded-full border border-white/80 flex items-center justify-center text-[8px] font-bold text-white shrink-0"
                 style={{ backgroundColor: color }}
               >
                 {p.name.charAt(0)}
@@ -46,29 +46,29 @@ export default memo(function ScoreBar({ players, currentPlayerIndex }: ScoreBarP
 
       {/* Active player info */}
       <div className="px-1">
-        <p className="text-white font-bold text-sm truncate leading-tight">{player.name}</p>
-        <p className="text-[10px] leading-tight" style={{ color: stageMeta.color }}>
+        <p className="text-white font-bold text-base truncate leading-tight">{player.name}</p>
+        <p className="text-xs leading-tight mt-0.5" style={{ color: stageMeta.color }}>
           {stageMeta.emoji} {stageMeta.name}
         </p>
-        <p className="text-[10px] text-slate-400 leading-tight">Feld {player.position + 1}</p>
+        <p className="text-xs text-slate-400 leading-tight">Feld {player.position + 1}</p>
       </div>
 
       {/* Divider */}
       <div className="border-t border-slate-700" />
 
       {/* Three score categories — vertical bars */}
-      <div className="flex flex-col gap-2 px-1">
+      <div className="flex flex-col gap-3 px-1">
         {ALL_SCORE_KEYS.map((key: ScoreKey) => {
           const val = player.scores[key];
           const pct = Math.min(val * 2, 100);
           return (
             <div key={key}>
-              <div className="flex items-center justify-between mb-0.5">
-                <span className="text-xs">{SCORE_EMOJIS[key]}</span>
-                <span className="text-[10px] text-slate-300 font-medium truncate mx-1 flex-1">{SCORE_LABELS[key]}</span>
-                <span className="text-[10px] text-white font-mono font-bold">{val}</span>
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-sm">{SCORE_EMOJIS[key]}</span>
+                <span className="text-xs text-slate-300 font-medium truncate mx-1 flex-1">{SCORE_LABELS[key]}</span>
+                <span className="text-xs text-white font-mono font-bold">{val}</span>
               </div>
-              <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
+              <div className="h-2.5 bg-slate-700 rounded-full overflow-hidden">
                 <div
                   className="h-full rounded-full transition-all duration-700 ease-out"
                   style={{
